@@ -2177,7 +2177,7 @@ function ComunidadePage({user,posts,onPostsChange,postsLoading,postsError,onRegi
 
   const handleLike=(id)=>{
     onPostsChange(posts.map(p=>p.id===id?{...p,likes:p.liked?p.likes-1:p.likes+1,liked:!p.liked}:p));
-    api.post('/api/like',{postId:id}).catch(()=>{});
+    api.post(API_URL + '/api/like',{postId:id}) .catch(()=>{});
   };
   const toggleComments=(id)=>{
     onPostsChange(posts.map(p=>p.id===id?{...p,showComments:!p.showComments}:p));
@@ -2190,7 +2190,7 @@ function ComunidadePage({user,posts,onPostsChange,postsLoading,postsError,onRegi
     if(!post||!post.commentInput.trim()) return;
     const newComment={id:Date.now(),av:isVip?'👑':'🌸',avatar_url:user.avatar||null,nm:user.nome,text:post.commentInput.trim(),time:t.comm_now,replies:[],showReplyInput:false,replyInput:''};
     onPostsChange(posts.map(p=>p.id===id?{...p,comments:[...p.comments,newComment],commentInput:'',showComments:true}:p));
-    api.post('/api/comments',{postId:id,userId:user.email,nm:user.nome,av:isVip?'👑':'🌸',avatar_url:user.avatar||null,text:post.commentInput.trim()}).catch(()=>{});
+   api.post(API_URL + '/api/comments',{postId:id,...}) :user.email,nm:user.nome,av:isVip?'👑':'🌸',avatar_url:user.avatar||null,text:post.commentInput.trim()}).catch(()=>{});
   };
   const toggleReplyInput=(postId,commentId)=>{
     onPostsChange(posts.map(p=>p.id===postId?{...p,comments:p.comments.map(c=>c.id===commentId?{...c,showReplyInput:!c.showReplyInput}:c)}:p));
