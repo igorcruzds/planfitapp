@@ -1,0 +1,157 @@
+IMPLEMENTAR LÓGICA DE LOGIN + NÍVEL ÚNICO + ABA "MEUS PRODUTOS"
+
+Quero implementar a seguinte lógica no app:
+
+--------------------------------
+1. LÓGICA DE LOGIN COM NÍVEL SALVO
+--------------------------------
+
+Quando a usuária fizer login:
+
+Verificar se user.level existe
+
+Se user.level == null:
+→ mostrar tela de seleção de nível
+
+Se user.level existe:
+→ pular seleção de nível
+→ ir direto para Dashboard
+
+A usuária só pode escolher o nível uma única vez.
+
+Após escolher o nível:
+Salvar no usuário:
+
+user.level = "iniciante1" (ou outro)
+
+Nunca mais mostrar seleção.
+
+--------------------------------
+2. ESTRUTURA DO USUÁRIO
+--------------------------------
+
+user {
+  id: string
+  name: string
+  email: string
+  level: string | null
+  unlockedProducts: {
+    treinoExpress: boolean
+    desafioBumbum: boolean
+    secaBarriga: boolean
+    treino15min: boolean
+  }
+}
+
+--------------------------------
+3. CRIAR ABA NO PERFIL: "MEUS PRODUTOS"
+--------------------------------
+
+Dentro da tela Perfil criar seção:
+
+"Meus Produtos"
+
+Essa seção deve mostrar apenas produtos desbloqueados.
+
+Lista dinâmica baseada em unlockedProducts.
+
+--------------------------------
+4. PRODUTOS DISPONÍVEIS
+--------------------------------
+
+TreinoExpress  
+Desafio Bumbum BR  
+Desafio Seca Barriga  
+Desafio 15min por dia  
+
+--------------------------------
+5. LÓGICA DE EXIBIÇÃO
+--------------------------------
+
+Se unlockedProducts.treinoExpress == true
+→ mostrar "TreinoExpress"
+
+Se unlockedProducts.desafioBumbum == true
+→ mostrar "Desafio Bumbum BR"
+
+Se unlockedProducts.secaBarriga == true
+→ mostrar "Desafio Seca Barriga"
+
+Se unlockedProducts.treino15min == true
+→ mostrar "Desafio 15min por dia"
+
+Mostrar apenas desbloqueados.
+
+--------------------------------
+6. CADA ITEM DEVE SER CLICÁVEL
+--------------------------------
+
+TreinoExpress → abre módulo TreinoExpress  
+Desafio Bumbum → abre desafio  
+Seca Barriga → abre desafio  
+15min → abre desafio  
+
+--------------------------------
+7. SE NÃO TIVER PRODUTOS
+--------------------------------
+
+Mostrar mensagem:
+
+"Você ainda não desbloqueou nenhum produto"
+
+Botão:
+"Ver programas disponíveis"
+
+Esse botão leva para tela de compra.
+
+--------------------------------
+8. AO COMPRAR PRODUTO
+--------------------------------
+
+Quando usuária comprar:
+
+unlockedProducts.produto = true
+
+Atualizar automaticamente:
+
+- aparecer em "Meus Produtos"
+- remover cadeado
+- liberar acesso
+- permitir clique
+
+--------------------------------
+9. FLUXO COMPLETO DO APP
+--------------------------------
+
+Novo usuário:
+
+Login  
+→ escolher nível  
+→ salvar nível  
+→ Dashboard  
+
+Usuário existente:
+
+Login  
+→ verificar level  
+→ Dashboard direto  
+
+Compra produto:
+
+Comprar  
+→ desbloquear  
+→ aparecer em Meus Produtos  
+→ clicável  
+→ abrir conteúdo  
+
+--------------------------------
+10. REGRAS IMPORTANTES
+--------------------------------
+
+- nível só pode ser escolhido uma vez
+- não mostrar seleção novamente
+- produtos só aparecem se desbloqueados
+- lista dinâmica
+- itens clicáveis
+- atualização automática após compra
+- estrutura escalável

@@ -1,0 +1,320 @@
+Atualizar o app existente mantendo a estrutura atual.
+Implementar perfis sociais, foto de perfil, comunidade estilo Threads,
+registro de treino unificado, ranking, compartilhamento e troca de treino.
+
+NÃO usar backend
+NÃO usar banco de dados
+Somente lógica frontend com estado global
+
+========================================
+PERFIS ESTILO REDE SOCIAL
+========================================
+
+Criar perfil individual para cada usuária.
+
+Nome clicável na comunidade.
+Ao clicar abrir perfil.
+
+TOPO DO PERFIL
+
+Mostrar:
+
+- foto perfil
+- nome
+- badge VIP se tiver
+- nível atual
+- dias consecutivos
+- total treinos
+
+========================================
+FOTO DE PERFIL
+========================================
+
+Avatar circular no topo do perfil.
+
+Se não tiver foto:
+
+Mostrar placeholder.
+
+Foto clicável.
+
+Ao clicar:
+
+Abrir opções:
+
+- adicionar foto
+- trocar foto
+- remover foto
+
+Selecionar imagem da galeria.
+
+Salvar em estado global:
+
+user.avatar
+
+Atualizar automaticamente:
+
+- comunidade
+- perfil
+- ranking
+- comentários
+
+========================================
+FEED DO PERFIL
+========================================
+
+Mostrar apenas publicações:
+
+- foto
+- legenda
+- data
+
+NÃO mostrar:
+
+- exercícios
+- treino detalhado
+- divisão treino
+
+========================================
+INTERAÇÃO NO PERFIL
+========================================
+
+Cada post deve permitir:
+
+- curtir
+- comentar
+- responder
+
+Estilo Threads.
+
+========================================
+REGISTRAR TREINO — FUNÇÃO ÚNICA
+========================================
+
+Existem dois botões:
+
+- Dashboard
+- Comunidade
+
+Ambos chamam:
+
+registerWorkout()
+
+Ao registrar:
+
+- marcar treino concluído
+- atualizar dashboard
+- criar post comunidade
+- atualizar ranking
+- atualizar streak
+- atualizar progresso
+
+Bloquear múltiplos registros.
+
+Se já registrado:
+
+Mostrar:
+
+Treino já registrado hoje
+
+========================================
+CRIAR POST AUTOMÁTICO
+========================================
+
+Ao registrar treino:
+
+Criar post com:
+
+- avatar
+- nome usuária
+- badge VIP
+- foto opcional
+- legenda opcional
+- texto "Treino concluído hoje"
+- data
+
+Adicionar no topo.
+
+========================================
+COMUNIDADE ESTILO THREADS
+========================================
+
+Feed com:
+
+- avatar
+- nome clicável
+- badge VIP
+- foto
+- legenda
+- like
+- comentar
+- responder
+
+Exemplo:
+
+Ana ⭐ VIP
+Treino concluído hoje
+
+❤️ 12   💬 3
+
+Comentários:
+
+Maria: Arrasou
+Julia: Bora
+
+Respostas:
+
+↳ Ana: Vamos
+
+Permitir:
+
+- comentar
+- responder
+- curtir
+
+========================================
+COMPARTILHAR ESTILO STRAVA
+========================================
+
+Após registrar treino:
+
+Mostrar:
+
+Compartilhar Instagram
+Compartilhar Stories
+Compartilhar WhatsApp
+
+Imagem com:
+
+- logo PlanFit
+- treino concluído
+- nível ou VIP
+- data
+
+========================================
+RANKING
+========================================
+
+Criar abas:
+
+Ranking PlanFit
+Ranking VIP
+
+Ranking baseado em:
+
+quantidade de treinos
+
+========================================
+RANKING SEMANAL
+========================================
+
+Top 5 semana:
+
+Badge destaque semanal
+
+========================================
+DESEMPATE
+========================================
+
+1 mais treinos
+2 maior sequência
+3 quem chegou primeiro
+4 sorteio
+
+========================================
+TROCA DE TREINO — 7 DIAS
+========================================
+
+Mostrar botão:
+
+Trocar treino
+
+Somente se:
+
+diasDesdeInicio <= 7
+AND hasSwappedWorkout = false
+
+Após 7 dias:
+
+Ocultar botão
+
+========================================
+AÇÃO TROCAR TREINO
+========================================
+
+Modal:
+
+Deseja trocar seu treino?
+
+Opções:
+
+Mais leve
+Intermediário
+Mais intenso
+
+Após escolher:
+
+- trocar treino atual
+- manter ranking
+- manter streak
+- manter progresso
+- manter nível
+
+Definir:
+
+hasSwappedWorkout = true
+
+Ocultar botão após uso
+
+========================================
+LOCAL BOTÃO TROCAR
+========================================
+
+Tela treino atual
+
+Abaixo nome treino
+Acima registrar treino
+
+========================================
+DASHBOARD
+========================================
+
+Antes:
+
+Registrar treino
+
+Depois:
+
+Treino já registrado hoje
+
+Atualizar:
+
+streak
+progresso
+consistência
+
+========================================
+ESTADO GLOBAL
+========================================
+
+user
+posts
+users
+workoutCompletedToday
+hasSwappedWorkout
+currentWorkout
+streak
+levelProgress
+
+========================================
+POSTS INICIAIS MOCK
+========================================
+
+Maria
+Treino concluído hoje
+
+Ana ⭐ VIP
+Treino feito
+
+Julia
+Treino glúteo

@@ -1,0 +1,284 @@
+Atualize o aplicativo existente apenas com estrutura visual e lógica frontend.
+Não usar banco de dados.
+Não integrar Stripe real.
+Somente UI e lógica simulada.
+
+============================
+MENU PRINCIPAL
+============================
+
+Criar menu:
+
+- Dashboard
+- Treinos
+- Programas Extras
+- Comunidade
+- Ranking
+- Consultoria VIP
+- Perfil
+
+============================
+TELA TREINOS — NÍVEIS PLANFIT
+============================
+
+INICIANTE
+- Iniciante 1 (liberado)
+- Iniciante 2 🔒
+- Iniciante 3 🔒
+
+INTERMEDIÁRIO
+- Intermediário 1 🔒
+- Intermediário 2 🔒
+- Intermediário 3 🔒
+
+AVANÇADO
+- Avançado 1 🔒 até Avançado 12 🔒
+
+Ao clicar bloqueado mostrar modal:
+
+Desbloquear próximo nível
+
+Opções:
+
+Ganhar ranking mensal (grátis)
+
+Desbloquear antecipado dia 28
+€19,90 / R$39,90
+
+Desbloquear após dia 35
+€14,90 / R$29,90
+
+============================
+PROGRAMAS EXTRAS
+============================
+
+Tela Programas Extras:
+
+TreinoExpress 🔒
+Desafio Bumbum 🔒
+Desafio Seca Barriga 🔒
+Desafio 15min 🔒
+
+Preço:
+
+€14,90
+R$29,90
+
+Botão "Desbloquear" visual.
+
+============================
+CONSULTORIA VIP
+============================
+
+Tela Consultoria VIP
+
+Título:
+Consultoria VIP
+
+Texto:
+Acompanhamento individual comigo
+
+Benefícios:
+
+- treino personalizado
+- ajustes semanais
+- acompanhamento individual
+- suporte direto comigo
+- contato via WhatsApp
+- correção de execução
+- estratégia personalizada
+- ranking VIP exclusivo
+- badge VIP
+- comunidade VIP
+- prioridade suporte
+
+Preço:
+
+Brasil:
+R$189 / mês
+
+Europa:
+€39 / mês
+
+Botão:
+
+Entrar na Consultoria VIP
+
+Ao clicar:
+
+ativar VIP simulado
+
+Mostrar:
+
+Você agora é VIP
+
+Mostrar badge VIP.
+
+Mostrar botão WhatsApp.
+
+============================
+BOTÃO WHATSAPP VIP
+============================
+
+Somente quando VIP ativo:
+
+Mostrar:
+
+Falar comigo no WhatsApp
+
+============================
+RANKING
+============================
+
+Abas:
+
+Ranking PlanFit
+Ranking VIP
+
+Ranking PlanFit:
+
+1 Maria
+2 Ana
+3 Julia
+
+Ranking VIP:
+
+1 Carla ⭐ VIP
+2 Paula ⭐ VIP
+
+============================
+RANKING SEMANAL
+============================
+
+Top 5 da semana
+
+Badge:
+
+Destaque semanal
+
+============================
+COMUNIDADE ESTILO THREADS
+============================
+
+Feed social com:
+
+- avatar
+- nome usuária
+- badge VIP
+- foto treino
+- legenda
+- treino realizado
+- tempo
+- botão curtir
+- botão comentar
+- respostas
+
+Exemplo:
+
+Ana ⭐ VIP
+Treino concluído hoje 🔥
+[foto]
+
+❤️ 12   💬 3
+
+Comentários:
+
+Maria: Arrasou
+Julia: Bora
+
+Respostas:
+
+↳ Ana: Vamos!
+
+============================
+CRIAR POST
+============================
+
+Botão:
+
+Registrar treino
+
+Abrir:
+
+- upload foto
+- campo legenda
+- selecionar treino
+
+Publicar:
+
+Adicionar post topo feed.
+
+============================
+LIKE POST
+============================
+
+Botão ❤️
+
+Incrementar contador.
+
+============================
+COMENTÁRIOS
+============================
+
+Permitir:
+
+comentar post
+responder comentário
+
+Estilo Threads.
+
+============================
+COMPARTILHAR ESTILO STRAVA
+============================
+
+Após publicar:
+
+Botões:
+
+Compartilhar Instagram
+Compartilhar Stories
+Compartilhar WhatsApp
+
+Imagem com:
+
+- logo PlanFit
+- treino concluído
+- nível ou VIP
+- data
+
+============================
+ENTRAR NO MEIO DO MÊS
+============================
+
+Mostrar texto:
+
+Você entrou no meio do ciclo.
+Ainda pode competir.
+
+============================
+DESEMPATE
+============================
+
+Mostrar:
+
+Desempate por:
+
+1 mais treinos
+2 maior sequência
+3 quem chegou primeiro
+4 sorteio
+
+============================
+POSTS INICIAIS
+============================
+
+Criar mock posts:
+
+Maria
+Treino concluído hoje
+
+Ana ⭐ VIP
+Treino glúteo feito
+
+Julia
+Treino completo finalizado

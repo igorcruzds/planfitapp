@@ -1,0 +1,157 @@
+Conectar frontend existente com a API criada.
+
+Substituir todos os dados mock por chamadas da API.
+
+====================================
+REGISTRAR TREINO
+====================================
+
+Ao clicar "Registrar treino"
+
+Substituir lógica local por:
+
+POST /api/register-workout
+
+Enviar:
+
+userId
+
+Após resposta:
+
+Atualizar:
+
+- streak
+- ranking
+- progresso
+- post comunidade
+
+====================================
+CRIAR POST
+====================================
+
+Ao publicar treino:
+
+POST /api/posts
+
+Enviar:
+
+userId
+text
+image
+
+Após resposta:
+
+Atualizar feed comunidade
+
+====================================
+CARREGAR COMUNIDADE
+====================================
+
+Ao abrir comunidade:
+
+GET /api/posts
+
+Renderizar posts retornados.
+
+====================================
+COMENTAR
+====================================
+
+Ao comentar:
+
+POST /api/comments
+
+Enviar:
+
+postId
+userId
+text
+
+Atualizar comentários.
+
+====================================
+CURTIR
+====================================
+
+Ao curtir:
+
+POST /api/like
+
+Enviar:
+
+postId
+
+Atualizar contador.
+
+====================================
+RANKING
+====================================
+
+Ao abrir ranking:
+
+GET /api/ranking
+
+Renderizar lista.
+
+====================================
+PERFIL
+====================================
+
+Ao abrir perfil:
+
+GET /api/profile/:id
+
+Renderizar:
+
+- avatar
+- nome
+- posts
+- streak
+- nível
+
+====================================
+VIP
+====================================
+
+Ao virar VIP:
+
+POST /api/vip
+
+Atualizar UI VIP.
+
+====================================
+TROCAR TREINO
+====================================
+
+Ao trocar:
+
+POST /api/swap-workout
+
+Enviar:
+
+userId
+newWorkout
+
+====================================
+REMOVER MOCK
+====================================
+
+Remover:
+
+posts simulados
+ranking fake
+perfil fake
+
+Usar apenas API.
+
+====================================
+TRATAMENTO
+====================================
+
+Mostrar loading enquanto busca.
+
+Tratar erro:
+
+se API falhar mostrar:
+
+Erro ao carregar dados

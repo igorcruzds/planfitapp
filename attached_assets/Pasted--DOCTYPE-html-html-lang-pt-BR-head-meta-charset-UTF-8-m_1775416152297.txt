@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0"/>
+<title>Planfit40</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --rose:#BF6B82;--rose-l:#E4AFBF;--rose-d:#8C3F58;--rose-p:#FBF0F3;
+  --gold:#B5914F;--gold-l:#D6B87A;--gold-d:#7A5E2A;--gold-p:#FBF6ED;
+  --cream:#FEFCF9;--white:#FFFFFF;
+  --ink:#18100E;--ink2:#3D2B2B;--ink3:#7A6060;--ink4:#B8A8A8;
+  --surf:#F7F1F3;--surf2:#EDE4E7;
+  --bdr:rgba(160,110,120,0.14);--bdr2:rgba(160,110,120,0.30);
+  --r1:10px;--r2:16px;--r3:22px;--r4:30px;
+  --s1:0 1px 6px rgba(60,20,30,0.07);
+  --s2:0 4px 20px rgba(60,20,30,0.10);
+  --s3:0 10px 40px rgba(60,20,30,0.15);
+  --sg:0 6px 24px rgba(181,145,79,0.25);
+  --sr:0 6px 24px rgba(191,107,130,0.22);
+  --urgent:#C0392B;--urgent-p:#FDF0EF;
+  --ease-spring:cubic-bezier(0.34,1.56,0.64,1);
+  --ease-smooth:cubic-bezier(0.4,0,0.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body,#root{height:100%;-webkit-font-smoothing:antialiased}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--ink);overflow-x:hidden}
+.app{max-width:430px;margin:0 auto;min-height:100%;background:var(--cream)}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:var(--surf2);border-radius:3px}
+
+/* ══ LOGIN ══ */
+.login{
+  min-height:100vh;
+  background:linear-gradient(160deg,#160A0E 0%,#2A1120 40%,#441828 70%,#6B2D42 100%);
+  display:flex;flex-direction:column;align-items:center;
+  padding:0 20px 60px;position:relative;overflow:hidden;
+}
+.login::before{content:'';position:absolute;width:420px;height:420px;border-radius:50%;
+  top:-100px;right:-120px;
+  background:radial-gradient(circle,rgba(181,145,79,0.12) 0%,transparent 65%);pointer-events:none}
+.login::after{content:'';position:absolute;width:320px;height:320px;border-radius:50%;
+  bottom:-60px;left:-80px;
+  background:radial-gradient(circle,rgba(191,107,130,0.10) 0%,transparent 65%);pointer-events:none}
+
+.lang-row{display:flex;gap:5px;justify-content:center;padding-top:28px;margin-bottom:4px;position:relative;z-index:2}
+.lbtn{padding:5px 13px;border-radius:100px;border:1px solid rgba(214,184,122,0.25);
+  background:rgba(255,255,255,0.05);color:rgba(214,184,122,0.55);
+  font-family:'DM Sans',sans-serif;font-size:10px;font-weight:600;
+  letter-spacing:1.8px;text-transform:uppercase;cursor:pointer;transition:all 0.2s}
+.lbtn.on{background:rgba(181,145,79,0.20);border-color:rgba(214,184,122,0.6);color:#D6B87A}
+
+.login-hero{padding-top:24px;text-align:center;margin-bottom:30px;position:relative;z-index:2}
+.login-seal{
+  width:70px;height:70px;border-radius:20px;margin:0 auto 18px;
+  background:linear-gradient(145deg,#7A5E2A,#D6B87A);
+  box-shadow:0 8px 32px rgba(181,145,79,0.40);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;
+  color:#fff;letter-spacing:-1px;
+  animation:sealPulse 3s ease-in-out infinite}
+.login-brand{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:700;
+  color:#FDF8F0;line-height:1;letter-spacing:-1px}
+.login-tag{font-size:10px;color:rgba(214,184,122,0.55);margin-top:9px;
+  letter-spacing:3.5px;text-transform:uppercase;font-weight:300}
+
+.card{
+  background:var(--white);border-radius:var(--r4);
+  padding:32px 24px 28px;width:100%;
+  box-shadow:0 20px 60px rgba(22,10,14,0.35);
+  position:relative;z-index:2;
+}
+.card-title{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;
+  color:var(--ink);margin-bottom:3px}
+.card-sub{font-size:12px;color:var(--ink4);margin-bottom:26px;font-weight:300;line-height:1.5}
+
+.fl{display:block;font-size:10px;font-weight:600;color:var(--ink3);
+  margin-bottom:5px;letter-spacing:1px;text-transform:uppercase}
+.fi{width:100%;padding:12px 15px;border:1.5px solid var(--surf2);border-radius:var(--r1);
+  font-family:'DM Sans',sans-serif;font-size:14px;color:var(--ink);background:var(--surf);
+  outline:none;transition:border-color 0.2s,box-shadow 0.2s;margin-bottom:14px}
+.fi:focus{border-color:var(--rose);box-shadow:0 0 0 3px rgba(191,107,130,0.10);background:#fff}
+.fi::placeholder{color:var(--ink4)}
+
+.lvl-sec{margin-bottom:22px}
+.lvl-sec-lbl{font-size:10px;font-weight:600;color:var(--ink2);
+  letter-spacing:1px;text-transform:uppercase;margin-bottom:10px}
+.lvl-group{margin-bottom:14px}
+.lvl-group-name{font-size:9px;font-weight:700;color:var(--gold);
+  letter-spacing:2.5px;text-transform:uppercase;margin-bottom:7px;
+  padding-left:9px;border-left:2px solid var(--gold-l)}
+
+.lo{display:flex;align-items:center;gap:11px;padding:11px 13px;
+  border:1.5px solid var(--surf2);border-radius:var(--r1);
+  cursor:pointer;transition:all 0.18s;background:var(--surf);margin-bottom:6px}
+.lo:hover{border-color:var(--rose-l);background:#fff}
+.lo.on{border-color:var(--rose);background:var(--rose-p);box-shadow:0 2px 12px rgba(191,107,130,0.12)}
+.lo-rb{width:18px;height:18px;border-radius:50%;border:2px solid var(--ink4);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all 0.18s}
+.lo.on .lo-rb{border-color:var(--rose);background:var(--rose)}
+.lo.on .lo-rb::after{content:'';width:6px;height:6px;border-radius:50%;background:#fff}
+.lo-ico{font-size:18px;flex-shrink:0}
+.lo-nm{font-size:13px;font-weight:500;color:var(--ink);line-height:1.2}
+.lo-ds{font-size:11px;color:var(--ink4);margin-top:1px;font-weight:300}
+
+.btn-go{width:100%;padding:15px;border:none;border-radius:var(--r2);
+  background:linear-gradient(135deg,var(--rose-d),var(--rose));
+  color:#fff;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;
+  cursor:pointer;letter-spacing:0.3px;box-shadow:var(--sr);
+  transition:all 0.2s;margin-top:4px}
+.btn-go:hover{transform:translateY(-1px);box-shadow:0 8px 28px rgba(140,63,88,0.38)}
+.btn-go:active{transform:none}
+.btn-go:disabled{opacity:0.55;cursor:not-allowed;transform:none}
+.err{font-size:12px;color:var(--rose-d);text-align:center;margin:8px 0 4px}
+@keyframes sealPulse{0%,100%{box-shadow:0 8px 32px rgba(181,145,79,0.40)}50%{box-shadow:0 8px 40px rgba(181,145,79,0.65),0 0 0 8px rgba(181,145,79,0.08)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spinner{width:16px;height:16px;border:2px solid rgba(255,255,255,0.3);border-top-color:#fff;border-radius:50%;animation:spin 0.7s linear infinite;display:inline-block;vertical-align:middle;margin-right:6px}
+
+/* ══ LAYOUT ══ */
+.page{padding-bottom:86px;min-height:100vh}
+.pc{padding:0 18px}
+
+/* ══ HEADER ══ */
+.hdr{padding:54px 18px 0}
+.hdr-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:18px}
+.hdr-left{}
+.hdr-eye{font-size:10px;font-weight:600;color:var(--rose);letter-spacing:2.5px;
+  text-transform:uppercase;margin-bottom:3px}
+.hdr-name{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:700;
+  color:var(--ink);line-height:1.05}
+.hdr-date{font-size:11px;color:var(--ink4);margin-top:4px;font-weight:300}
+
+/* ══ PROG CARD ══ */
+.prog{
+  background:linear-gradient(145deg,#160A0E 0%,#2A1120 45%,#501C34 100%);
+  border-radius:var(--r3);padding:22px 20px 20px;
+  margin-bottom:20px;position:relative;overflow:hidden;
+  box-shadow:0 12px 48px rgba(22,10,14,0.30);
+}
+.prog::before{content:'';position:absolute;top:-50px;right:-50px;
+  width:180px;height:180px;border-radius:50%;
+  background:radial-gradient(circle,rgba(181,145,79,0.13) 0%,transparent 70%);pointer-events:none}
+.prog-streak{display:inline-flex;align-items:center;gap:5px;
+  background:rgba(181,145,79,0.16);border:1px solid rgba(214,184,122,0.22);
+  border-radius:100px;padding:4px 11px;font-size:10px;font-weight:600;
+  color:rgba(214,184,122,0.88);margin-bottom:14px;letter-spacing:0.5px}
+.prog-lbl{font-size:9px;font-weight:500;color:rgba(255,255,255,0.40);
+  letter-spacing:2.5px;text-transform:uppercase;margin-bottom:2px}
+.prog-nivel{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;
+  color:#FDF8F0;margin-bottom:16px;line-height:1.2}
+.prog-bar-bg{background:rgba(255,255,255,0.10);border-radius:100px;height:5px;
+  overflow:hidden;margin-bottom:8px}
+.prog-bar-fill{height:100%;border-radius:100px;
+  background:linear-gradient(90deg,var(--gold),var(--gold-l));
+  box-shadow:0 0 10px rgba(181,145,79,0.45);
+  transition:width 1.3s var(--ease-spring);
+  position:relative;overflow:hidden}
+.prog-bar-fill::after{content:'';position:absolute;top:0;left:-60%;width:40%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.35),transparent);
+  animation:shimmer 2.4s ease-in-out infinite 1.4s}
+@keyframes shimmer{0%{left:-60%}100%{left:160%}}
+@keyframes streakIn{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:translateX(0)}}
+.prog-foot{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.prog-msg{font-size:11px;color:rgba(255,255,255,0.50);font-weight:300;line-height:1.5;flex:1}
+.prog-ct{font-size:12px;font-weight:600;color:var(--gold-l);flex-shrink:0}
+
+/* ══ SECTION ══ */
+.sec{margin-bottom:6px}
+.sec-t{font-family:'Cormorant Garamond',serif;font-size:19px;font-weight:600;color:var(--ink)}
+.sec-s{font-size:11px;color:var(--ink4);margin-top:2px;margin-bottom:13px;font-weight:300}
+.divider{height:1px;background:var(--bdr);margin:18px 0}
+
+/* ══ LEVEL CARDS ══ */
+.lvl-list{display:flex;flex-direction:column;gap:10px;margin-bottom:22px}
+
+.lc{
+  border-radius:var(--r2);padding:16px 18px;
+  display:flex;align-items:center;gap:14px;
+  transition:all 0.22s;
+  border:1.5px solid var(--bdr);
+  background:var(--white);
+  cursor:default;
+  position:relative;overflow:hidden;
+}
+/* DESBLOQUEADO — nível atual */
+.lc.open{
+  background:linear-gradient(135deg,#FBF0F3 0%,#FDF6F8 100%);
+  border-color:rgba(191,107,130,0.35);
+  box-shadow:var(--s2);
+  cursor:pointer;
+}
+.lc.open:hover{transform:translateY(-2px);box-shadow:var(--sr);border-color:var(--rose)}
+.lc.open:active{transform:scale(0.985)}
+/* CONQUISTADO — níveis anteriores ao atual (já superados) */
+.lc.done{
+  background:linear-gradient(135deg,#FBF6ED 0%,#FEFAF4 100%);
+  border-color:rgba(181,145,79,0.30);
+  opacity:0.75;
+  cursor:pointer;
+}
+.lc.done:hover{opacity:1;box-shadow:var(--sg);border-color:var(--gold)}
+/* BLOQUEADO */
+.lc.lock{
+  background:var(--surf);
+  border-color:var(--bdr);
+  opacity:0.55;
+}
+/* ESPECIAL (sempre disponível) */
+.lc.spec{
+  background:linear-gradient(135deg,#FBF6ED 0%,#FEFAF4 100%);
+  border-color:rgba(181,145,79,0.32);
+  box-shadow:var(--s1);
+  cursor:pointer;
+}
+.lc.spec:hover{transform:translateY(-2px);box-shadow:var(--sg);border-color:var(--gold)}
+.lc.spec:active{transform:scale(0.985)}
+
+.lc-ico-wrap{
+  width:46px;height:46px;border-radius:13px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;font-size:21px;
+}
+.lc.open .lc-ico-wrap{background:rgba(191,107,130,0.12)}
+.lc.done .lc-ico-wrap{background:rgba(181,145,79,0.12)}
+.lc.lock .lc-ico-wrap{background:var(--surf2)}
+.lc.spec .lc-ico-wrap{background:rgba(181,145,79,0.12)}
+
+.lc-body{flex:1;min-width:0}
+.lc-name{font-size:14px;font-weight:600;color:var(--ink);line-height:1.2;margin-bottom:2px}
+.lc.lock .lc-name{color:var(--ink4)}
+.lc-desc{font-size:11px;color:var(--ink4);font-weight:300}
+
+.lc-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px;flex-shrink:0}
+.badge{display:inline-flex;align-items:center;gap:3px;padding:3px 9px;
+  border-radius:100px;font-size:9px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase}
+.badge-open{background:rgba(191,107,130,0.12);color:var(--rose-d)}
+.badge-done{background:rgba(181,145,79,0.12);color:var(--gold-d)}
+.badge-lock{background:var(--surf2);color:var(--ink4)}
+.badge-spec{background:rgba(181,145,79,0.12);color:var(--gold-d)}
+.lc-arrow{font-size:14px;color:var(--rose-l)}
+.lc-arrow-g{font-size:14px;color:var(--gold-l)}
+.lock-ct{font-size:10px;color:var(--ink4);font-weight:300;text-align:right}
+.lock-ct.urgent{color:var(--urgent);font-weight:600}
+
+/* Barra mini no card aberto */
+.lc-prog-bar{position:absolute;bottom:0;left:0;right:0;height:3px;background:rgba(191,107,130,0.1)}
+.lc-prog-fill{height:100%;background:linear-gradient(90deg,var(--rose-d),var(--rose));
+  border-radius:0 3px 3px 0;transition:width 1s ease}
+
+/* ══ BOTTOM NAV ══ */
+.bnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);
+  width:100%;max-width:430px;
+  background:rgba(254,252,249,0.94);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);
+  border-top:1px solid var(--bdr);
+  display:flex;padding:8px 0 20px;z-index:100;
+  box-shadow:0 -4px 20px rgba(60,20,30,0.05)}
+.ni{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;
+  padding:4px 0;cursor:pointer;transition:all 0.18s;position:relative}
+.ni:active{transform:scale(0.88)}
+.ni-ic{font-size:20px;line-height:1;transition:transform 0.2s}
+.ni-lb{font-size:9px;font-weight:500;color:var(--ink4);transition:color 0.2s;
+  letter-spacing:0.3px;text-transform:uppercase}
+.ni.on .ni-lb{color:var(--rose);font-weight:700}
+.ni.on .ni-ic{transform:scale(1.1)}
+.ni-dot{width:18px;height:2px;border-radius:2px;background:var(--rose);
+  position:absolute;bottom:-2px;animation:dotIn 0.25s var(--ease-spring)}
+@keyframes dotIn{from{width:0;opacity:0}to{width:18px;opacity:1}}
+
+/* ══ MODAIS ══ */
+.m-ov{position:fixed;inset:0;background:rgba(22,10,14,0.65);
+  backdrop-filter:blur(10px);display:flex;align-items:flex-end;
+  justify-content:center;z-index:200;animation:ovIn 0.2s ease}
+@keyframes ovIn{from{opacity:0}to{opacity:1}}
+.m-sh{background:var(--white);border-radius:28px 28px 0 0;
+  padding:12px 26px 52px;width:100%;max-width:430px;
+  text-align:center;animation:shIn 0.35s var(--ease-spring)}
+.m-handle{width:36px;height:4px;border-radius:2px;background:var(--surf2);margin:0 auto 28px}
+@keyframes shIn{from{transform:translateY(60px);opacity:0}to{transform:translateY(0);opacity:1}}
+.m-em{font-size:52px;margin-bottom:10px;display:block;
+  animation:emIn 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.1s both}
+@keyframes emIn{from{transform:scale(0.2);opacity:0}to{transform:scale(1);opacity:1}}
+.m-title{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;
+  color:var(--ink);margin-bottom:7px}
+.m-sub{font-size:13px;color:var(--ink3);line-height:1.7;margin-bottom:18px;
+  font-weight:300;white-space:pre-line}
+.m-badge{display:inline-flex;align-items:center;gap:6px;
+  background:linear-gradient(135deg,var(--rose-d),var(--rose));
+  color:#fff;padding:10px 22px;border-radius:100px;font-size:13px;font-weight:600;
+  margin-bottom:18px;box-shadow:var(--sr);
+  animation:bdIn 0.6s cubic-bezier(0.34,1.56,0.64,1) 0.2s both}
+.m-badge-g{background:linear-gradient(135deg,var(--gold-d),var(--gold-l));box-shadow:var(--sg)}
+@keyframes bdIn{from{transform:translateY(14px);opacity:0}to{transform:translateY(0);opacity:1}}
+.m-bar-bg{background:var(--surf2);border-radius:100px;height:5px;overflow:hidden;margin-bottom:16px}
+.m-bar-f{height:100%;border-radius:100px;
+  background:linear-gradient(90deg,var(--gold),var(--gold-l));
+  animation:barIn 1s cubic-bezier(0.34,1.56,0.64,1) 0.3s both}
+@keyframes barIn{from{width:0%!important}}
+.m-next{font-size:11px;color:var(--rose);font-weight:500;margin-bottom:18px;
+  background:var(--rose-p);border-radius:8px;padding:8px 14px;display:inline-block}
+.btn-mo{width:100%;padding:14px;border:none;border-radius:var(--r2);
+  background:linear-gradient(135deg,var(--rose-d),var(--rose));
+  color:#fff;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;
+  cursor:pointer;box-shadow:var(--sr);transition:all 0.18s var(--ease-smooth)}
+.btn-mo:hover{transform:translateY(-1px);box-shadow:0 8px 28px rgba(140,63,88,0.38)}
+.btn-mo:active{transform:scale(0.97)}
+.btn-mo-g{background:linear-gradient(135deg,var(--gold-d),var(--gold-l));box-shadow:var(--sg)}
+
+/* CONFETTI */
+.cft{position:fixed;inset:0;pointer-events:none;z-index:199;overflow:hidden}
+.cft-p{position:absolute;top:-10px;width:7px;height:7px;border-radius:2px;animation:cftF linear forwards}
+@keyframes cftF{0%{transform:translateY(0) rotate(0);opacity:1}80%{opacity:1}100%{transform:translateY(110vh) rotate(720deg);opacity:0}}
+.glow-v{position:fixed;inset:0;pointer-events:none;z-index:198;
+  background:radial-gradient(ellipse at center,rgba(181,145,79,0.22) 0%,transparent 70%);
+  animation:glowF 1.8s ease-in-out forwards}
+@keyframes glowF{0%{opacity:0}30%{opacity:1}100%{opacity:0}}
+.plus-fl{position:fixed;bottom:110px;left:50%;transform:translateX(-50%);
+  font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:700;color:var(--gold);
+  pointer-events:none;z-index:201;animation:flUp 1.6s ease-out forwards;
+  text-shadow:0 2px 8px rgba(181,145,79,0.4)}
+@keyframes flUp{0%{opacity:0;bottom:110px}20%{opacity:1}80%{opacity:1}100%{opacity:0;bottom:200px}}
+
+/* LANG TOGGLE */
+.lt{display:flex;gap:4px}
+.ltb{padding:4px 11px;border-radius:100px;border:1.5px solid var(--bdr2);
+  background:transparent;color:var(--ink4);font-family:'DM Sans',sans-serif;
+  font-size:9px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;
+  cursor:pointer;transition:all 0.18s}
+.ltb.on{border-color:var(--rose);color:var(--rose);background:var(--rose-p)}
+
+/* POSTS / COMMUNITY */
+.post{background:var(--white);border-radius:var(--r2);padding:16px 18px;
+  margin-bottom:10px;box-shadow:var(--s1);border:1px solid var(--bdr)}
+.post-hdr{display:flex;align-items:center;gap:10px;margin-bottom:9px}
+.post-av{width:36px;height:36px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.post-nm{font-size:13px;font-weight:600;color:var(--ink)}
+.post-mt{font-size:10px;color:var(--ink4);font-weight:300}
+.post-body{font-size:13px;color:var(--ink2);line-height:1.65;font-weight:300}
+.post-tag{display:inline-block;background:var(--rose-p);color:var(--rose-d);
+  padding:2px 9px;border-radius:100px;font-size:10px;font-weight:600;margin-top:9px;letter-spacing:0.4px}
+.f-ta{width:100%;padding:12px 14px;border:1.5px solid var(--surf2);border-radius:var(--r1);
+  font-family:'DM Sans',sans-serif;font-size:13px;color:var(--ink);background:var(--surf);
+  outline:none;resize:none;transition:border-color 0.2s;min-height:88px;font-weight:300}
+.f-ta:focus{border-color:var(--rose);background:#fff}
+.btn-send{margin-top:9px;padding:10px 18px;border:none;border-radius:var(--r1);
+  background:linear-gradient(135deg,var(--rose-d),var(--rose));
+  color:#fff;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;cursor:pointer}
+
+/* INSTRUCOES */
+.ins-i{display:flex;gap:14px;margin-bottom:18px;align-items:flex-start}
+.ins-ico{width:42px;height:42px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.ins-t{font-size:13px;font-weight:600;color:var(--ink);margin-bottom:3px}
+.ins-b{font-size:12px;color:var(--ink3);line-height:1.65;font-weight:300}
+
+/* PERFIL */
+.prf-top{text-align:center;padding:24px 18px 22px;
+  background:linear-gradient(135deg,var(--rose-p),var(--gold-p));
+  border-radius:var(--r3);margin-bottom:14px;border:1.5px solid var(--bdr)}
+.prf-av{width:68px;height:68px;border-radius:50%;
+  background:linear-gradient(135deg,var(--rose-d),var(--rose-l));
+  display:flex;align-items:center;justify-content:center;font-size:26px;
+  margin:0 auto 11px;box-shadow:var(--sr)}
+.prf-nm{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:700;color:var(--ink)}
+.prf-lv{font-size:11px;color:var(--rose);font-weight:500;margin-top:3px;letter-spacing:0.3px}
+.stat-g{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px}
+.stat-b{background:var(--white);border-radius:var(--r1);padding:13px 8px;
+  text-align:center;box-shadow:var(--s1);border:1px solid var(--bdr)}
+.stat-v{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:700;color:var(--ink)}
+.stat-l{font-size:9px;color:var(--ink4);font-weight:400;margin-top:2px;
+  letter-spacing:0.5px;text-transform:uppercase}
+.info-c{background:var(--white);border-radius:var(--r2);padding:16px 18px;
+  box-shadow:var(--s1);border:1px solid var(--bdr);margin-bottom:12px}
+.info-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0}
+.info-row+.info-row{border-top:1px solid var(--bdr)}
+.info-k{font-size:11px;color:var(--ink4);font-weight:300}
+.info-v{font-size:11px;font-weight:600;color:var(--ink)}
+.btn-out{width:100%;padding:12px;border:1.5px solid var(--bdr2);border-radius:var(--r1);
+  background:transparent;color:var(--ink3);font-family:'DM Sans',sans-serif;
+  font-size:13px;font-weight:500;cursor:pointer;transition:all 0.2s}
+.btn-out:hover{border-color:#e57373;color:#b71c1c;background:rgba(229,115,115,0.04)}
+
+/* UTIL */
+.box{background:var(--white);border-radius:var(--r2);padding:18px;
+  box-shadow:var(--s1);border:1px solid var(--bdr);margin-bottom:13px}
+.empty{text-align:center;padding:44px 20px;color:var(--ink4)}
+.empty-ic{font-size:34px;margin-bottom:9px}
+.empty-tx{font-size:12px;font-weight:300}
+.toast{position:fixed;top:24px;left:50%;transform:translateX(-50%);
+  background:var(--ink);color:#fff;padding:10px 22px;border-radius:100px;
+  font-size:12px;font-weight:500;z-index:300;animation:toA 2.8s var(--ease-smooth) forwards;
+  white-space:nowrap;box-shadow:0 4px 20px rgba(24,16,14,0.25);letter-spacing:0.2px}
+@keyframes toA{0%{opacity:0;top:14px}15%{opacity:1;top:24px}70%{opacity:1;top:24px}100%{opacity:0;top:14px}}
+.fade-in{animation:pageIn 0.32s var(--ease-smooth)}
+@keyframes pageIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+/* ══ BOTÃO CHECK-IN MANUAL ══ */
+.ci-card{
+  border-radius:var(--r3);padding:20px 22px;margin-bottom:20px;
+  position:relative;overflow:hidden;cursor:pointer;
+  border:none;width:100%;text-align:left;font-family:'DM Sans',sans-serif;
+  background:linear-gradient(135deg,var(--rose-d) 0%,var(--rose) 60%,#D4809A 100%);
+  box-shadow:0 8px 32px rgba(140,63,88,0.35);
+  transition:all 0.22s var(--ease-spring);
+}
+.ci-card:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(140,63,88,0.42)}
+.ci-card:active{transform:scale(0.98)}
+.ci-card.done{
+  background:linear-gradient(135deg,#4A3D44 0%,#6A5560 100%);
+  box-shadow:0 4px 16px rgba(60,20,30,0.20);
+  cursor:default;
+}
+.ci-card:disabled{cursor:default}
+.ci-card::before{content:'';position:absolute;top:-40px;right:-40px;
+  width:130px;height:130px;border-radius:50%;
+  background:rgba(255,255,255,0.08);pointer-events:none}
+.ci-top{display:flex;align-items:center;gap:12px;margin-bottom:10px}
+.ci-ico{font-size:28px;line-height:1;animation:ciIcoFloat 3s ease-in-out infinite}
+@keyframes ciIcoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
+.ci-card.done .ci-ico{animation:none}
+.ci-label{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:700;
+  color:#fff;line-height:1.15}
+.ci-sub{font-size:11px;color:rgba(255,255,255,0.72);font-weight:300;margin-top:2px}
+.ci-bar-bg{background:rgba(255,255,255,0.15);border-radius:100px;height:4px;overflow:hidden}
+.ci-bar-fill{height:100%;border-radius:100px;
+  background:linear-gradient(90deg,rgba(255,255,255,0.6),rgba(255,255,255,0.9));
+  transition:width 1s var(--ease-spring)}
+.ci-foot{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.ci-foot-l{font-size:10px;color:rgba(255,255,255,0.60);font-weight:300}
+.ci-foot-r{font-size:11px;color:rgba(255,255,255,0.85);font-weight:600}
+
+/* ══ CALENDÁRIO VISUAL ══ */
+.cal-wrap{background:var(--white);border-radius:var(--r2);padding:18px;
+  box-shadow:var(--s1);border:1px solid var(--bdr);margin-bottom:20px}
+.cal-title{font-size:12px;font-weight:600;color:var(--ink3);
+  letter-spacing:1px;text-transform:uppercase;margin-bottom:14px}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+.cal-day{aspect-ratio:1;border-radius:6px;display:flex;align-items:center;
+  justify-content:center;font-size:9px;font-weight:500;
+  background:var(--surf);color:var(--ink4);transition:all 0.2s}
+.cal-day.treinou{background:linear-gradient(135deg,var(--rose-d),var(--rose));
+  color:#fff;box-shadow:0 2px 6px rgba(191,107,130,0.30)}
+.cal-day.hoje{border:2px solid var(--rose);color:var(--rose-d);background:var(--rose-p);font-weight:700}
+.cal-day.hoje.treinou{border:2px solid #fff;color:#fff;
+  background:linear-gradient(135deg,var(--rose-d),var(--rose))}
+.cal-day.futuro{opacity:0.25}
+.cal-legend{display:flex;gap:14px;margin-top:12px;align-items:center}
+.cal-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.cal-legend-txt{font-size:10px;color:var(--ink4);font-weight:300}
+
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script type="text/babel">
+const {useState,useEffect,useCallback,useRef}=React;
+
+/* ══ I18N ══ */
+const T={
+  pt:{
+    tagline:"sua evolução começa aqui",
+    wc:"Bem-vinda ✦",card_sub:"Entre com seus dados para começar ou continuar sua jornada.",
+    your_name:"Seu nome",name_ph:"Como podemos te chamar?",
+    email:"E-mail",sel_lv:"Selecione seu nível",
+    enter:"Entrar no app",entering:"Entrando...",
+    e_nome:"Digite seu nome.",e_email:"E-mail inválido.",e_lv:"Selecione um nível.",
+    g_i:"INICIANTE",g_m:"INTERMEDIÁRIO",g_a:"AVANÇADO",
+    alw_t:"Treinos sempre disponíveis",alw_s:"Acesso livre a qualquer momento",
+    trn_t:"Seu nível de treino",trn_s:"Continue chegando todos os dias para desbloquear o próximo nível",
+    locked_t:"Níveis bloqueados",locked_s:"Desbloqueie avançando na jornada",
+    days:"dias",consistency:"dias de consistência",cur_lv:"Nível atual",
+    unlocked:"Ativo",done:"Concluído",locked:"Bloqueado",available:"Disponível",
+    ready:"🌟 Incrível! Você está pronta para o próximo nível.",
+    days_left:(n)=>`Faltam ${n} dia${n!==1?'s':''} para desbloquear o próximo`,
+    ci_title:"Check-in realizado! 🔥",
+    ci_sub:"Seu corpo registrou mais um dia.\nConsistência é o segredo das mulheres que chegam lá.",
+    day_n:(n)=>`Dia ${n} registrado`,continue_btn:"Continuar",
+    pct_cycle:(p,n)=>`${p}% do ciclo de ${n}`,
+    lu_title:"Novo nível desbloqueado!",
+    lu_a:"Você conquistou",lu_b:"Cada dia foi um passo. Agora é hora de ir ainda mais longe! 💪",
+    amazing:"Incrível! 🌟",
+    home:"Início",feed_tab:"Feed",community:"Comunidade",instructions:"Guia",profile:"Perfil",
+    com_eye:"Compartilhe sua",com_name:"Jornada",
+    test_title:"Seu depoimento",test_ph:"Compartilhe sua evolução, dica ou motivação...",
+    share:"Compartilhar",toast_ok:"Depoimento enviado! 💚",first:"Seja a primeira a compartilhar!",
+    ins_eye:"Entenda o",ins_name:"Método",
+    ins_mt:"Método Planfit40",ins_ms:"40 dias de consistência por nível. Simples, poderoso e transformador.",
+    ins:[
+      {i:"📅",t:"Registre seu treino",b:"Após completar seu treino, toque no botão \"Registrar treino de hoje\" no início do app. Apenas 1 por dia."},
+      {i:"📈",t:"Como funciona o progresso",b:"Cada treino registrado vale 1 dia. Acumule 40 treinos para avançar ao próximo nível."},
+      {i:"🔓",t:"Desbloqueando novos treinos",b:"Com 36 registros (90% de um ciclo), o próximo nível já está disponível. Consistência é recompensada."},
+      {i:"🏆",t:"Por que consistência importa",b:"O corpo se adapta com estímulos progressivos. Cada treino registrado é um passo real na sua evolução."},
+      {i:"💡",t:"Dica de ouro",b:"Não esqueça de registrar seu treino no app após concluí-lo. Sem registro, o progresso não conta!"},
+    ],
+    ins_qt:"Você é capaz",ins_qb:"Cada grande conquista começa com um pequeno ato diário.\nConfie no processo. O seu corpo lembra de tudo.",
+    prf_eye:"Sua",prf_name:"Jornada",
+    t_days:"Total dias",t_lvs:"Níveis",t_inlv:"No nível",
+    ini_lv:"Nível inicial",status:"Status",active:"✦ Ativa",logout:"Sair da conta",
+    feed_eye:"Comunidade",feed_name:"Feed",
+    open_workout:"Abrir treino →",
+    ci_btn:"Registrar treino de hoje",
+    ci_btn_done:"Treino já registrado hoje 💪",
+    ci_btn_sub:"Toque após completar seu treino",
+    ci_btn_done_sub:"Volte amanhã para registrar o próximo",
+    cal_title:"Seus treinos — últimos 30 dias",
+    cal_treinou:"Treino registrado",cal_hoje:"Hoje",
+    vid_title:"Como usar o app",
+    vid_sub:"Assista ao vídeo para entender como usar o app, registrar seus treinos e evoluir nos níveis.",
+    trn_s:"Registre seu treino diário para desbloquear o próximo nível",
+  },
+  es:{
+    tagline:"tu evolución comienza aquí",
+    wc:"Bienvenida ✦",card_sub:"Ingresa tus datos para comenzar o continuar tu camino.",
+    your_name:"Tu nombre",name_ph:"¿Cómo podemos llamarte?",
+    email:"Correo",sel_lv:"Selecciona tu nivel",
+    enter:"Entrar a la app",entering:"Cargando...",
+    e_nome:"Escribe tu nombre.",e_email:"Correo inválido.",e_lv:"Selecciona un nivel.",
+    g_i:"PRINCIPIANTE",g_m:"INTERMEDIO",g_a:"AVANZADO",
+    alw_t:"Entrenamientos siempre disponibles",alw_s:"Acceso libre en cualquier momento",
+    trn_t:"Tu nivel de entrenamiento",trn_s:"Sigue llegando todos los días para desbloquear el siguiente",
+    locked_t:"Niveles bloqueados",locked_s:"Desbloquea avanzando en tu camino",
+    days:"días",consistency:"días de consistencia",cur_lv:"Nivel actual",
+    unlocked:"Activo",done:"Completado",locked:"Bloqueado",available:"Disponible",
+    ready:"🌟 ¡Increíble! Estás lista para el siguiente nivel.",
+    days_left:(n)=>`Faltan ${n} día${n!==1?'s':''} para desbloquear el siguiente`,
+    ci_title:"¡Check-in realizado! 🔥",
+    ci_sub:"Tu cuerpo registró un día más.\nLa consistencia es el secreto de las mujeres que lo logran.",
+    day_n:(n)=>`Día ${n} registrado`,continue_btn:"Continuar",
+    pct_cycle:(p,n)=>`${p}% del ciclo de ${n}`,
+    lu_title:"¡Nuevo nivel desbloqueado!",
+    lu_a:"¡Felicidades! Desbloqueaste",lu_b:"¡Tu esfuerzo diario está transformando tu cuerpo!",
+    amazing:"¡Increíble! 🌟",
+    home:"Inicio",feed_tab:"Feed",community:"Comunidad",instructions:"Guía",profile:"Perfil",
+    com_eye:"Comparte tu",com_name:"Historia",
+    test_title:"Tu testimonio",test_ph:"Comparte tu evolución, consejo o motivación...",
+    share:"Compartir",toast_ok:"¡Testimonio enviado! 💚",first:"¡Sé la primera en compartir!",
+    ins_eye:"Entiende el",ins_name:"Método",
+    ins_mt:"Método Planfit40",ins_ms:"40 días de consistencia por nivel. Simple, poderoso y transformador.",
+    ins:[
+      {i:"📅",t:"Registra tu entrenamiento",b:"Después de completar tu entrenamiento, toca \"Registrar entrenamiento de hoy\". Solo 1 por día."},
+      {i:"📈",t:"Cómo funciona el progreso",b:"Cada entrenamiento registrado vale 1 día. Acumula 40 para avanzar al siguiente nivel."},
+      {i:"🔓",t:"Desbloqueando entrenamientos",b:"Con 36 registros (90% de un ciclo), el siguiente nivel ya está disponible."},
+      {i:"🏆",t:"Por qué importa la consistencia",b:"El cuerpo se adapta con estímulos progresivos. Cada entrenamiento registrado es un paso real."},
+      {i:"💡",t:"Consejo de oro",b:"¡No olvides registrar tu entrenamiento después de completarlo. ¡Sin registro, no cuenta el progreso!"},
+    ],
+    ins_qt:"Eres capaz",ins_qb:"Cada gran logro comienza con un pequeño acto diario.\nConfía en el proceso. Tu cuerpo recuerda todo.",
+    prf_eye:"Tu",prf_name:"Camino",
+    t_days:"Total días",t_lvs:"Niveles",t_inlv:"En nivel",
+    ini_lv:"Nivel inicial",status:"Estado",active:"✦ Activa",logout:"Cerrar sesión",
+    feed_eye:"Comunidad",feed_name:"Feed",
+    open_workout:"Abrir entrenamiento →",
+    ci_btn:"Registrar entrenamiento de hoy",
+    ci_btn_done:"Entrenamiento ya registrado 💪",
+    ci_btn_sub:"Toca después de completar tu entrenamiento",
+    ci_btn_done_sub:"Vuelve mañana para el siguiente",
+    cal_title:"Tus entrenamientos — últimos 30 días",
+    cal_treinou:"Registrado",cal_hoje:"Hoy",
+    vid_title:"Cómo usar la app",
+    vid_sub:"Mira el video para entender cómo usar la app, registrar tus entrenamientos y evolucionar.",
+    trn_s:"Registra tu entrenamiento diario para desbloquear el siguiente nivel",
+  },
+  en:{
+    tagline:"your evolution starts here",
+    wc:"Welcome ✦",card_sub:"Enter your details to start or continue your journey.",
+    your_name:"Your name",name_ph:"What should we call you?",
+    email:"E-mail",sel_lv:"Select your level",
+    enter:"Enter the app",entering:"Loading...",
+    e_nome:"Please enter your name.",e_email:"Invalid email.",e_lv:"Please select a level.",
+    g_i:"BEGINNER",g_m:"INTERMEDIATE",g_a:"ADVANCED",
+    alw_t:"Always available workouts",alw_s:"Free access anytime",
+    trn_t:"Your training level",trn_s:"Keep checking in every day to unlock the next level",
+    locked_t:"Locked levels",locked_s:"Unlock them by advancing on your journey",
+    days:"days",consistency:"days of consistency",cur_lv:"Current level",
+    unlocked:"Active",done:"Completed",locked:"Locked",available:"Available",
+    ready:"🌟 Amazing! You're ready for the next level.",
+    days_left:(n)=>`${n} day${n!==1?'s':''} left to unlock the next`,
+    ci_title:"Check-in done! 🔥",
+    ci_sub:"Your body logged one more day.\nConsistency is the secret of women who make it.",
+    day_n:(n)=>`Day ${n} registered`,continue_btn:"Continue",
+    pct_cycle:(p,n)=>`${p}% of the ${n} cycle`,
+    lu_title:"New level unlocked!",
+    lu_a:"Congrats! You unlocked",lu_b:"Your daily effort is transforming your body!",
+    amazing:"Amazing! 🌟",
+    home:"Home",feed_tab:"Feed",community:"Community",instructions:"Guide",profile:"Profile",
+    com_eye:"Share your",com_name:"Story",
+    test_title:"Your testimonial",test_ph:"Share your progress, tips or motivation...",
+    share:"Share",toast_ok:"Testimonial sent! 💚",first:"Be the first to share!",
+    ins_eye:"Understand the",ins_name:"Method",
+    ins_mt:"Planfit40 Method",ins_ms:"40 days of consistency per level. Simple, powerful, transformative.",
+    ins:[
+      {i:"📅",t:"Log your workout",b:"After completing your workout, tap \"Log today's workout\" at the top of the app. Only 1 per day."},
+      {i:"📈",t:"How progress works",b:"Each logged workout counts as 1 day. Accumulate 40 workouts to advance to the next level."},
+      {i:"🔓",t:"Unlocking workouts",b:"With 36 logs (90% of a cycle), the next level is already available."},
+      {i:"🏆",t:"Why consistency matters",b:"The body adapts with progressive stimuli. Every logged workout is a real step in your evolution."},
+      {i:"💡",t:"Golden tip",b:"Don't forget to log your workout after completing it. No log = no progress!"},
+    ],
+    ins_qt:"You are capable",ins_qb:"Every great achievement starts with a small daily act.\nTrust the process. Your body remembers everything.",
+    prf_eye:"Your",prf_name:"Journey",
+    t_days:"Total days",t_lvs:"Levels",t_inlv:"In level",
+    ini_lv:"Initial level",status:"Status",active:"✦ Active",logout:"Sign out",
+    feed_eye:"Community",feed_name:"Feed",
+    open_workout:"Open workout →",
+    ci_btn:"Log today's workout",
+    ci_btn_done:"Workout already logged today 💪",
+    ci_btn_sub:"Tap after completing your workout",
+    ci_btn_done_sub:"Come back tomorrow for the next one",
+    cal_title:"Your workouts — last 30 days",
+    cal_treinou:"Logged",cal_hoje:"Today",
+    vid_title:"How to use the app",
+    vid_sub:"Watch the video to understand how to use the app, log your workouts and level up.",
+    trn_s:"Log your daily workout to unlock the next level",
+  }
+};
+
+/* ══ DADOS DOS NÍVEIS ══ */
+const LEVELS=[
+  {id:1,n:{pt:"Iniciante",es:"Principiante",en:"Beginner"},g:"i",
+    d:{pt:"Nunca treinou",es:"Nunca entrenó",en:"Never trained"},
+    icon:"🌱",url:"https://desafio.mfitpersonal.com.br/desafio/zbz"},
+  {id:2,n:{pt:"Intermediário I",es:"Intermedio I",en:"Intermediate I"},g:"m",
+    d:{pt:"Mais de 2 meses de treino",es:"Más de 2 meses entrenando",en:"More than 2 months training"},
+    icon:"⚡",url:"https://desafio.mfitpersonal.com.br/desafio/zc0"},
+  {id:3,n:{pt:"Intermediário II",es:"Intermedio II",en:"Intermediate II"},g:"m",
+    d:{pt:"Mais de 4 meses de treino",es:"Más de 4 meses entrenando",en:"More than 4 months training"},
+    icon:"🔥",url:"https://desafio.mfitpersonal.com.br/desafio/zc1"},
+  {id:4,n:{pt:"Avançado I",es:"Avanzado I",en:"Advanced I"},g:"a",
+    d:{pt:"Mais de 8 meses de treino",es:"Más de 8 meses entrenando",en:"More than 8 months training"},
+    icon:"🏆",url:"https://desafio.mfitpersonal.com.br/desafio/zc2"},
+  {id:5,n:{pt:"Avançado II",es:"Avanzado II",en:"Advanced II"},g:"a",
+    d:{pt:"Mais de 12 meses de treino",es:"Más de 12 meses entrenando",en:"More than 12 months training"},
+    icon:"💎",url:"https://desafio.mfitpersonal.com.br/desafio/zc3"},
+  {id:6,n:{pt:"Avançado III",es:"Avanzado III",en:"Advanced III"},g:"a",
+    d:{pt:"Mais de 12 meses de treino",es:"Más de 12 meses entrenando",en:"More than 12 months training"},
+    icon:"👑",url:"https://desafio.mfitpersonal.com.br/desafio/zc4"},
+];
+const SPECIAL=[
+  {id:"abs",n:{pt:"Abdominais",es:"Abdominales",en:"Core & Abs"},
+    icon:"🔵",url:"https://desafio.mfitpersonal.com.br/desafio/zbz"},
+  {id:"flex",n:{pt:"Alongamento & Mobilidade",es:"Estiramiento & Movilidad",en:"Stretching & Mobility"},
+    icon:"🟡",url:"https://desafio.mfitpersonal.com.br/desafio/zbz"},
+];
+const FEED_DATA=[
+  {id:1,av:"🌸",nm:"Ana Paula",
+    lv:{pt:"Intermediária I",es:"Intermedio I",en:"Intermediate I"},
+    tm:{pt:"Hoje",es:"Hoy",en:"Today"},
+    bd:{pt:"Completei 30 dias sem falhar! A consistência é tudo.",es:"¡Completé 30 días sin fallar! La consistencia lo es todo.",en:"30 days without missing once! Consistency is everything."},tag:"Motivação"},
+  {id:2,av:"💪",nm:"Cris Oliveira",
+    lv:{pt:"Avançada I",es:"Avanzada I",en:"Advanced I"},
+    tm:{pt:"Ontem",es:"Ayer",en:"Yesterday"},
+    bd:{pt:"Dica: faça seu treino de manhã. Transforma o resto do dia!",es:"Consejo: entrena por la mañana. ¡Transforma el resto del día!",en:"Tip: train in the morning. It transforms the rest of your day!"},tag:"Dica"},
+  {id:3,av:"🌿",nm:"Fernanda M.",
+    lv:{pt:"Iniciante",es:"Principiante",en:"Beginner"},
+    tm:{pt:"2 dias",es:"2 días",en:"2 days ago"},
+    bd:{pt:"Fui do zero ao Intermediário em 3 meses. O app me manteve no caminho.",es:"Pasé de cero a Intermedio en 3 meses. La app me mantuvo en el camino.",en:"I went from zero to Intermediate in 3 months. The app kept me on track."},tag:"Progresso"},
+];
+
+const TODAY=new Date().toDateString();
+const ln=(l,lg)=>l.n[lg];
+const ld=(l,lg)=>l.d[lg];
+
+/* ══ UTILS — NOVA LÓGICA ══
+ * Regra: apenas o nível escolhido pela aluna (inicialIdx) fica desbloqueado.
+ * Níveis anteriores ao inicial = "done" (já concluídos, clicáveis para ver).
+ * Nível inicial = "open" (ativo, clicável).
+ * Próximos níveis = "lock" até acumular check-ins suficientes.
+ * A cada 40 check-ins, o próximo nível é desbloqueado (com unlock antecipado a 36).
+ */
+function getStatus(idx,inicialIdx,progresso){
+  if(idx<inicialIdx) return 'done';           // superado
+  if(idx===inicialIdx) return 'open';          // nível de entrada — sempre ativo
+  // para níveis além do inicial: verifica check-ins acumulados
+  const ciclos=idx-inicialIdx;               // quantos ciclos além do inicial
+  const minimo=(ciclos-1)*40+36;             // 36 = 90% de 40 (desbloqueio antecipado)
+  return progresso>=minimo ? 'open' : 'lock';
+}
+
+// Progresso local dentro do ciclo atual
+function getLocalProg(progresso,idx,inicialIdx){
+  if(idx<inicialIdx) return 40;
+  if(idx===inicialIdx){
+    // Antes de qualquer check-in, o nível inicial já está disponível mas com prog=0
+    return Math.min(progresso,40);
+  }
+  const ciclo=idx-inicialIdx;
+  const base=(ciclo-1)*40;
+  return Math.min(Math.max(progresso-base,0),40);
+}
+
+// Índice do nível mais avançado desbloqueado (nível "ativo" atual)
+function getNivelAtualIdx(inicialIdx,progresso){
+  let idx=inicialIdx;
+  for(let i=inicialIdx+1;i<LEVELS.length;i++){
+    if(getStatus(i,inicialIdx,progresso)==='open') idx=i;
+    else break;
+  }
+  return idx;
+}
+
+// Dias para desbloquear o próximo nível
+function diasParaProx(progresso,nivelAtualIdx,inicialIdx){
+  const nextIdx=nivelAtualIdx+1;
+  if(nextIdx>=LEVELS.length) return 0;
+  const ciclos=nextIdx-inicialIdx;
+  const minimo=(ciclos-1)*40+36;
+  return Math.max(minimo-progresso,0);
+}
+
+function playSound(type){
+  try{
+    const ctx=new(window.AudioContext||window.webkitAudioContext)();
+    const o=ctx.createOscillator(),g=ctx.createGain();
+    o.connect(g);g.connect(ctx.destination);
+    if(type==='ci'){
+      o.frequency.setValueAtTime(523,ctx.currentTime);
+      o.frequency.setValueAtTime(659,ctx.currentTime+0.1);
+      o.frequency.setValueAtTime(784,ctx.currentTime+0.2);
+      g.gain.setValueAtTime(0.22,ctx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.5);
+      o.start();o.stop(ctx.currentTime+0.5);
+    } else {
+      [523,784,1047,1319].forEach((f,i)=>o.frequency.setValueAtTime(f,ctx.currentTime+i*0.15));
+      g.gain.setValueAtTime(0.28,ctx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.9);
+      o.start();o.stop(ctx.currentTime+0.9);
+    }
+  }catch(e){}
+}
+
+const db={
+  getUser:()=>{try{return JSON.parse(localStorage.getItem('pf_u')||'null')}catch{return null}},
+  saveUser:(u)=>localStorage.setItem('pf_u',JSON.stringify(u)),
+  clearUser:()=>localStorage.removeItem('pf_u'),
+  getLang:()=>localStorage.getItem('pf_lg')||'pt',
+  setLang:(l)=>localStorage.setItem('pf_lg',l),
+  getTests:()=>{try{return JSON.parse(localStorage.getItem('pf_ts')||'[]')}catch{return[]}},
+  saveTest:(t)=>{const l=db.getTests();l.unshift(t);localStorage.setItem('pf_ts',JSON.stringify(l.slice(0,50)))},
+  /* histórico de datas de treino para o calendário */
+  getCheckins:()=>{try{return JSON.parse(localStorage.getItem('pf_cks')||'[]')}catch{return[]}},
+  addCheckin:(date)=>{
+    const l=db.getCheckins();
+    if(!l.includes(date)){l.push(date);localStorage.setItem('pf_cks',JSON.stringify(l.slice(-90)));}
+  },
+};
+
+/* ══ CONFETTI ══ */
+function Confetti(){
+  const ps=Array.from({length:28},(_,i)=>({
+    id:i,left:`${Math.random()*100}%`,
+    delay:`${Math.random()*0.5}s`,dur:`${1.4+Math.random()*1.5}s`,
+    color:['#BF6B82','#B5914F','#E4AFBF','#D6B87A','#8C3F58','#FEFCF9'][i%6],
+    circle:Math.random()>0.5
+  }));
+  return <div className="cft">{ps.map(p=>(
+    <div key={p.id} className="cft-p" style={{
+      left:p.left,background:p.color,
+      animationDelay:p.delay,animationDuration:p.dur,
+      borderRadius:p.circle?'50%':'2px'
+    }}/>
+  ))}</div>;
+}
+
+/* ══ LANG TOGGLE ══ */
+function LT({lang,setLang}){
+  return <div className="lt">{['pt','es','en'].map(l=>(
+    <button key={l} className={`ltb ${lang===l?'on':''}`} onClick={()=>setLang(l)}>
+      {l.toUpperCase()}
+    </button>
+  ))}</div>;
+}
+
+/* ══ CHECKIN MODAL ══ */
+function CheckinModal({user,lang,t,onClose}){
+  const ii=LEVELS.findIndex(l=>l.id===user.nivel_inicial);
+  const ni=getNivelAtualIdx(ii,user.progresso);
+  const nivel=LEVELS[ni];
+  const local=getLocalProg(user.progresso,ni,ii);
+  const pct=Math.round((local/40)*100);
+  const faltam=diasParaProx(user.progresso,ni,ii);
+  return(
+    <><Confetti/>
+    <div className="plus-fl">+1 ✦</div>
+    <div className="m-ov" onClick={onClose}>
+      <div className="m-sh" onClick={e=>e.stopPropagation()}>
+        <div className="m-handle"/>
+        <span className="m-em">🔥</span>
+        <div className="m-title">{t.ci_title}</div>
+        <div className="m-sub">{t.ci_sub}</div>
+        <div className="m-badge">✦ {t.day_n(user.progresso)}</div>
+        <div className="m-bar-bg">
+          <div className="m-bar-f" style={{width:`${pct}%`}}/>
+        </div>
+        <div style={{fontSize:11,color:'var(--ink4)',marginBottom:14,fontWeight:300}}>
+          {t.pct_cycle(pct,ln(nivel,lang))}
+        </div>
+        {faltam>0&&faltam<=7&&<div className="m-next" style={{background:'var(--urgent-p)',color:'var(--urgent)'}}>{t.days_left(faltam)}</div>}
+        {faltam>7&&<div className="m-next">{t.days_left(faltam)}</div>}
+        <div style={{height:1,background:'var(--bdr)',margin:'0 0 18px'}}/>
+        <button className="btn-mo" onClick={onClose}>{t.continue_btn} 💪</button>
+      </div>
+    </div></>
+  );
+}
+
+/* ══ LEVELUP MODAL ══ */
+function LevelUpModal({nivel,lang,t,onClose}){
+  return(
+    <><div className="glow-v"/>
+    <div className="m-ov" onClick={onClose}>
+      <div className="m-sh" onClick={e=>e.stopPropagation()}>
+        <div className="m-handle"/>
+        <span className="m-em">{nivel.icon}</span>
+        <div className="m-title">{t.lu_title}</div>
+        <div className="m-sub">{t.lu_a} <strong>{ln(nivel,lang)}</strong>!<br/>{t.lu_b}</div>
+        <div className="m-badge m-badge-g">🏆 {ln(nivel,lang)}</div>
+        <div style={{height:1,background:'var(--bdr)',margin:'0 0 18px'}}/>
+        <button className="btn-mo btn-mo-g" onClick={onClose}>{t.amazing}</button>
+      </div>
+    </div></>
+  );
+}
+
+/* ══ BOTTOM NAV ══ */
+function BottomNav({active,setActive,t}){
+  const items=[
+    {id:'dashboard',ic:'🏠',lb:t.home},
+    {id:'feed',ic:'📰',lb:t.feed_tab},
+    {id:'comunidade',ic:'💬',lb:t.community},
+    {id:'instrucoes',ic:'📖',lb:t.instructions},
+    {id:'perfil',ic:'👤',lb:t.profile},
+  ];
+  return(
+    <div className="bnav">
+      {items.map(x=>(
+        <div key={x.id} className={`ni ${active===x.id?'on':''}`} onClick={()=>setActive(x.id)}>
+          <div className="ni-ic">{x.ic}</div>
+          <div className="ni-lb">{x.lb}</div>
+          {active===x.id&&<div className="ni-dot"/>}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* ══ LOGIN ══ */
+function LoginPage({onLogin,lang,setLang}){
+  const t=T[lang];
+  const [nome,setNome]=useState('');
+  const [email,setEmail]=useState('');
+  const [nivel,setNivel]=useState(null);
+  const [loading,setLoading]=useState(false);
+  const [err,setErr]=useState('');
+
+  const groups=[
+    {k:'i',lb:t.g_i,ids:[1]},
+    {k:'m',lb:t.g_m,ids:[2,3]},
+    {k:'a',lb:t.g_a,ids:[4,5,6]}
+  ];
+
+  const go=()=>{
+    if(!nome.trim()) return setErr(t.e_nome);
+    if(!email.trim()||!email.includes('@')) return setErr(t.e_email);
+    if(!nivel) return setErr(t.e_lv);
+    setErr(''); setLoading(true);
+    setTimeout(()=>{
+      const ex=db.getUser();
+      let user;
+      if(ex&&ex.email===email.trim().toLowerCase()){
+        user=ex;
+      } else {
+        user={nome:nome.trim(),email:email.trim().toLowerCase(),
+          nivel_inicial:nivel,progresso:0,ultimo_checkin:null,
+          status:'ativo',created_at:new Date().toISOString()};
+        db.saveUser(user);
+      }
+      setLoading(false);
+      onLogin(user);
+    },700);
+  };
+
+  return(
+    <div className="login">
+      <div className="lang-row">
+        {['pt','es','en'].map(l=>(
+          <button key={l} className={`lbtn ${lang===l?'on':''}`} onClick={()=>setLang(l)}>
+            {l.toUpperCase()}
+          </button>
+        ))}
+      </div>
+      <div className="login-hero">
+        <div className="login-seal">Pf</div>
+        <div className="login-brand">Planfit40</div>
+        <div className="login-tag">{t.tagline}</div>
+      </div>
+      <div className="card">
+        <div className="card-title">{t.wc}</div>
+        <div className="card-sub">{t.card_sub}</div>
+
+        <label className="fl">{t.your_name}</label>
+        <input className="fi" placeholder={t.name_ph} value={nome} onChange={e=>setNome(e.target.value)}/>
+
+        <label className="fl">{t.email}</label>
+        <input className="fi" type="email" placeholder="you@email.com" value={email} onChange={e=>setEmail(e.target.value)}/>
+
+        <div className="lvl-sec">
+          <div className="lvl-sec-lbl">{t.sel_lv}</div>
+          {groups.map(g=>(
+            <div key={g.k} className="lvl-group">
+              <div className="lvl-group-name">{g.lb}</div>
+              {LEVELS.filter(l=>g.ids.includes(l.id)).map(l=>(
+                <div key={l.id} className={`lo ${nivel===l.id?'on':''}`} onClick={()=>setNivel(l.id)}>
+                  <div className="lo-rb"/>
+                  <div className="lo-ico">{l.icon}</div>
+                  <div style={{flex:1}}>
+                    <div className="lo-nm">{ln(l,lang)}</div>
+                    <div className="lo-ds">{ld(l,lang)}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+
+        {err&&<div className="err">{err}</div>}
+        <button className="btn-go" onClick={go} disabled={loading}>
+          {loading?<><span className="spinner"/>{t.entering}</>:`${t.enter} ✦`}
+        </button>
+      </div>
+    </div>
+  );
+}
+
+/* ══ DASHBOARD ══ */
+function DashboardPage({user,lang,t,setLang,onCheckin}){
+  const ii=LEVELS.findIndex(l=>l.id===user.nivel_inicial);
+  const ni=getNivelAtualIdx(ii,user.progresso);
+  const nivel=LEVELS[ni];
+  const local=getLocalProg(user.progresso,ni,ii);
+  const pct=Math.round((local/40)*100);
+  const faltam=diasParaProx(user.progresso,ni,ii);
+  const progMsg=faltam===0?t.ready:t.days_left(faltam);
+
+  const dateStr=new Date().toLocaleDateString(
+    lang==='pt'?'pt-BR':lang==='es'?'es-ES':'en-US',
+    {weekday:'long',day:'numeric',month:'long'}
+  );
+
+  // Separar níveis por status
+  const openLevels  = LEVELS.filter((_,i)=>getStatus(i,ii,user.progresso)==='open');
+  const doneLevels  = LEVELS.filter((_,i)=>getStatus(i,ii,user.progresso)==='done');
+  const lockLevels  = LEVELS.filter((_,i)=>getStatus(i,ii,user.progresso)==='lock');
+
+  function LevelCard({l,status}){
+    const idx=LEVELS.indexOf(l);
+    const localP=getLocalProg(user.progresso,idx,ii);
+    const pctCard=Math.round((localP/40)*100);
+    const fCard=status==='lock'?diasParaProx(user.progresso,idx-1,ii):0;
+    // calcula dias para este card específico
+    const ciclos=idx-ii;
+    const minimoCard=(ciclos-1)*40+36;
+    const faltamCard=Math.max(minimoCard-user.progresso,0);
+
+    return(
+      <div className={`lc ${status}`}
+        onClick={()=>(status==='open'||status==='done')&&window.open(l.url,'_blank')}>
+        <div className="lc-ico-wrap">
+          {status==='lock'?'🔒':l.icon}
+        </div>
+        <div className="lc-body">
+          <div className="lc-name">{ln(l,lang)}</div>
+          <div className="lc-desc">{ld(l,lang)}</div>
+          {status==='open'&&(
+            <div style={{fontSize:11,color:'var(--rose)',fontWeight:500,marginTop:4}}>
+              {t.open_workout}
+            </div>
+          )}
+          {status==='done'&&(
+            <div style={{fontSize:11,color:'var(--gold-d)',fontWeight:500,marginTop:4}}>
+              {t.open_workout}
+            </div>
+          )}
+        </div>
+        <div className="lc-right">
+          {status==='open'&&<span className="badge badge-open">{t.unlocked}</span>}
+          {status==='done'&&<span className="badge badge-done">{t.done}</span>}
+          {status==='lock'&&<span className="badge badge-lock">{t.locked}</span>}
+          {status==='open'&&<div className="lc-arrow">▶</div>}
+          {status==='done'&&<div className="lc-arrow-g">▶</div>}
+          {status==='lock'&&<div className={`lock-ct ${faltamCard<=7?'urgent':''}`}>{faltamCard<=7?'⚡ ':''}{faltamCard} {t.days}</div>}
+        </div>
+        {status==='open'&&(
+          <>
+            <div className="lc-prog-bar">
+              <div className="lc-prog-fill" style={{width:`${pctCard}%`}}/>
+            </div>
+          </>
+        )}
+      </div>
+    );
+  }
+
+  const jaFezHoje = user.ultimo_checkin===TODAY;
+  const checkins = db.getCheckins();
+
+  /* Calendário — gera os últimos 30 dias */
+  const calDays = Array.from({length:30},(_,i)=>{
+    const d=new Date(); d.setDate(d.getDate()-(29-i));
+    return {date:d.toDateString(), num:d.getDate(),
+      isHoje:d.toDateString()===TODAY, isFuturo:false};
+  });
+
+  return(
+    <div className="page">
+      <div className="hdr">
+        <div className="hdr-top">
+          <div className="hdr-left">
+            <div className="hdr-eye">Planfit40</div>
+            <div className="hdr-name">{user.nome.split(' ')[0]} {new Date().getHours()<12?'🌸':new Date().getHours()<18?'🌿':'✨'}</div>
+            <div className="hdr-date">{dateStr}</div>
+          </div>
+          <LT lang={lang} setLang={setLang}/>
+        </div>
+      </div>
+      <div className="pc">
+
+        {/* ── BOTÃO CHECK-IN MANUAL ── */}
+        <button
+          className={`ci-card ${jaFezHoje?'done':''}`}
+          onClick={!jaFezHoje?onCheckin:undefined}
+          disabled={jaFezHoje}
+        >
+          <div className="ci-top">
+            <div className="ci-ico">{jaFezHoje?'✅':'📅'}</div>
+            <div>
+              <div className="ci-label">{jaFezHoje?t.ci_btn_done:t.ci_btn}</div>
+              <div className="ci-sub">{jaFezHoje?t.ci_btn_done_sub:t.ci_btn_sub}</div>
+            </div>
+          </div>
+          <div className="ci-bar-bg">
+            <div className="ci-bar-fill" style={{width:`${pct}%`}}/>
+          </div>
+          <div className="ci-foot">
+            <div className="ci-foot-l">{jaFezHoje?'✦ '+t.consistency:''}
+              {jaFezHoje?' '+user.progresso+' '+t.days:''}
+            </div>
+            <div className="ci-foot-r">{local}/40 {t.t_inlv}</div>
+          </div>
+        </button>
+
+        {/* Card de progresso */}
+        <div className="prog">
+          <div className="prog-streak" style={{animation:'streakIn 0.6s var(--ease-spring) both'}}>
+            🔥 {user.progresso} {t.consistency}
+            {user.progresso>=7&&<span style={{marginLeft:6,fontSize:9,opacity:0.8}}>· {lang==='pt'?'Sequência ativa':lang==='es'?'Racha activa':'Streak active'}</span>}
+          </div>
+          <div className="prog-lbl">{t.cur_lv}</div>
+          <div className="prog-nivel">{nivel.icon} {ln(nivel,lang)}</div>
+          <div className="prog-bar-bg">
+            <div className="prog-bar-fill" style={{width:`${pct}%`}}/>
+          </div>
+          <div className="prog-foot">
+            <div className="prog-msg">{progMsg}</div>
+            <div className="prog-ct">{local}/40</div>
+          </div>
+        </div>
+
+        {/* ── CALENDÁRIO VISUAL ── */}
+        <div className="cal-wrap">
+          <div className="cal-title">{t.cal_title}</div>
+          <div className="cal-grid">
+            {calDays.map((d,i)=>(
+              <div key={i} className={`cal-day${checkins.includes(d.date)?' treinou':''}${d.isHoje?' hoje':''}${d.isFuturo?' futuro':''}`}>
+                {d.num}
+              </div>
+            ))}
+          </div>
+          <div className="cal-legend">
+            <div className="cal-dot" style={{background:'var(--rose)'}}/>
+            <div className="cal-legend-txt">{t.cal_treinou}</div>
+            <div className="cal-dot" style={{background:'var(--surf2)',border:'1px solid var(--rose)',marginLeft:8}}/>
+            <div className="cal-legend-txt">{t.cal_hoje}</div>
+          </div>
+        </div>
+
+        {/* Treinos especiais */}
+        <div className="sec">
+          <div className="sec-t">{t.alw_t}</div>
+          <div className="sec-s">{t.alw_s}</div>
+        </div>
+        <div className="lvl-list" style={{marginBottom:20}}>
+          {SPECIAL.map(sl=>(
+            <div key={sl.id} className="lc spec" onClick={()=>window.open(sl.url,'_blank')}>
+              <div className="lc-ico-wrap">{sl.icon}</div>
+              <div className="lc-body">
+                <div className="lc-name">{sl.n[lang]}</div>
+                <div style={{fontSize:11,color:'var(--gold-d)',fontWeight:500,marginTop:4}}>
+                  {t.open_workout}
+                </div>
+              </div>
+              <div className="lc-right">
+                <span className="badge badge-spec">{t.available}</span>
+                <div className="lc-arrow-g">▶</div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Nível ativo */}
+        <div className="sec">
+          <div className="sec-t">{t.trn_t}</div>
+          <div className="sec-s">{t.trn_s}</div>
+        </div>
+        <div className="lvl-list" style={{marginBottom:20}}>
+          {openLevels.map(l=><LevelCard key={l.id} l={l} status="open"/>)}
+        </div>
+
+        {/* Níveis já superados */}
+        {doneLevels.length>0&&(
+          <>
+            <div className="divider"/>
+            <div className="sec">
+              <div className="sec-t" style={{fontSize:15,opacity:0.7}}>
+                {lang==='pt'?'Níveis concluídos':lang==='es'?'Niveles completados':'Completed levels'}
+              </div>
+            </div>
+            <div className="lvl-list" style={{marginBottom:16}}>
+              {doneLevels.map(l=><LevelCard key={l.id} l={l} status="done"/>)}
+            </div>
+          </>
+        )}
+
+        {/* Níveis bloqueados */}
+        {lockLevels.length>0&&(
+          <>
+            <div className="divider"/>
+            <div className="sec">
+              <div className="sec-t">{t.locked_t}</div>
+              <div className="sec-s">{t.locked_s}</div>
+            </div>
+            <div className="lvl-list">
+              {lockLevels.map(l=><LevelCard key={l.id} l={l} status="lock"/>)}
+            </div>
+          </>
+        )}
+
+      </div>
+    </div>
+  );
+}
+
+/* ══ FEED ══ */
+function FeedPage({lang,t}){
+  return(
+    <div className="page">
+      <div className="hdr">
+        <div className="hdr-top">
+          <div><div className="hdr-eye">{t.feed_eye}</div><div className="hdr-name">{t.feed_name}</div></div>
+        </div>
+      </div>
+      <div className="pc">
+        {FEED_DATA.map(p=>(
+          <div key={p.id} className="post fade-in">
+            <div className="post-hdr">
+              <div className="post-av" style={{background:'rgba(191,107,130,0.10)'}}>{p.av}</div>
+              <div>
+                <div className="post-nm">{p.nm}</div>
+                <div className="post-mt">{p.lv[lang]} · {p.tm[lang]}</div>
+              </div>
+            </div>
+            <div className="post-body">{p.bd[lang]}</div>
+            <div className="post-tag">#{p.tag}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+/* ══ COMUNIDADE ══ */
+function ComunidadePage({user,lang,t}){
+  const [text,setText]=useState('');
+  const [list,setList]=useState(()=>db.getTests());
+  const [toast,setToast]=useState('');
+  const send=()=>{
+    if(!text.trim())return;
+    const ii=LEVELS.findIndex(l=>l.id===user.nivel_inicial);
+    const ni=getNivelAtualIdx(ii,user.progresso);
+    db.saveTest({id:Date.now(),nome:user.nome,nivel:ln(LEVELS[ni],lang),body:text.trim(),av:'🌸'});
+    setList(db.getTests());setText('');
+    setToast(t.toast_ok);setTimeout(()=>setToast(''),2500);
+  };
+  return(
+    <div className="page">
+      {toast&&<div className="toast">{toast}</div>}
+      <div className="hdr">
+        <div className="hdr-top">
+          <div><div className="hdr-eye">{t.com_eye}</div><div className="hdr-name">{t.com_name}</div></div>
+        </div>
+      </div>
+      <div className="pc">
+        <div className="box">
+          <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:18,fontWeight:600,marginBottom:12}}>{t.test_title}</div>
+          <textarea className="f-ta" placeholder={t.test_ph} value={text} onChange={e=>setText(e.target.value)}/>
+          <button className="btn-send" onClick={send}>{t.share} ✦</button>
+        </div>
+        {list.length===0
+          ?<div className="empty"><div className="empty-ic">💬</div><div className="empty-tx">{t.first}</div></div>
+          :list.map(tt=>(
+            <div key={tt.id} className="post fade-in">
+              <div className="post-hdr">
+                <div className="post-av" style={{background:'rgba(181,145,79,0.10)'}}>{tt.av}</div>
+                <div><div className="post-nm">{tt.nome}</div><div className="post-mt">{tt.nivel}</div></div>
+              </div>
+              <div className="post-body">{tt.body}</div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  );
+}
+
+/* ══ INSTRUÇÕES ══ */
+function InstrucoesPage({t}){
+  return(
+    <div className="page">
+      <div className="hdr">
+        <div className="hdr-top">
+          <div>
+            <div className="hdr-eye">{t.ins_eye}</div>
+            <div className="hdr-name">{t.vid_title}</div>
+          </div>
+        </div>
+      </div>
+      <div className="pc">
+
+        {/* ── Vídeo YouTube responsivo ── */}
+        <div style={{
+          borderRadius:'var(--r2)',overflow:'hidden',
+          position:'relative',paddingBottom:'177.78%', /* 9:16 para Shorts */
+          height:0,marginBottom:16,
+          boxShadow:'var(--s2)',border:'1px solid var(--bdr)'
+        }}>
+          <iframe
+            src="https://www.youtube.com/embed/zG2h2gyURQQ?playsinline=1&rel=0"
+            title="Como usar o Planfit40"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            style={{position:'absolute',top:0,left:0,width:'100%',height:'100%'}}
+          />
+        </div>
+
+        {/* ── Resumo abaixo do vídeo ── */}
+        <div className="box" style={{marginBottom:18}}>
+          <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:17,fontWeight:600,marginBottom:8}}>{t.ins_mt}</div>
+          <div style={{fontSize:12,color:'var(--ink3)',lineHeight:1.7,fontWeight:300,marginBottom:14}}>{t.vid_sub}</div>
+          <div style={{height:1,background:'var(--bdr)',margin:'0 0 14px'}}/>
+          <div style={{fontSize:12,color:'var(--ink3)',lineHeight:1.7,fontWeight:300}}>{t.ins_ms}</div>
+        </div>
+
+        {/* ── Passos de uso ── */}
+        {t.ins.map((item,i)=>(
+          <div key={i} className="ins-i">
+            <div className="ins-ico" style={{background:i%2===0?'rgba(191,107,130,0.10)':'rgba(181,145,79,0.10)'}}>{item.i}</div>
+            <div><div className="ins-t">{item.t}</div><div className="ins-b">{item.b}</div></div>
+          </div>
+        ))}
+
+        <div className="divider"/>
+        <div className="box" style={{background:'linear-gradient(135deg,var(--rose-p),var(--gold-p))',border:'1.5px solid var(--bdr)',textAlign:'center'}}>
+          <div style={{fontSize:28,marginBottom:8}}>💪</div>
+          <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:18,fontWeight:600,marginBottom:6}}>{t.ins_qt}</div>
+          <div style={{fontSize:12,color:'var(--ink3)',lineHeight:1.8,fontWeight:300,whiteSpace:'pre-line'}}>{t.ins_qb}</div>
+        </div>
+
+      </div>
+    </div>
+  );
+}
+
+/* ══ PERFIL ══ */
+function PerfilPage({user,lang,t,onLogout}){
+  const ii=LEVELS.findIndex(l=>l.id===user.nivel_inicial);
+  const ni=getNivelAtualIdx(ii,user.progresso);
+  const nivel=LEVELS[ni];
+  const inicialNivel=LEVELS.find(l=>l.id===user.nivel_inicial);
+  const nOpen=LEVELS.filter((_,i)=>getStatus(i,ii,user.progresso)!=='lock').length;
+  const local=getLocalProg(user.progresso,ni,ii);
+  return(
+    <div className="page">
+      <div className="hdr">
+        <div className="hdr-top">
+          <div><div className="hdr-eye">{t.prf_eye}</div><div className="hdr-name">{t.prf_name}</div></div>
+        </div>
+      </div>
+      <div className="pc">
+        <div className="prf-top">
+          <div className="prf-av">🌿</div>
+          <div className="prf-nm">{user.nome}</div>
+          <div className="prf-lv">{nivel.icon} {ln(nivel,lang)}</div>
+        </div>
+        <div className="stat-g">
+          <div className="stat-b"><div className="stat-v">{user.progresso}</div><div className="stat-l">{t.t_days}</div></div>
+          <div className="stat-b"><div className="stat-v">{nOpen}</div><div className="stat-l">{t.t_lvs}</div></div>
+          <div className="stat-b"><div className="stat-v">{local}</div><div className="stat-l">{t.t_inlv}</div></div>
+        </div>
+        <div className="info-c">
+          <div className="info-row"><div className="info-k">{t.email}</div><div className="info-v" style={{fontSize:10}}>{user.email}</div></div>
+          <div className="info-row"><div className="info-k">{t.ini_lv}</div><div className="info-v">{inicialNivel?.icon} {ln(inicialNivel,lang)}</div></div>
+          <div className="info-row"><div className="info-k">{t.status}</div><div className="info-v" style={{color:'var(--rose)'}}>{t.active}</div></div>
+        </div>
+        <button className="btn-out" onClick={onLogout}>{t.logout}</button>
+      </div>
+    </div>
+  );
+}
+
+/* ══ APP ROOT ══ */
+function App(){
+  const [user,setUser]=useState(()=>db.getUser());
+  const [lang,setLang]=useState(()=>db.getLang());
+  const [page,setPage]=useState('dashboard');
+  const [ciModal,setCiModal]=useState(false);
+  const [luModal,setLuModal]=useState(null);
+
+  const handleLang=useCallback((l)=>{setLang(l);db.setLang(l)},[]);
+
+  /* ── CHECK-IN MANUAL: chamado apenas pelo botão no Dashboard ── */
+  const handleCheckin=useCallback(()=>{
+    if(!user||user.ultimo_checkin===TODAY) return; // guarda duplicidade
+    const ii=LEVELS.findIndex(l=>l.id===user.nivel_inicial);
+    const prevNi=getNivelAtualIdx(ii,user.progresso);
+    const upd={...user,progresso:user.progresso+1,ultimo_checkin:TODAY};
+    const newNi=getNivelAtualIdx(ii,upd.progresso);
+    db.saveUser(upd);
+    db.addCheckin(TODAY); // salva no histórico do calendário
+    setUser(upd);
+    playSound('ci');
+    setCiModal(true);
+    if(newNi>prevNi){
+      setTimeout(()=>{
+        setCiModal(false);
+        playSound('lu');
+        setLuModal(LEVELS[newNi]);
+      },2200);
+    }
+  },[user]);
+
+  const t=T[lang];
+
+  if(!user) return(
+    <div className="app">
+      <LoginPage onLogin={u=>{setUser(u)}} lang={lang} setLang={handleLang}/>
+    </div>
+  );
+
+  const renderPage=()=>{
+    switch(page){
+      case 'dashboard':  return <DashboardPage user={user} lang={lang} t={t} setLang={handleLang} onCheckin={handleCheckin}/>;
+      case 'feed':       return <FeedPage lang={lang} t={t}/>;
+      case 'comunidade': return <ComunidadePage user={user} lang={lang} t={t}/>;
+      case 'instrucoes': return <InstrucoesPage t={t}/>;
+      case 'perfil':     return <PerfilPage user={user} lang={lang} t={t} onLogout={()=>{db.clearUser();setUser(null);}}/>;
+      default:           return <DashboardPage user={user} lang={lang} t={t} setLang={handleLang} onCheckin={handleCheckin}/>;
+    }
+  };
+
+  return(
+    <div className="app">
+      {ciModal&&<CheckinModal user={user} lang={lang} t={t} onClose={()=>setCiModal(false)}/>}
+      {luModal&&<LevelUpModal nivel={luModal} lang={lang} t={t} onClose={()=>setLuModal(null)}/>}
+      <div className="fade-in">{renderPage()}</div>
+      <BottomNav active={page} setActive={setPage} t={t}/>
+    </div>
+  );
+}
+
+ReactDOM.render(<App/>,document.getElementById('root'));
+</script>
+</body>
+</html>

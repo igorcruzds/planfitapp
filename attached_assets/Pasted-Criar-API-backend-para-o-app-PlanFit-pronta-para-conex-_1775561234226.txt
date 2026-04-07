@@ -1,0 +1,184 @@
+Criar API backend para o app PlanFit pronta para conexão com o frontend.
+
+Não conectar banco de dados ainda.
+Usar apenas dados mock em memória.
+Criar estrutura organizada para futura integração com MongoDB.
+
+====================================
+CRIAR BACKEND EXPRESS
+====================================
+
+Criar arquivo:
+
+server.js
+
+Configurar:
+
+Express
+CORS
+JSON middleware
+
+Rodar na porta 3000.
+
+====================================
+ESTRUTURA
+====================================
+
+Criar estrutura:
+
+/api
+/routes
+/controllers
+
+Separar rotas.
+
+====================================
+ROTAS NECESSÁRIAS
+====================================
+
+POST /api/register-workout  
+POST /api/posts  
+GET /api/posts  
+POST /api/comments  
+POST /api/like  
+GET /api/ranking  
+GET /api/profile/:id  
+POST /api/vip  
+POST /api/swap-workout  
+
+====================================
+REGISTER WORKOUT
+====================================
+
+POST /api/register-workout
+
+Receber:
+
+userId
+
+Retornar:
+
+success true
+streak atualizado
+ranking atualizado
+
+====================================
+POSTS
+====================================
+
+POST /api/posts
+
+Receber:
+
+userId
+text
+image
+
+Salvar em memória
+
+GET /api/posts
+
+Retornar lista posts
+
+====================================
+COMMENTS
+====================================
+
+POST /api/comments
+
+Receber:
+
+postId
+userId
+text
+
+====================================
+LIKE
+====================================
+
+POST /api/like
+
+Receber:
+
+postId
+
+Incrementar likes
+
+====================================
+RANKING
+====================================
+
+GET /api/ranking
+
+Retornar lista simulada ordenada.
+
+====================================
+PROFILE
+====================================
+
+GET /api/profile/:id
+
+Retornar:
+
+user
+streak
+posts
+level
+
+====================================
+VIP
+====================================
+
+POST /api/vip
+
+Receber:
+
+userId
+
+Retornar:
+
+vip true
+
+====================================
+SWAP WORKOUT
+====================================
+
+POST /api/swap-workout
+
+Receber:
+
+userId
+newWorkout
+
+Retornar:
+
+success true
+
+====================================
+DADOS MOCK
+====================================
+
+Criar arrays em memória:
+
+users
+posts
+comments
+ranking
+
+====================================
+RETORNOS JSON
+====================================
+
+Todas rotas devem retornar JSON.
+
+====================================
+SERVER
+====================================
+
+Rodar:
+
+app.listen(3000)
+
+Mostrar:
+
+API PlanFit rodando

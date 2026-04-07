@@ -1,0 +1,230 @@
+Implementar tradução completa e obrigatória em TODO o aplicativo.
+
+Objetivo:
+Traduzir absolutamente todos os textos quando o usuário mudar o idioma.
+
+Idiomas:
+
+PT
+ES
+EN
+
+========================================
+REGRA GLOBAL
+========================================
+
+Nenhum texto pode ficar hardcoded.
+
+Todos devem usar:
+
+t("key")
+
+========================================
+TRADUZIR TODAS AS TELAS
+========================================
+
+Traduzir:
+
+Dashboard
+Treinos
+Programas Extras
+Comunidade
+Ranking
+Perfil
+Consultoria VIP
+Guia
+Instruções
+
+========================================
+TELA TREINOS
+========================================
+
+Traduzir:
+
+- Clique para desbloquear
+- Desbloqueio antecipado
+- Após dia 35
+- Disponível em X dias
+- Trocar treino
+- Treino atual
+- Registrar treino
+- Treino já registrado hoje
+- Dias no nível
+- Progresso
+- Desbloquear agora
+- Resgatar nível
+- Gratuito
+- Ranking mensal
+- Ranking semanal
+
+========================================
+COMUNIDADE
+========================================
+
+Traduzir:
+
+- comentar
+- responder
+- curtir
+- publicar
+- escrever comentário
+- adicionar foto
+- treino concluído hoje
+- ver original
+- compartilhar
+- perfil
+
+========================================
+PERFIL
+========================================
+
+Traduzir:
+
+- dias consecutivos
+- total treinos
+- nível atual
+- publicações
+- editar perfil
+- trocar foto
+- remover foto
+
+========================================
+RANKING
+========================================
+
+Traduzir:
+
+- ranking mensal
+- ranking semanal
+- 1º lugar
+- destaque semanal
+- campeã do mês
+- posição
+- treinos
+
+========================================
+VIP
+========================================
+
+Traduzir:
+
+- Consultoria VIP
+- você é VIP
+- entrar VIP
+- falar no WhatsApp
+- suporte direto
+- prioridade VIP
+
+========================================
+MODAIS
+========================================
+
+Traduzir:
+
+- desbloquear nível
+- trocar treino
+- registrar treino
+- parabéns
+- você ganhou
+- cancelar
+- confirmar
+- resgatar
+
+========================================
+TEXTOS DINÂMICOS
+========================================
+
+Traduzir:
+
+Disponível em {dias} dias
+{numero}/40 no nível
+🔥 {streak} dias
+Treino concluído hoje
+Você já registrou hoje
+Resgatado com sucesso
+
+========================================
+PLACEHOLDERS
+========================================
+
+Traduzir:
+
+Escreva seu comentário
+Adicionar foto
+Digite aqui
+Buscar
+
+========================================
+BADGES
+========================================
+
+Traduzir:
+
+VIP
+Campeã
+Destaque
+Novo
+
+========================================
+BOTÕES
+========================================
+
+Traduzir:
+
+Registrar treino
+Publicar
+Desbloquear
+Resgatar
+Trocar treino
+Compartilhar
+Voltar
+
+========================================
+ESTADOS
+========================================
+
+Traduzir:
+
+Bloqueado
+Disponível
+Ativo
+Expirado
+Resgatado
+
+========================================
+POSTS COMUNIDADE
+========================================
+
+Traduzir automaticamente:
+
+post.text
+
+========================================
+COMENTÁRIOS
+========================================
+
+Traduzir automaticamente:
+
+comment.text
+
+========================================
+EXEMPLO IMPLEMENTAÇÃO
+========================================
+
+NÃO usar:
+
+"Registrar treino"
+
+USAR:
+
+t("registerWorkout")
+
+========================================
+OBJETIVO FINAL
+========================================
+
+Ao trocar idioma:
+
+Todo app deve mudar imediatamente
+
+Sem nenhum texto restante em PT
