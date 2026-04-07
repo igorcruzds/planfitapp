@@ -1119,7 +1119,7 @@ const db={
 };
 
 /* API */
-const API_BASE='https://planfitapp-production.up.railway.app';
+const API_BASE='https://planfitapp-production.up.railway.app/';
 const api={
  get:async(path)=>{
   const url = `${API_BASE}${path.startsWith('/') ? path : '/' + path}`;
