@@ -1120,26 +1120,23 @@ const db={
 
 /* API */
 /* API */
-const API_BASE = "https://planfitapp-production.up.railway.app";
+const API_BASE = "";
 
-const api = {
-  get: async (path) => {
-    const url = `${API_BASE}${path.startsWith('/') ? path : '/' + path}`;
-    const r = await fetch(url);
-    if (!r.ok) throw new Error(`HTTP ${r.status}`);
-    return r.json();
-  },
-
-  post: async (path, body) => {
-    const url = `${API_BASE}${path.startsWith('/') ? path : '/' + path}`;
-    const r = await fetch(url, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body)
-    });
-    if (!r.ok) throw new Error(`HTTP ${r.status}`);
-    return r.json();
-  }
+const api={
+get:async(path)=>{
+const r=await fetch(`${API_BASE}${path}`);
+if(!r.ok) throw new Error(`HTTP ${r.status}`);
+return r.json();
+},
+post:async(path,body)=>{
+const r=await fetch(`${API_BASE}${path}`,{
+method:'POST',
+headers:{'Content-Type':'application/json'},
+body:JSON.stringify(body),
+});
+if(!r.ok) throw new Error(`HTTP ${r.status}`);
+return r.json();
+},
 };
 /* HELPERS */
 function Confetti(){
