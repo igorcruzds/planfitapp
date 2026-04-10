@@ -2681,6 +2681,83 @@ function App(){
 }
 
 ReactDOM.render(<App/>,document.getElementById('root'));
+  /* ================= API CONNECT ================= */
+
+const API_URL = "https://planfitapp-production.up.railway.app";
+
+const api = {
+  get: async (path) => {
+    const res = await fetch(`${API_URL}/api${path}`);
+    if (!res.ok) throw new Error("API error");
+    return res.json();
+  },
+
+  post: async (path, body) => {
+    const res = await fetch(`${API_URL}/api${path}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(body)
+    });
+
+    if (!res.ok) throw new Error("API error");
+    return res.json();
+  }
+};
+
+/* ================= WORKOUT ================= */
+
+window.registerWorkout = async function(opts){
+  try{
+    const post = await api.post("/workout",{
+      userId: window.user?.id || "guest",
+      caption: opts?.caption || "",
+      photo: opts?.photo || null,
+      createdAt: Date.now()
+    });
+
+    if(window.setPosts){
+      window.setPosts(prev => [post,...prev]);
+    }
+
+  }catch(e){
+    console.log("workout error",e);
+  }
+};
+
+/* ================= POSTS ================= */
+
+window.loadPosts = async function(){
+  try{
+    const data = await api.get("/posts");
+    if(window.setPosts){
+      window.setPosts(data);
+    }
+  }catch(e){
+    console.log("posts error",e);
+  }
+};
+
+/* ================= RANKING ================= */
+
+window.loadRanking = async function(){
+  try{
+    const data = await api.get("/ranking");
+    if(window.setRanking){
+      window.setRanking(data);
+    }
+  }catch(e){
+    console.log("ranking error",e);
+  }
+};
+
+/* ================= AUTO LOAD ================= */
+
+setTimeout(()=>{
+  if(window.loadPosts) loadPosts();
+  if(window.loadRanking) loadRanking();
+},1000);
 </script>
 </body>
 </html>
