@@ -27,6 +27,15 @@ app.use('/api', vipRoutes);
 
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
 
+// LINK SECRETO RESET
+app.get('/admin-reset-123', (req, res) => {
+  global.posts = [];
+  global.ranking = [];
+  global.comments = [];
+
+  res.send('App resetado com sucesso');
+});
+
 // Serve static files (index.html + assets) from project root
 app.use(express.static(path.join(__dirname)));
 
