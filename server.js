@@ -17,10 +17,12 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
-// Estado global existente
+// Mantem compatibilidade com seu código atual
 global.posts = global.posts || [];
 global.ranking = global.ranking || [];
 global.comments = global.comments || [];
+global.rankingWeekly = global.rankingWeekly || [];
+global.rankingMonthly = global.rankingMonthly || [];
 
 // Admin fixo
 const ADMIN_USER = {
@@ -31,10 +33,9 @@ const ADMIN_USER = {
   role: 'admin',
 };
 
-// Sessões simples em memória
+// Sessões em memória
 const sessions = new Map();
 
-// Helpers
 function createToken() {
   return crypto.randomBytes(24).toString('hex');
 }
@@ -47,23 +48,29 @@ function getTokenFromRequest(req) {
   return req.headers['x-auth-token'] || null;
 }
 
-function auth(req, res, next) {
+// Auth opcional: não quebra rotas antigas
+function optionalAuth(req, res, next) {
   const token = getTokenFromRequest(req);
-
   if (!token) {
     req.user = null;
     return next();
   }
 
   const session = sessions.get(token);
-  if (!session) {
-    req.user = null;
-    return next();
-  }
-
-  req.user = session.user;
-  req.token = token;
+  req.user = session ? session.user : null;
   next();
+}
+
+function requireAuth(req, res, next) {
+  optionalAuth(req, res, () => {
+    if (!req.user) {
+      return res.status(401).json({
+        ok: false,
+        message: 'Não autenticado',
+      });
+    }
+    next();
+  });
 }
 
 function isAdmin(req, res, next) {
@@ -76,18 +83,12 @@ function isAdmin(req, res, next) {
   next();
 }
 
-app.use(auth);
-
-// Login com retorno de role
+// Login admin
 app.post('/api/login', (req, res) => {
   const { email, password } = req.body || {};
 
-  if (
-    email === ADMIN_USER.email &&
-    password === ADMIN_USER.password
-  ) {
+  if (email === ADMIN_USER.email && password === ADMIN_USER.password) {
     const token = createToken();
-
     const user = {
       id: ADMIN_USER.id,
       email: ADMIN_USER.email,
@@ -111,7 +112,7 @@ app.post('/api/login', (req, res) => {
   });
 });
 
-app.post('/api/logout', (req, res) => {
+app.post('/api/logout', requireAuth, (req, res) => {
   const token = getTokenFromRequest(req);
   if (token) sessions.delete(token);
 
@@ -121,15 +122,15 @@ app.post('/api/logout', (req, res) => {
   });
 });
 
-app.get('/api/me', (req, res) => {
+app.get('/api/me', requireAuth, (req, res) => {
   return res.json({
     ok: true,
-    user: req.user || null,
-    role: req.user?.role || null,
+    user: req.user,
+    role: req.user.role,
   });
 });
 
-// API routes existentes
+// API routes antigas intactas
 app.use('/api', workoutRoutes);
 app.use('/api', postsRoutes);
 app.use('/api', commentsRoutes);
@@ -140,17 +141,19 @@ app.use('/api', vipRoutes);
 
 app.get('/health', (req, res) => res.json({ status: 'ok' }));
 
-// LINK SECRETO RESET - mantido por compatibilidade
+// Link secreto antigo mantido
 app.get('/admin-reset-123', (req, res) => {
   global.posts = [];
   global.ranking = [];
   global.comments = [];
+  global.rankingWeekly = [];
+  global.rankingMonthly = [];
 
   res.send('App resetado com sucesso');
 });
 
 // Rota admin protegida
-app.get('/admin', isAdmin, (req, res) => {
+app.get('/admin', requireAuth, isAdmin, (req, res) => {
   res.json({
     ok: true,
     message: 'Área administrativa liberada',
@@ -158,11 +161,34 @@ app.get('/admin', isAdmin, (req, res) => {
   });
 });
 
-// Exemplo de reset protegido
-app.post('/api/admin/reset-all', isAdmin, (req, res) => {
+// Reset ranking semanal
+app.post('/api/admin/reset-ranking-weekly', requireAuth, isAdmin, (req, res) => {
+  global.rankingWeekly = [];
+
+  return res.json({
+    ok: true,
+    message: 'Ranking semanal resetado com sucesso',
+  });
+});
+
+// Reset ranking mensal
+app.post('/api/admin/reset-ranking-monthly', requireAuth, isAdmin, (req, res) => {
+  global.rankingMonthly = [];
+  global.ranking = [];
+
+  return res.json({
+    ok: true,
+    message: 'Ranking mensal resetado com sucesso',
+  });
+});
+
+// Reset geral
+app.post('/api/admin/reset-all', requireAuth, isAdmin, (req, res) => {
   global.posts = [];
   global.ranking = [];
   global.comments = [];
+  global.rankingWeekly = [];
+  global.rankingMonthly = [];
 
   return res.json({
     ok: true,
@@ -170,11 +196,11 @@ app.post('/api/admin/reset-all', isAdmin, (req, res) => {
   });
 });
 
-// Serve static files (index.html + assets) from project root
+// Serve static files
 app.use(express.static(path.join(__dirname)));
 
-// Fallback: serve index.html for any non-API route
-app.get('*', (req, res) => {
+// Fallback
+app.get('/{*path}', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
