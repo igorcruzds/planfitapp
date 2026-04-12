@@ -8,8 +8,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-
-  <style>
+<style>
 :root{
   --bg:#2A0A3D;--bg2:#3D1060;--bg3:#1A0629;
   --purple:#5B1A8B;--purple-l:#7B2AB8;
@@ -225,7 +224,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg3);color:var(--white);o
 .ci-foot-l{font-size:10px;color:rgba(255,255,255,0.65);font-weight:300}
 .ci-foot-r{font-size:11px;color:rgba(255,255,255,0.90);font-weight:600}
 
-/* CALENDÁRIO */
+/* CALENDARIO */
 .cal-wrap{background:rgba(255,255,255,0.05);border:1px solid var(--bdr);border-radius:var(--r2);padding:16px;box-shadow:var(--s1);margin-bottom:18px}
 .cal-title{font-size:11px;font-weight:600;color:var(--gray);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px}
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
@@ -243,7 +242,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg3);color:var(--white);o
 .thread-av-img.vip{border-color:var(--gold)}
 .thread-av-img img{width:100%;height:100%;object-fit:cover}
 
-/* COMUNIDADE / THREADS FEED */
+/* COMUNIDADE */
 .thread-post{background:rgba(255,255,255,0.04);border-radius:var(--r2);padding:16px;margin-bottom:8px;border:1px solid var(--bdr);position:relative}
 .thread-post-hdr{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px}
 .thread-av{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;background:rgba(200,77,255,0.15);border:2px solid var(--bdr)}
@@ -383,17 +382,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg3);color:var(--white);o
 .tiebreaker-title{font-size:10px;font-weight:700;color:var(--gray2);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
 .tiebreaker-item{display:flex;align-items:flex-start;gap:8px;font-size:11px;color:var(--gray);font-weight:300;line-height:1.5;margin-bottom:4px}
 
-/* UNLOCK MODAL OPTIONS */
-.unlock-option{display:flex;align-items:flex-start;gap:12px;padding:14px;border-radius:var(--r2);border:1.5px solid var(--bdr);background:rgba(255,255,255,0.04);cursor:pointer;transition:all 0.2s;margin-bottom:10px;text-align:left;width:100%}
-.unlock-option:hover{border-color:var(--accent);background:rgba(200,77,255,0.10)}
-.unlock-option.best{border-color:rgba(200,77,255,0.50);background:rgba(200,77,255,0.08)}
-.unlock-option-ico{font-size:22px;flex-shrink:0;margin-top:1px}
-.unlock-option-body{flex:1}
-.unlock-option-title{font-size:13px;font-weight:600;color:var(--white);margin-bottom:2px}
-.unlock-option-sub{font-size:11px;color:var(--gray);font-weight:300;line-height:1.5}
-.unlock-option-price{font-size:12px;font-weight:700;color:var(--accent);margin-top:4px}
-.unlock-option-badge{display:inline-block;background:var(--grad);color:#fff;padding:2px 8px;border-radius:100px;font-size:9px;font-weight:700;margin-bottom:4px}
-
 /* SWAP WORKOUT */
 .swap-btn{width:100%;padding:11px 14px;border:1.5px solid rgba(200,77,255,0.35);border-radius:var(--r2);background:rgba(200,77,255,0.07);color:var(--accent);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all 0.2s;display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:14px}
 .swap-btn:hover{border-color:var(--accent);background:rgba(200,77,255,0.14)}
@@ -444,22 +432,17 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg3);color:var(--white);o
 /* MEUS PRODUTOS */
 .meus-prod-sec{margin-bottom:22px}
 .meus-prod-title{font-size:11px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--accent);margin-bottom:12px;padding-left:2px}
-.prod-item{display:flex;align-items:center;gap:14px;padding:14px 16px;
-  background:rgba(255,255,255,0.04);border:1px solid var(--bdr);border-radius:var(--r2);
-  margin-bottom:10px;cursor:pointer;transition:all 0.2s;text-decoration:none;color:inherit}
+.prod-item{display:flex;align-items:center;gap:14px;padding:14px 16px;background:rgba(255,255,255,0.04);border:1px solid var(--bdr);border-radius:var(--r2);margin-bottom:10px;cursor:pointer;transition:all 0.2s;text-decoration:none;color:inherit}
 .prod-item:hover{border-color:var(--bdr2);background:rgba(200,77,255,0.08)}
 .prod-item-ico{font-size:22px;width:36px;text-align:center;flex-shrink:0}
 .prod-item-info{flex:1}
 .prod-item-name{font-size:13px;font-weight:600;color:var(--white);margin-bottom:2px}
 .prod-item-desc{font-size:10px;font-weight:300;color:var(--gray2)}
 .prod-item-arrow{font-size:14px;color:var(--accent);flex-shrink:0}
-.prod-empty{text-align:center;padding:22px 16px;background:rgba(255,255,255,0.03);
-  border:1px dashed var(--bdr);border-radius:var(--r2);margin-bottom:18px}
+.prod-empty{text-align:center;padding:22px 16px;background:rgba(255,255,255,0.03);border:1px dashed var(--bdr);border-radius:var(--r2);margin-bottom:18px}
 .prod-empty-ic{font-size:28px;margin-bottom:8px}
 .prod-empty-tx{font-size:11px;color:var(--gray2);font-weight:300;margin-bottom:14px;line-height:1.6}
-.prod-empty-btn{background:var(--grad);color:#fff;border:none;border-radius:100px;
-  padding:9px 20px;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;
-  cursor:pointer;letter-spacing:0.3px}
+.prod-empty-btn{background:var(--grad);color:#fff;border:none;border-radius:100px;padding:9px 20px;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;cursor:pointer;letter-spacing:0.3px}
 
 /* AVATAR PICKER MODAL */
 .av-picker-ov{position:fixed;inset:0;background:rgba(10,0,20,0.78);backdrop-filter:blur(10px);display:flex;align-items:flex-end;justify-content:center;z-index:300;animation:ovIn 0.2s ease}
@@ -498,15 +481,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg3);color:var(--white);o
 .vip-theme .btn-mo:hover,.vip-theme .btn-send:hover{box-shadow:0 10px 36px rgba(255,215,0,0.50)}
 .vip-theme .ci-card{background:linear-gradient(135deg,rgba(255,215,0,0.18),rgba(200,134,10,0.22));border:1.5px solid rgba(255,215,0,0.3);box-shadow:0 8px 36px rgba(255,215,0,0.25)}
 .vip-theme .ci-card::before{background:rgba(255,215,0,0.08)}
-.vip-theme .bn-item.active .bn-ic,.vip-theme .bn-item.active .bn-lb{color:var(--gold)}
-.vip-theme .bn-item.active::after{background:var(--gold)}
 .vip-theme .box,.vip-theme .thread-post,.vip-theme .ins-step,.vip-theme .guide-card{border-color:rgba(255,215,0,0.14)}
 .vip-theme .guide-card-ico,.vip-theme .ins-step-ico{background:rgba(255,215,0,0.12)}
 .vip-theme .guide-card-arrow{color:var(--gold)}
-/* Badge VIP pulse */
 @keyframes vipPulse{0%,100%{box-shadow:0 0 0 0 rgba(255,215,0,0.45)}60%{box-shadow:0 0 0 7px rgba(255,215,0,0)}}
 .badge-vip,.thread-vip-badge{animation:vipPulse 2.2s ease-in-out infinite}
-/* VIP Celebration */
 @keyframes vipZoom{from{opacity:0;transform:scale(0.78)}to{opacity:1;transform:scale(1)}}
 @keyframes goldFall{0%{transform:translateY(-30px) rotate(0deg);opacity:1}100%{transform:translateY(115vh) rotate(900deg);opacity:0}}
 .vip-cel{position:fixed;inset:0;background:rgba(3,2,0,0.93);z-index:450;display:flex;align-items:center;justify-content:center;animation:fadeIn 0.25s ease}
@@ -534,7 +513,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg3);color:var(--white);o
 <script type="text/babel">
 const {useState,useEffect,useCallback,useRef,useMemo}=React;
 
-/* I18N */
 const T={
   pt:{
     tagline:"sua evolução começa aqui",
@@ -670,6 +648,10 @@ const T={
     prog_toast:"Programa desbloqueado! 🎉",
     vip_cel_title:"Parabéns!",vip_cel_sub:"Você agora é VIP — Seu acesso exclusivo está ativo.",
     toast_reg:"Treino registrado com sucesso! 🔥",
+    loading_posts:"Carregando publicações...",
+    loading_ranking:"Carregando ranking...",
+    error_loading:"Erro ao carregar dados",
+    rank_tie4:"Sorteio entre as participantes empatadas",
     ins_steps:[
       {ico:'👤',title:'1. Complete seu perfil',desc:'Adicione sua foto e confira seu nível atual na aba Perfil.'},
       {ico:'🏋️',title:'2. Acesse seu treino',desc:'Você começa no nível escolhido ao se cadastrar. Acesse pela aba Treinos ou pelo card do Início.'},
@@ -817,6 +799,10 @@ const T={
     prog_toast:"Program unlocked! 🎉",
     vip_cel_title:"Congratulations!",vip_cel_sub:"You are now VIP — Your exclusive access is active.",
     toast_reg:"Workout logged successfully! 🔥",
+    loading_posts:"Loading posts...",
+    loading_ranking:"Loading ranking...",
+    error_loading:"Error loading data",
+    rank_tie4:"Draw among tied participants",
     ins_steps:[
       {ico:'👤',title:'1. Complete your profile',desc:'Add your photo and check your current level in the Profile tab.'},
       {ico:'🏋️',title:'2. Access your workout',desc:'You start at the level chosen when registering. Access via the Workouts tab or the Home card.'},
@@ -964,6 +950,10 @@ const T={
     prog_toast:"¡Programa desbloqueado! 🎉",
     vip_cel_title:"¡Felicidades!",vip_cel_sub:"Ahora eres VIP — Tu acceso exclusivo está activo.",
     toast_reg:"¡Entrenamiento registrado con éxito! 🔥",
+    loading_posts:"Cargando publicaciones...",
+    loading_ranking:"Cargando ranking...",
+    error_loading:"Error al cargar datos",
+    rank_tie4:"Sorteo entre las participantes empatadas",
     ins_steps:[
       {ico:'👤',title:'1. Completa tu perfil',desc:'Agrega tu foto y revisa tu nivel actual en la pestaña Perfil.'},
       {ico:'🏋️',title:'2. Accede a tu entrenamiento',desc:'Comienzas en el nivel elegido al registrarte. Accede desde la pestaña Entrenamientos o la tarjeta de Inicio.'},
@@ -979,51 +969,50 @@ const T={
   }
 };
 
-/* PLANFIT LEVELS */
 const LEVELS=[
-  {id:1, group:'iniciante', n:"Iniciante 1", icon:"🌱", desc:"Primeiro passo da jornada", url:"https://desafio.mfitpersonal.com.br/desafio/zbz"},
-  {id:2, group:'iniciante', n:"Iniciante 2", icon:"🌿", desc:"Construindo a base", url:"https://desafio.mfitpersonal.com.br/desafio/zbz"},
-  {id:3, group:'iniciante', n:"Iniciante 3", icon:"🍃", desc:"Consolidando o hábito", url:"https://desafio.mfitpersonal.com.br/desafio/zbz"},
-  {id:4, group:'intermediario', n:"Intermediário 1", icon:"⚡", desc:"Intensidade crescente", url:"https://desafio.mfitpersonal.com.br/desafio/zc0"},
-  {id:5, group:'intermediario', n:"Intermediário 2", icon:"🔥", desc:"Corpo em transformação", url:"https://desafio.mfitpersonal.com.br/desafio/zc1"},
-  {id:6, group:'intermediario', n:"Intermediário 3", icon:"💪", desc:"Alto rendimento", url:"https://desafio.mfitpersonal.com.br/desafio/zc1"},
-  {id:7, group:'avancado', n:"Avançado 1", icon:"🏆", desc:"Elite do treino", url:"https://desafio.mfitpersonal.com.br/desafio/zc2"},
-  {id:8, group:'avancado', n:"Avançado 2", icon:"💎", desc:"Potência máxima", url:"https://desafio.mfitpersonal.com.br/desafio/zc3"},
-  {id:9, group:'avancado', n:"Avançado 3", icon:"👑", desc:"Performance de elite", url:"https://desafio.mfitpersonal.com.br/desafio/zcr"},
-  {id:10, group:'avancado', n:"Avançado 4", icon:"🌟", desc:"Alta performance", url:"https://desafio.mfitpersonal.com.br/desafio/zcr"},
-  {id:11, group:'avancado', n:"Avançado 5", icon:"⭐", desc:"Superação constante", url:"https://desafio.mfitpersonal.com.br/desafio/zcr"},
-  {id:12, group:'avancado', n:"Avançado 6", icon:"🎯", desc:"Foco e determinação", url:"https://desafio.mfitpersonal.com.br/desafio/zcr"},
-  {id:13, group:'avancado', n:"Avançado 7", icon:"🚀", desc:"Rumo ao topo", url:"https://desafio.mfitpersonal.com.br/desafio/zcr"},
-  {id:14, group:'avancado', n:"Avançado 8", icon:"✨", desc:"Excelência em movimento", url:"https://desafio.mfitpersonal.com.br/desafio/zcr"},
-  {id:15, group:'avancado', n:"Avançado 9", icon:"🔮", desc:"Transformação profunda", url:"https://desafio.mfitpersonal.com.br/desafio/zcr"},
-  {id:16, group:'avancado', n:"Avançado 10", icon:"⚔️", desc:"Guerreira do treino", url:"https://desafio.mfitpersonal.com.br/desafio/zcr"},
-  {id:17, group:'avancado', n:"Avançado 11", icon:"🦋", desc:"Metamorfose completa", url:"https://desafio.mfitpersonal.com.br/desafio/zcr"},
-  {id:18, group:'avancado', n:"Avançado 12", icon:"👸", desc:"O nível final", url:"https://desafio.mfitpersonal.com.br/desafio/zcr"},
+  {id:1,group:'iniciante',n:"Iniciante 1",icon:"🌱",desc:"Primeiro passo da jornada",url:"https://desafio.mfitpersonal.com.br/desafio/zbz"},
+  {id:2,group:'iniciante',n:"Iniciante 2",icon:"🌿",desc:"Construindo a base",url:"https://desafio.mfitpersonal.com.br/desafio/zbz"},
+  {id:3,group:'iniciante',n:"Iniciante 3",icon:"🍃",desc:"Consolidando o hábito",url:"https://desafio.mfitpersonal.com.br/desafio/zbz"},
+  {id:4,group:'intermediario',n:"Intermediário 1",icon:"⚡",desc:"Intensidade crescente",url:"https://desafio.mfitpersonal.com.br/desafio/zc0"},
+  {id:5,group:'intermediario',n:"Intermediário 2",icon:"🔥",desc:"Corpo em transformação",url:"https://desafio.mfitpersonal.com.br/desafio/zc1"},
+  {id:6,group:'intermediario',n:"Intermediário 3",icon:"💪",desc:"Alto rendimento",url:"https://desafio.mfitpersonal.com.br/desafio/zc1"},
+  {id:7,group:'avancado',n:"Avançado 1",icon:"🏆",desc:"Elite do treino",url:"https://desafio.mfitpersonal.com.br/desafio/zc2"},
+  {id:8,group:'avancado',n:"Avançado 2",icon:"💎",desc:"Potência máxima",url:"https://desafio.mfitpersonal.com.br/desafio/zc3"},
+  {id:9,group:'avancado',n:"Avançado 3",icon:"👑",desc:"Performance de elite",url:"https://desafio.mfitpersonal.com.br/desafio/zcr"},
+  {id:10,group:'avancado',n:"Avançado 4",icon:"🌟",desc:"Alta performance",url:"https://desafio.mfitpersonal.com.br/desafio/zcr"},
+  {id:11,group:'avancado',n:"Avançado 5",icon:"⭐",desc:"Superação constante",url:"https://desafio.mfitpersonal.com.br/desafio/zcr"},
+  {id:12,group:'avancado',n:"Avançado 6",icon:"🎯",desc:"Foco e determinação",url:"https://desafio.mfitpersonal.com.br/desafio/zcr"},
+  {id:13,group:'avancado',n:"Avançado 7",icon:"🚀",desc:"Rumo ao topo",url:"https://desafio.mfitpersonal.com.br/desafio/zcr"},
+  {id:14,group:'avancado',n:"Avançado 8",icon:"✨",desc:"Excelência em movimento",url:"https://desafio.mfitpersonal.com.br/desafio/zcr"},
+  {id:15,group:'avancado',n:"Avançado 9",icon:"🔮",desc:"Transformação profunda",url:"https://desafio.mfitpersonal.com.br/desafio/zcr"},
+  {id:16,group:'avancado',n:"Avançado 10",icon:"⚔️",desc:"Guerreira do treino",url:"https://desafio.mfitpersonal.com.br/desafio/zcr"},
+  {id:17,group:'avancado',n:"Avançado 11",icon:"🦋",desc:"Metamorfose completa",url:"https://desafio.mfitpersonal.com.br/desafio/zcr"},
+  {id:18,group:'avancado',n:"Avançado 12",icon:"👸",desc:"O nível final",url:"https://desafio.mfitpersonal.com.br/desafio/zcr"},
 ];
 
 const LOGIN_LEVELS=[
-  {id:1, group:'i', n:"Iniciante I",   icon:"🌱", desc:"Nunca treinou ou menos de 1 mês"},
-  {id:2, group:'i', n:"Iniciante II",  icon:"🌿", desc:"Treina há 1 mês"},
-  {id:3, group:'i', n:"Iniciante III", icon:"🍃", desc:"Treina há 2 meses"},
-  {id:4, group:'m', n:"Intermediário", icon:"⚡", desc:"Mais de 2 meses de treino"},
-  {id:7, group:'a', n:"Avançado",      icon:"🏆", desc:"Mais de 12 meses de treino"},
+  {id:1,group:'i',n:"Iniciante I",icon:"🌱",desc:"Nunca treinou ou menos de 1 mês"},
+  {id:2,group:'i',n:"Iniciante II",icon:"🌿",desc:"Treina há 1 mês"},
+  {id:3,group:'i',n:"Iniciante III",icon:"🍃",desc:"Treina há 2 meses"},
+  {id:4,group:'m',n:"Intermediário",icon:"⚡",desc:"Mais de 2 meses de treino"},
+  {id:7,group:'a',n:"Avançado",icon:"🏆",desc:"Mais de 12 meses de treino"},
 ];
 
 const SPECIAL=[
-  {id:"abs",  n:"Abdominais",              icon:"🔵", url:"https://desafio.mfitpersonal.com.br/desafio/zbz"},
-  {id:"flex", n:"Alongamento & Mobilidade",icon:"🟡", url:"https://desafio.mfitpersonal.com.br/desafio/zbz"},
+  {id:"abs",n:"Abdominais",icon:"🔵",url:"https://desafio.mfitpersonal.com.br/desafio/zbz"},
+  {id:"flex",n:"Alongamento & Mobilidade",icon:"🟡",url:"https://desafio.mfitpersonal.com.br/desafio/zbz"},
 ];
 
 const EXTRA_PROGRAMS=[
-  {id:"express", icon:"⚡", name:"TreinoExpress",       desc:"Treino completo em 20 minutos. Máximo resultado, mínimo tempo.", url:"https://desafio.mfitpersonal.com.br/desafio/treino-express"},
-  {id:"bumbum",  icon:"🍑", name:"Desafio Bumbum BR",   desc:"30 dias focados em glúteos. Volume, definição e força.",         url:"https://desafio.mfitpersonal.com.br/desafio/bumbum"},
-  {id:"barriga", icon:"🔥", name:"Desafio Seca Barriga", desc:"Protocolo intensivo para definição abdominal em 21 dias.",       url:"https://desafio.mfitpersonal.com.br/desafio/seca-barriga"},
-  {id:"15min",   icon:"⏱️", name:"Desafio 15min por dia",desc:"Treino funcional de 15 minutos. Perfeito para o dia a dia.",    url:"https://desafio.mfitpersonal.com.br/desafio/15min"},
+  {id:"express",icon:"⚡",name:"TreinoExpress",desc:"Treino completo em 20 minutos. Máximo resultado, mínimo tempo.",url:"https://desafio.mfitpersonal.com.br/desafio/treino-express"},
+  {id:"bumbum",icon:"🍑",name:"Desafio Bumbum BR",desc:"30 dias focados em glúteos. Volume, definição e força.",url:"https://desafio.mfitpersonal.com.br/desafio/bumbum"},
+  {id:"barriga",icon:"🔥",name:"Desafio Seca Barriga",desc:"Protocolo intensivo para definição abdominal em 21 dias.",url:"https://desafio.mfitpersonal.com.br/desafio/seca-barriga"},
+  {id:"15min",icon:"⏱️",name:"Desafio 15min por dia",desc:"Treino funcional de 15 minutos. Perfeito para o dia a dia.",url:"https://desafio.mfitpersonal.com.br/desafio/15min"},
 ];
 
 const TODAY=new Date().toDateString();
+const API_BASE="https://planfitapp-production.up.railway.app/api";
 
-/* PROGRESS LOGIC */
 function getStatus(idx,inicialIdx,progresso,unlockedPaid){
   if(unlockedPaid&&unlockedPaid.includes(idx)) return 'open';
   if(idx<inicialIdx) return 'done';
@@ -1032,6 +1021,7 @@ function getStatus(idx,inicialIdx,progresso,unlockedPaid){
   const minimo=(ciclos-1)*40+36;
   return progresso>=minimo?'open':'lock';
 }
+
 function getLocalProg(progresso,idx,inicialIdx){
   if(idx<inicialIdx) return 40;
   if(idx===inicialIdx) return Math.min(progresso,40);
@@ -1039,6 +1029,7 @@ function getLocalProg(progresso,idx,inicialIdx){
   const base=(ciclo-1)*40;
   return Math.min(Math.max(progresso-base,0),40);
 }
+
 function getNivelAtualIdx(inicialIdx,progresso){
   let idx=inicialIdx;
   for(let i=inicialIdx+1;i<LEVELS.length;i++){
@@ -1047,6 +1038,7 @@ function getNivelAtualIdx(inicialIdx,progresso){
   }
   return idx;
 }
+
 function diasParaProx(progresso,nivelAtualIdx,inicialIdx){
   const nextIdx=nivelAtualIdx+1;
   if(nextIdx>=LEVELS.length) return 0;
@@ -1058,17 +1050,19 @@ function diasParaProx(progresso,nivelAtualIdx,inicialIdx){
 function playSound(type){
   try{
     const ctx=new(window.AudioContext||window.webkitAudioContext)();
-    const o=ctx.createOscillator(),g=ctx.createGain();
-    o.connect(g);g.connect(ctx.destination);
+    const o=ctx.createOscillator();
+    const g=ctx.createGain();
+    o.connect(g);
+    g.connect(ctx.destination);
     if(type==='ci'){
       o.frequency.setValueAtTime(523,ctx.currentTime);
       o.frequency.setValueAtTime(659,ctx.currentTime+0.1);
       o.frequency.setValueAtTime(784,ctx.currentTime+0.2);
       g.gain.setValueAtTime(0.22,ctx.currentTime);
       g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.5);
-      o.start();o.stop(ctx.currentTime+0.5);
-    } else if(type==='vip'){
-      // Premium sparkle — staccato ascending shimmer
+      o.start();
+      o.stop(ctx.currentTime+0.5);
+    }else if(type==='vip'){
       o.type='sine';
       const freqs=[880,1108,1319,1568,2093];
       freqs.forEach((f,i)=>{
@@ -1077,25 +1071,29 @@ function playSound(type){
         g.gain.setValueAtTime(0.18,t);
         g.gain.exponentialRampToValueAtTime(0.001,t+0.09);
       });
-      o.start();o.stop(ctx.currentTime+0.65);
-      // Sparkle shimmer layer
-      const o2=ctx.createOscillator(),g2=ctx.createGain();
-      o2.type='triangle';o2.connect(g2);g2.connect(ctx.destination);
+      o.start();
+      o.stop(ctx.currentTime+0.65);
+      const o2=ctx.createOscillator();
+      const g2=ctx.createGain();
+      o2.type='triangle';
+      o2.connect(g2);
+      g2.connect(ctx.destination);
       o2.frequency.setValueAtTime(2637,ctx.currentTime);
       o2.frequency.setValueAtTime(3136,ctx.currentTime+0.2);
       g2.gain.setValueAtTime(0.09,ctx.currentTime);
       g2.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.6);
-      o2.start();o2.stop(ctx.currentTime+0.6);
-    } else {
+      o2.start();
+      o2.stop(ctx.currentTime+0.6);
+    }else{
       [523,784,1047,1319].forEach((f,i)=>o.frequency.setValueAtTime(f,ctx.currentTime+i*0.15));
       g.gain.setValueAtTime(0.28,ctx.currentTime);
       g.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.9);
-      o.start();o.stop(ctx.currentTime+0.9);
+      o.start();
+      o.stop(ctx.currentTime+0.9);
     }
   }catch(e){}
 }
 
-/* DATABASE */
 const db={
   getUser:()=>{try{return JSON.parse(localStorage.getItem('pf_u')||'null')}catch{return null}},
   saveUser:(u)=>localStorage.setItem('pf_u',JSON.stringify(u)),
@@ -1112,33 +1110,27 @@ const db={
   addUnlockedExtra:(id)=>{const l=db.getUnlockedExtras();if(!l.includes(id)){l.push(id);localStorage.setItem('pf_ext',JSON.stringify(l));}},
   getRankRedeemed:()=>localStorage.getItem('pf_rk_redeemed')==='1',
   setRankRedeemed:()=>localStorage.setItem('pf_rk_redeemed','1'),
-  getCommunityPosts:()=>{try{return JSON.parse(localStorage.getItem('pf_posts')||'null')}catch{return null}},
-  saveCommunityPosts:(p)=>localStorage.setItem('pf_posts',JSON.stringify(p)),
   getSwapped:()=>localStorage.getItem('pf_swapped')==='1',
   setSwapped:()=>localStorage.setItem('pf_swapped','1'),
 };
 
-/* API */
-/* API */
-const API_BASE = "";
-
 const api={
-get:async(path)=>{
-const r=await fetch(`${API_BASE}${path}`);
-if(!r.ok) throw new Error(`HTTP ${r.status}`);
-return r.json();
-},
-post:async(path,body)=>{
-const r=await fetch(`${API_BASE}${path}`,{
-method:'POST',
-headers:{'Content-Type':'application/json'},
-body:JSON.stringify(body),
-});
-if(!r.ok) throw new Error(`HTTP ${r.status}`);
-return r.json();
-},
+  get:async(path)=>{
+    const r=await fetch(`${API_BASE}${path}`);
+    if(!r.ok) throw new Error(`HTTP ${r.status}`);
+    return r.json();
+  },
+  post:async(path,body)=>{
+    const r=await fetch(`${API_BASE}${path}`,{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(body),
+    });
+    if(!r.ok) throw new Error(`HTTP ${r.status}`);
+    return r.json();
+  },
 };
-/* HELPERS */
+
 function Confetti(){
   const ps=Array.from({length:28},(_,i)=>({
     id:i,left:`${Math.random()*100}%`,
@@ -1157,7 +1149,6 @@ function LT({lang,setLang}){
   ))}</div>;
 }
 
-/* AVATAR DISPLAY — shows image if available, else emoji */
 function AvDisp({avatarUrl,emoji,size=40,vip=false,style={}}){
   const borderColor=vip?'var(--gold)':'var(--bdr)';
   const base={width:size,height:size,borderRadius:'50%',flexShrink:0,border:`${size>50?3:2}px solid ${borderColor}`,background:'rgba(200,77,255,0.15)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:size*0.45,overflow:'hidden',...style};
@@ -1165,14 +1156,12 @@ function AvDisp({avatarUrl,emoji,size=40,vip=false,style={}}){
     <div style={base}>
       {avatarUrl
         ?<img src={avatarUrl} alt="" style={{width:'100%',height:'100%',objectFit:'cover',borderRadius:'50%'}}/>
-        :<span>{emoji||'🌸'}</span>
-      }
+        :<span>{emoji||'🌸'}</span>}
     </div>
   );
 }
 
-/* CHECKIN MODAL */
-function CheckinModal({user,lang,t,onClose}){
+function CheckinModal({user,t,onClose}){
   const ii=LEVELS.findIndex(l=>l.id===user.nivel_inicial);
   const ni=getNivelAtualIdx(ii,user.progresso);
   const nivel=LEVELS[ni];
@@ -1183,7 +1172,7 @@ function CheckinModal({user,lang,t,onClose}){
     <><Confetti/>
     <div className="plus-fl">+1 ✦</div>
     <div className="m-ov" onClick={onClose}>
-      <div className="m-sh" onClick={e=>e.stopPropagation()}>
+      <div className="m-sh" onClick={(e)=>e.stopPropagation()}>
         <div className="m-handle"/>
         <span className="m-em">🔥</span>
         <div className="m-title">{t.ci_title}</div>
@@ -1200,12 +1189,12 @@ function CheckinModal({user,lang,t,onClose}){
   );
 }
 
-/* LEVELUP MODAL */
-function LevelUpModal({nivel,lang,t,onClose}){
+function LevelUpModal({nivel,t,onClose}){
   return(
-    <><div style={{position:'fixed',inset:0,pointerEvents:'none',zIndex:198,background:'radial-gradient(ellipse at center,rgba(200,77,255,0.28) 0%,transparent 70%)',animation:'glowF 1.8s ease-in-out forwards'}}/>
+    <>
+    <div style={{position:'fixed',inset:0,pointerEvents:'none',zIndex:198,background:'radial-gradient(ellipse at center,rgba(200,77,255,0.28) 0%,transparent 70%)',animation:'glowF 1.8s ease-in-out forwards'}}/>
     <div className="m-ov" onClick={onClose}>
-      <div className="m-sh" onClick={e=>e.stopPropagation()}>
+      <div className="m-sh" onClick={(e)=>e.stopPropagation()}>
         <div className="m-handle"/>
         <span className="m-em">{nivel.icon}</span>
         <div className="m-title">{t.lu_title}</div>
@@ -1218,23 +1207,21 @@ function LevelUpModal({nivel,lang,t,onClose}){
   );
 }
 
-/* UNLOCK MODAL */
 function UnlockModal({level,levelIdx,diasNoNivel,onClose,onUnlock,user,lang,t: tProp,apiRanking=[]}){
   const t=tProp||(T[lang]||T.pt);
   const [done,setDone]=useState(false);
   const [rankRedeemed,setRankRedeemed]=useState(()=>db.getRankRedeemed());
   const handleUnlock=(allowed)=>{if(!allowed)return;onUnlock(levelIdx);setDone(true);};
 
-  // Compute user's PlanFit ranking position using API ranking data
   const userPlan=user?.plan||'planfit';
   const ii=LEVELS.findIndex(l=>l.id===user?.nivel_inicial);
-  const ni=getNivelAtualIdx(ii,user?.progresso);
+  const ni=getNivelAtualIdx(ii,user?.progresso||0);
   const nivelNm=LEVELS[ni]?.n||'';
   const userScore=user?.progresso||0;
   const userEntry={nm:user?.nome||'Você',lv:nivelNm,score:userScore,plan:userPlan,isMe:true};
-  const pfPool=[...(apiRanking||[]).filter(u=>u.plan==='planfit'),userEntry];
-  const sorted=pfPool.sort((a,b)=>(b.score||0)-(a.score||0)||((a.nm||'').localeCompare(a.nm||'')));
-  const myPos=sorted.findIndex(u=>u.isMe)+1||sorted.length+1;
+  const pfPool=[...(apiRanking||[]).filter((u)=>u.plan==='planfit'),userEntry];
+  const sorted=pfPool.sort((a,b)=>(b.score||0)-(a.score||0)||((a.nm||'').localeCompare(b.nm||'')));
+  const myPos=sorted.findIndex((u)=>u.isMe)+1||sorted.length+1;
   const isRankWinner=userPlan==='planfit'&&myPos===1&&!rankRedeemed;
 
   const handleRankRedeem=()=>{
@@ -1245,34 +1232,29 @@ function UnlockModal({level,levelIdx,diasNoNivel,onClose,onUnlock,user,lang,t: t
     setDone(true);
   };
 
-  // Day-based rules
-  const canAntecipado = diasNoNivel>=28 && diasNoNivel<35;
-  const canDia35      = diasNoNivel>=35;
-  const diasParaAntecipado = Math.max(0,28-diasNoNivel);
-  const diasParaDia35      = Math.max(0,35-diasNoNivel);
+  const canAntecipado=diasNoNivel>=28&&diasNoNivel<35;
+  const canDia35=diasNoNivel>=35;
+  const diasParaAntecipado=Math.max(0,28-diasNoNivel);
+  const diasParaDia35=Math.max(0,35-diasNoNivel);
 
-  if(done) return(
-    <div className="m-ov" onClick={onClose}>
-      <div className="m-sh" onClick={e=>e.stopPropagation()}>
-        <div className="m-handle"/>
-        <span className="m-em">🎉</span>
-        <div className="m-title">{t.unlock_done_title}</div>
-        <div className="m-sub">{t.unlock_done_sub(level.n)}</div>
-        <div className="m-badge">✦ {level.n}</div>
-        <div style={{height:1,background:'var(--bdr)',margin:'0 0 18px'}}/>
-        <button className="btn-mo" onClick={onClose}>{t.unlock_start_btn}</button>
+  if(done){
+    return(
+      <div className="m-ov" onClick={onClose}>
+        <div className="m-sh" onClick={(e)=>e.stopPropagation()}>
+          <div className="m-handle"/>
+          <span className="m-em">🎉</span>
+          <div className="m-title">{t.unlock_done_title}</div>
+          <div className="m-sub">{t.unlock_done_sub(level.n)}</div>
+          <div className="m-badge">✦ {level.n}</div>
+          <div style={{height:1,background:'var(--bdr)',margin:'0 0 18px'}}/>
+          <button className="btn-mo" onClick={onClose}>{t.unlock_start_btn}</button>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 
-  // Helper: paid option card
   const PaidCard=({ico,badge,title,sub,price1,price2,price3,available,canUnlock,onAct})=>(
-    <div style={{
-      background: canUnlock?'rgba(200,77,255,0.08)':'rgba(255,255,255,0.03)',
-      border: `1.5px solid ${canUnlock?'rgba(200,77,255,0.45)':'rgba(255,255,255,0.08)'}`,
-      borderRadius:'var(--r2)',padding:'14px',marginBottom:10,
-      transition:'all 0.2s'
-    }}>
+    <div style={{background:canUnlock?'rgba(200,77,255,0.08)':'rgba(255,255,255,0.03)',border:`1.5px solid ${canUnlock?'rgba(200,77,255,0.45)':'rgba(255,255,255,0.08)'}`,borderRadius:'var(--r2)',padding:'14px',marginBottom:10,transition:'all 0.2s'}}>
       <div style={{display:'flex',alignItems:'center',gap:10,marginBottom:8}}>
         <span style={{fontSize:22}}>{ico}</span>
         <div style={{flex:1}}>
@@ -1290,18 +1272,7 @@ function UnlockModal({level,levelIdx,diasNoNivel,onClose,onUnlock,user,lang,t: t
       <div style={{fontSize:11,color:canUnlock?'rgba(200,77,255,0.7)':'var(--gray2)',fontWeight:300,marginBottom:10}}>
         {canUnlock?t.unlock_avail_now:'🔒 '+available}
       </div>
-      <button
-        onClick={canUnlock?onAct:undefined}
-        disabled={!canUnlock}
-        style={{
-          width:'100%',padding:'10px',border:'none',borderRadius:'var(--r2)',
-          background:canUnlock?'var(--grad)':'rgba(255,255,255,0.07)',
-          color:canUnlock?'#fff':'var(--gray2)',
-          fontFamily:"'DM Sans',sans-serif",fontSize:13,fontWeight:600,cursor:canUnlock?'pointer':'not-allowed',
-          opacity:canUnlock?1:0.55,transition:'all 0.2s',
-          boxShadow:canUnlock?'0 4px 16px rgba(200,77,255,0.35)':'none',
-        }}
-      >
+      <button onClick={canUnlock?onAct:undefined} disabled={!canUnlock} style={{width:'100%',padding:'10px',border:'none',borderRadius:'var(--r2)',background:canUnlock?'var(--grad)':'rgba(255,255,255,0.07)',color:canUnlock?'#fff':'var(--gray2)',fontFamily:"'DM Sans',sans-serif",fontSize:13,fontWeight:600,cursor:canUnlock?'pointer':'not-allowed',opacity:canUnlock?1:0.55,transition:'all 0.2s',boxShadow:canUnlock?'0 4px 16px rgba(200,77,255,0.35)':'none'}}>
         {canUnlock?`${title} →`:t.unlock_unavail}
       </button>
     </div>
@@ -1309,7 +1280,7 @@ function UnlockModal({level,levelIdx,diasNoNivel,onClose,onUnlock,user,lang,t: t
 
   return(
     <div className="m-ov" onClick={onClose}>
-      <div className="m-sh" style={{padding:'12px 20px 48px',textAlign:'left',overflowY:'auto',maxHeight:'92vh'}} onClick={e=>e.stopPropagation()}>
+      <div className="m-sh" style={{padding:'12px 20px 48px',textAlign:'left',overflowY:'auto',maxHeight:'92vh'}} onClick={(e)=>e.stopPropagation()}>
         <div className="m-handle"/>
         <div style={{textAlign:'center',marginBottom:18}}>
           <span style={{fontSize:40,display:'block',marginBottom:8}}>{level.icon}</span>
@@ -1320,99 +1291,52 @@ function UnlockModal({level,levelIdx,diasNoNivel,onClose,onUnlock,user,lang,t: t
           </div>
         </div>
 
-        {/* 1. Ranking mensal — grátis, somente 1º lugar */}
-        <div style={{
-          background: isRankWinner?'rgba(74,222,128,0.08)':rankRedeemed?'rgba(255,255,255,0.03)':'rgba(255,255,255,0.03)',
-          border:`1.5px solid ${isRankWinner?'rgba(74,222,128,0.45)':rankRedeemed?'rgba(255,255,255,0.08)':'rgba(255,255,255,0.08)'}`,
-          borderRadius:'var(--r2)',padding:'14px',marginBottom:10,transition:'all 0.2s'
-        }}>
+        <div style={{background:isRankWinner?'rgba(74,222,128,0.08)':'rgba(255,255,255,0.03)',border:`1.5px solid ${isRankWinner?'rgba(74,222,128,0.45)':'rgba(255,255,255,0.08)'}`,borderRadius:'var(--r2)',padding:'14px',marginBottom:10,transition:'all 0.2s'}}>
           <div style={{display:'flex',alignItems:'center',gap:10,marginBottom:8}}>
             <span style={{fontSize:22}}>🏆</span>
-            <div style={{flex:1}}>
-              <div style={{fontSize:13,fontWeight:600,color:isRankWinner?'var(--white)':'var(--gray)',lineHeight:1.3}}>{t.unlock_ranking_title}</div>
-            </div>
+            <div style={{flex:1}}><div style={{fontSize:13,fontWeight:600,color:isRankWinner?'var(--white)':'var(--gray)',lineHeight:1.3}}>{t.unlock_ranking_title}</div></div>
             {!isRankWinner&&!rankRedeemed&&<span style={{fontSize:14,opacity:0.4}}>🔒</span>}
             {rankRedeemed&&<span style={{fontSize:12,color:'#4ade80',fontWeight:700}}>✅</span>}
           </div>
-          <div style={{fontSize:11,color:'var(--gray2)',fontWeight:300,marginBottom:8,lineHeight:1.55}}>
-            {t.unlock_ranking_sub}
-          </div>
+          <div style={{fontSize:11,color:'var(--gray2)',fontWeight:300,marginBottom:8,lineHeight:1.55}}>{t.unlock_ranking_sub}</div>
           <div style={{display:'flex',alignItems:'baseline',gap:8,marginBottom:6}}>
             <span style={{fontSize:20,fontWeight:700,color:isRankWinner?'#4ade80':'var(--gray)',fontFamily:"'DM Sans',sans-serif"}}>{t.unlock_free}</span>
             <span style={{fontSize:12,color:'var(--gray2)',fontWeight:300}}>{t.unlock_only1st}</span>
           </div>
           <div style={{fontSize:11,marginBottom:10,fontWeight:300,color:isRankWinner?'rgba(74,222,128,0.85)':'var(--gray2)'}}>
-            {rankRedeemed
-              ? t.unlock_redeemed_month
-              : isRankWinner
-                ? t.unlock_1st_now
-                : t.unlock_not1st(myPos)
-            }
+            {rankRedeemed?t.unlock_redeemed_month:isRankWinner?t.unlock_1st_now:t.unlock_not1st(myPos)}
           </div>
-          <button
-            onClick={isRankWinner?handleRankRedeem:undefined}
-            disabled={!isRankWinner}
-            style={{
-              width:'100%',padding:'10px',border:'none',borderRadius:'var(--r2)',
-              background:rankRedeemed?'rgba(74,222,128,0.10)':isRankWinner?'linear-gradient(135deg,#4ade80,#22c55e)':'rgba(255,255,255,0.07)',
-              color:rankRedeemed?'#4ade80':isRankWinner?'#052e16':'var(--gray2)',
-              fontFamily:"'DM Sans',sans-serif",fontSize:13,fontWeight:700,
-              cursor:isRankWinner?'pointer':'not-allowed',
-              opacity:isRankWinner||rankRedeemed?1:0.5,transition:'all 0.2s',
-              boxShadow:isRankWinner?'0 4px 16px rgba(74,222,128,0.3)':'none',
-            }}
-          >
+          <button onClick={isRankWinner?handleRankRedeem:undefined} disabled={!isRankWinner} style={{width:'100%',padding:'10px',border:'none',borderRadius:'var(--r2)',background:rankRedeemed?'rgba(74,222,128,0.10)':isRankWinner?'linear-gradient(135deg,#4ade80,#22c55e)':'rgba(255,255,255,0.07)',color:rankRedeemed?'#4ade80':isRankWinner?'#052e16':'var(--gray2)',fontFamily:"'DM Sans',sans-serif",fontSize:13,fontWeight:700,cursor:isRankWinner?'pointer':'not-allowed',opacity:isRankWinner||rankRedeemed?1:0.5,transition:'all 0.2s',boxShadow:isRankWinner?'0 4px 16px rgba(74,222,128,0.3)':'none'}}>
             {rankRedeemed?t.unlock_redeemed_btn:isRankWinner?t.unlock_1st_btn:t.unlock_unavail}
           </button>
         </div>
 
-        {/* 2. Desbloqueio antecipado */}
-        <PaidCard
-          ico="⚡" badge={t.unlock_popular}
-          title={t.unlock_early_title}
-          sub={t.unlock_early_sub}
-          price1="€19,90" price2="USD 19,90" price3="R$39,90"
-          available={diasParaAntecipado>0?t.unlock_early_avail_d(diasParaAntecipado):t.unlock_early_avail}
-          canUnlock={canAntecipado}
-          onAct={()=>handleUnlock(true)}
-        />
-
-        {/* 3. Após dia 35 */}
-        <PaidCard
-          ico="📅" badge={null}
-          title={t.unlock_after35_title}
-          sub={t.unlock_after35_sub}
-          price1="€14,90" price2="USD 14,90" price3="R$29,90"
-          available={diasParaDia35>0?t.unlock_after35_avail_d(diasParaDia35):t.unlock_after35_avail}
-          canUnlock={canDia35}
-          onAct={()=>handleUnlock(true)}
-        />
-
+        <PaidCard ico="⚡" badge={t.unlock_popular} title={t.unlock_early_title} sub={t.unlock_early_sub} price1="€19,90" price2="USD 19,90" price3="R$39,90" available={diasParaAntecipado>0?t.unlock_early_avail_d(diasParaAntecipado):t.unlock_early_avail} canUnlock={canAntecipado} onAct={()=>handleUnlock(true)}/>
+        <PaidCard ico="📅" badge={null} title={t.unlock_after35_title} sub={t.unlock_after35_sub} price1="€14,90" price2="USD 14,90" price3="R$29,90" available={diasParaDia35>0?t.unlock_after35_avail_d(diasParaDia35):t.unlock_after35_avail} canUnlock={canDia35} onAct={()=>handleUnlock(true)}/>
         <button className="btn-mo btn-mo-outline" onClick={onClose} style={{marginTop:4}}>{t.unlock_close}</button>
       </div>
     </div>
   );
 }
 
-/* SWAP WORKOUT MODAL */
 function SwapWorkoutModal({user,t,onClose,onSwap}){
-  const ii=LEVELS.findIndex(l=>l.id===user.nivel_inicial);
+  const ii=LEVELS.findIndex((l)=>l.id===user.nivel_inicial);
   const ni=getNivelAtualIdx(ii,user.progresso);
   const options=[
     {key:'lighter',ico:'🍃',title:t.swap_lighter,sub:t.swap_lighter_s,targetIdx:Math.max(0,ni-1)},
-    {key:'mid',    ico:'⚡',title:t.swap_mid,    sub:t.swap_mid_s,    targetIdx:ni},
-    {key:'harder', ico:'🔥',title:t.swap_harder, sub:t.swap_harder_s, targetIdx:Math.min(LEVELS.length-1,ni+1)},
+    {key:'mid',ico:'⚡',title:t.swap_mid,sub:t.swap_mid_s,targetIdx:ni},
+    {key:'harder',ico:'🔥',title:t.swap_harder,sub:t.swap_harder_s,targetIdx:Math.min(LEVELS.length-1,ni+1)},
   ];
   return(
     <div className="m-ov" onClick={onClose}>
-      <div className="m-sh" style={{padding:'12px 20px 48px',textAlign:'left'}} onClick={e=>e.stopPropagation()}>
+      <div className="m-sh" style={{padding:'12px 20px 48px',textAlign:'left'}} onClick={(e)=>e.stopPropagation()}>
         <div className="m-handle"/>
         <div style={{textAlign:'center',marginBottom:20}}>
           <div style={{fontSize:36,marginBottom:8}}>🔄</div>
           <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:22,fontWeight:700,color:'var(--white)',marginBottom:4}}>{t.swap_title}</div>
           <div style={{fontSize:12,color:'var(--gray)',fontWeight:300}}>{t.swap_sub}</div>
         </div>
-        {options.map(o=>(
+        {options.map((o)=>(
           <button key={o.key} className="swap-opt" onClick={()=>onSwap(o.targetIdx)}>
             <div className="swap-opt-ico">{o.ico}</div>
             <div className="swap-opt-body">
@@ -1427,16 +1351,18 @@ function SwapWorkoutModal({user,t,onClose,onSwap}){
   );
 }
 
-/* WORKOUT REGISTER MODAL */
-function WorkoutRegisterModal({user,lang,t,onClose,onPublish}){
+function WorkoutRegisterModal({t,onClose,onPublish}){
   const [photo,setPhoto]=useState(null);
   const [caption,setCaption]=useState('');
   const [loading,setLoading]=useState(false);
   const fileRef=useRef();
 
   const handlePhotoChange=(e)=>{
-    const f=e.target.files[0];if(!f)return;
-    const r=new FileReader();r.onload=(ev)=>setPhoto(ev.target.result);r.readAsDataURL(f);
+    const f=e.target.files[0];
+    if(!f)return;
+    const r=new FileReader();
+    r.onload=(ev)=>setPhoto(ev.target.result);
+    r.readAsDataURL(f);
   };
 
   const handlePublish=()=>{
@@ -1449,21 +1375,12 @@ function WorkoutRegisterModal({user,lang,t,onClose,onPublish}){
 
   return(
     <div className="m-ov" onClick={onClose}>
-      <div className="m-sh" style={{padding:'12px 20px 48px',textAlign:'left',maxHeight:'92vh',overflowY:'auto'}} onClick={e=>e.stopPropagation()}>
+      <div className="m-sh" style={{padding:'12px 20px 48px',textAlign:'left',maxHeight:'92vh',overflowY:'auto'}} onClick={(e)=>e.stopPropagation()}>
         <div className="m-handle"/>
-        <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:22,fontWeight:700,color:'var(--white)',marginBottom:18}}>
-          {t.reg_modal_title}
-        </div>
-
-        {/* PHOTO */}
+        <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:22,fontWeight:700,color:'var(--white)',marginBottom:18}}>{t.reg_modal_title}</div>
         <input ref={fileRef} type="file" accept="image/*" style={{display:'none'}} onChange={handlePhotoChange}/>
         {!photo?(
-          <div
-            onClick={()=>fileRef.current.click()}
-            style={{width:'100%',minHeight:100,border:'2px dashed var(--bdr)',borderRadius:'var(--r2)',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:8,cursor:'pointer',marginBottom:14,transition:'border-color 0.2s',color:'var(--gray2)',fontSize:12}}
-            onMouseOver={e=>e.currentTarget.style.borderColor='var(--accent)'}
-            onMouseOut={e=>e.currentTarget.style.borderColor='var(--bdr)'}
-          >
+          <div onClick={()=>fileRef.current.click()} style={{width:'100%',minHeight:100,border:'2px dashed var(--bdr)',borderRadius:'var(--r2)',display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',gap:8,cursor:'pointer',marginBottom:14,transition:'border-color 0.2s',color:'var(--gray2)',fontSize:12}}>
             <span style={{fontSize:28}}>📷</span>
             <span>{t.reg_add_photo}</span>
           </div>
@@ -1474,17 +1391,7 @@ function WorkoutRegisterModal({user,lang,t,onClose,onPublish}){
             <button onClick={()=>fileRef.current.click()} style={{position:'absolute',bottom:8,right:8,background:'rgba(0,0,0,0.65)',border:'none',color:'#fff',borderRadius:8,padding:'4px 10px',cursor:'pointer',fontSize:11,fontFamily:"'DM Sans',sans-serif"}}>Trocar</button>
           </div>
         )}
-
-        {/* CAPTION */}
-        <textarea
-          className="f-ta"
-          placeholder={t.reg_ph}
-          value={caption}
-          onChange={e=>setCaption(e.target.value)}
-          rows={4}
-          style={{marginBottom:16}}
-        />
-
+        <textarea className="f-ta" placeholder={t.reg_ph} value={caption} onChange={(e)=>setCaption(e.target.value)} rows={4} style={{marginBottom:16}}/>
         <div style={{display:'flex',gap:8}}>
           <button className="btn-mo btn-mo-outline" style={{flex:1,marginTop:0}} onClick={onClose}>{t.cancel}</button>
           <button className="btn-mo" style={{flex:2,marginTop:0}} onClick={handlePublish} disabled={loading}>
@@ -1496,7 +1403,6 @@ function WorkoutRegisterModal({user,lang,t,onClose,onPublish}){
   );
 }
 
-/* SHARE CARD */
 function ShareCard({card,onClose}){
   const wa=()=>{
     const txt=encodeURIComponent(`✦ Planfit40\nTreino concluído! ${card.workout}${card.isVip?' 👑 VIP':''}\n${card.date}\nBora treinar! 💪`);
@@ -1504,7 +1410,7 @@ function ShareCard({card,onClose}){
   };
   return(
     <div className="share-ov" onClick={onClose}>
-      <div className="share-card" onClick={e=>e.stopPropagation()}>
+      <div className="share-card" onClick={(e)=>e.stopPropagation()}>
         <div className="share-card-logo">✦ Planfit40</div>
         <div className="share-card-workout">{card.isVip?'👑':'🏋️'}</div>
         <div className="share-card-title">Treino concluído!</div>
@@ -1522,19 +1428,18 @@ function ShareCard({card,onClose}){
   );
 }
 
-/* AVATAR PICKER */
 function AvatarPicker({t,onSelect,onRemove,onClose,hasAvatar}){
   const fileRef=useRef();
   const handleFile=(e)=>{
     const f=e.target.files[0];
     if(!f) return;
     const r=new FileReader();
-    r.onload=(ev)=>{onSelect(ev.target.result);};
+    r.onload=(ev)=>onSelect(ev.target.result);
     r.readAsDataURL(f);
   };
   return(
     <div className="av-picker-ov" onClick={onClose}>
-      <div className="av-picker-sh" onClick={e=>e.stopPropagation()}>
+      <div className="av-picker-sh" onClick={(e)=>e.stopPropagation()}>
         <div className="m-handle"/>
         <input ref={fileRef} type="file" accept="image/*" style={{display:'none'}} onChange={handleFile}/>
         <div className="av-picker-opt" onClick={()=>fileRef.current.click()}>
@@ -1556,10 +1461,9 @@ function AvatarPicker({t,onSelect,onRemove,onClose,hasAvatar}){
   );
 }
 
-/* USER PROFILE MODAL — social profile view */
-function UserProfileModal({profile,allPosts,onClose,onLike,onViewProfile,user,lang,t}){
-  const userPosts=allPosts.filter(p=>p.nm===profile.nm);
-  const totalLikes=userPosts.reduce((s,p)=>s+p.likes,0);
+function UserProfileModal({profile,allPosts,onClose,onLike,t}){
+  const userPosts=allPosts.filter((p)=>p.nm===profile.nm);
+  const totalLikes=userPosts.reduce((s,p)=>s+(p.likes||0),0);
   return(
     <div className="upro-ov">
       <div className="upro-inner">
@@ -1585,7 +1489,7 @@ function UserProfileModal({profile,allPosts,onClose,onLike,onViewProfile,user,la
           {userPosts.length===0&&(
             <div className="empty"><div className="empty-ic">📸</div><div className="empty-tx">{t.prof_no_posts}</div></div>
           )}
-          {userPosts.map(post=>(
+          {userPosts.map((post)=>(
             <div key={post.id} className="thread-post fade-in">
               <div className="thread-post-hdr">
                 <AvDisp avatarUrl={post.avatar_url} emoji={post.av} size={36} vip={post.vip}/>
@@ -1612,24 +1516,20 @@ function UserProfileModal({profile,allPosts,onClose,onLike,onViewProfile,user,la
   );
 }
 
-/* INSTRUCOES OVERLAY */
 function InstrucoesPage({lang,t,onClose}){
   const steps=t.ins_steps;
-  const title=t.ins_guide_title;
-  const sub=t.ins_guide_sub;
-  const btnLbl=t.ins_guide_btn;
   return(
     <div className="ins-ov">
       <div className="ins-ov-inner">
         <div className="ins-ov-nav">
           <button className="ins-ov-back" onClick={onClose}>←</button>
           <div>
-            <div style={{fontSize:9,fontWeight:700,color:'var(--accent)',letterSpacing:'2px',textTransform:'uppercase'}}>{lang==='pt'?'PlanFit':lang==='es'?'PlanFit':'PlanFit'}</div>
-            <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:22,fontWeight:700,color:'var(--white)',lineHeight:1.1}}>{title}</div>
+            <div style={{fontSize:9,fontWeight:700,color:'var(--accent)',letterSpacing:'2px',textTransform:'uppercase'}}>PlanFit</div>
+            <div style={{fontFamily:"'Cormorant Garamond',serif",fontSize:22,fontWeight:700,color:'var(--white)',lineHeight:1.1}}>{t.ins_guide_title}</div>
           </div>
         </div>
         <div style={{padding:'4px 16px 16px'}}>
-          <div style={{fontSize:11,color:'var(--gray)',fontWeight:300,marginBottom:20,lineHeight:1.6,borderLeft:'2px solid rgba(200,77,255,0.4)',paddingLeft:12}}>{sub}</div>
+          <div style={{fontSize:11,color:'var(--gray)',fontWeight:300,marginBottom:20,lineHeight:1.6,borderLeft:'2px solid rgba(200,77,255,0.4)',paddingLeft:12}}>{t.ins_guide_sub}</div>
         </div>
         {steps.map((s,i)=>(
           <div key={i} className="ins-step">
@@ -1641,27 +1541,26 @@ function InstrucoesPage({lang,t,onClose}){
           </div>
         ))}
         <div style={{padding:'24px 16px 0'}}>
-          <button className="btn-mo" onClick={onClose}>{btnLbl}</button>
+          <button className="btn-mo" onClick={onClose}>{t.ins_guide_btn}</button>
         </div>
       </div>
     </div>
   );
 }
 
-/* BOTTOM NAV */
 function BottomNav({active,setActive,t}){
   const items=[
-    {id:'dashboard',  ic:'🏠', lb:t.home},
-    {id:'treinos',    ic:'🏋️', lb:t.treinos},
-    {id:'programas',  ic:'⭐', lb:t.programas},
-    {id:'comunidade', ic:'💬', lb:t.comunidade},
-    {id:'ranking',    ic:'📊', lb:t.ranking},
-    {id:'vip',        ic:'👑', lb:t.vip},
-    {id:'perfil',     ic:'👤', lb:t.profile},
+    {id:'dashboard',ic:'🏠',lb:t.home},
+    {id:'treinos',ic:'🏋️',lb:t.treinos},
+    {id:'programas',ic:'⭐',lb:t.programas},
+    {id:'comunidade',ic:'💬',lb:t.comunidade},
+    {id:'ranking',ic:'📊',lb:t.ranking},
+    {id:'vip',ic:'👑',lb:t.vip},
+    {id:'perfil',ic:'👤',lb:t.profile},
   ];
   return(
     <div className="bnav">
-      {items.map(x=>(
+      {items.map((x)=>(
         <div key={x.id} className={`ni ${active===x.id?'on':''}`} onClick={()=>setActive(x.id)}>
           <div className="ni-ic">{x.ic}</div>
           <div className="ni-lb">{x.lb}</div>
@@ -1672,7 +1571,6 @@ function BottomNav({active,setActive,t}){
   );
 }
 
-/* LOGIN */
 function LoginPage({onLogin,lang,setLang}){
   const t=T[lang];
   const [nome,setNome]=useState('');
@@ -1682,52 +1580,64 @@ function LoginPage({onLogin,lang,setLang}){
   const [err,setErr]=useState('');
   const [isReturning,setIsReturning]=useState(false);
   const groups=[
-    {k:'i',lb:t.g_i,items:LOGIN_LEVELS.filter(l=>l.group==='i')},
-    {k:'m',lb:t.g_m,items:LOGIN_LEVELS.filter(l=>l.group==='m')},
-    {k:'a',lb:t.g_a,items:LOGIN_LEVELS.filter(l=>l.group==='a')},
+    {k:'i',lb:t.g_i,items:LOGIN_LEVELS.filter((l)=>l.group==='i')},
+    {k:'m',lb:t.g_m,items:LOGIN_LEVELS.filter((l)=>l.group==='m')},
+    {k:'a',lb:t.g_a,items:LOGIN_LEVELS.filter((l)=>l.group==='a')},
   ];
+
   const handleEmailChange=(e)=>{
     const val=e.target.value;
     setEmail(val);
     if(val.includes('@')){
       const ex=db.getUser();
-      if(ex&&ex.email===val.trim().toLowerCase()){setIsReturning(true);setNome(ex.nome);}
-      else setIsReturning(false);
-    } else setIsReturning(false);
+      if(ex&&ex.email===val.trim().toLowerCase()){
+        setIsReturning(true);
+        setNome(ex.nome);
+      }else{
+        setIsReturning(false);
+      }
+    }else{
+      setIsReturning(false);
+    }
   };
+
   const go=()=>{
     if(!nome.trim()) return setErr(t.e_nome);
     if(!email.trim()||!email.includes('@')) return setErr(t.e_email);
     const ex=db.getUser();
     const returning=ex&&ex.email===email.trim().toLowerCase();
     if(!returning&&!nivel) return setErr(t.e_lv);
-    setErr('');setLoading(true);
+    setErr('');
+    setLoading(true);
     setTimeout(()=>{
       let user;
-      if(returning){user=ex;}
-      else{
+      if(returning){
+        user=ex;
+      }else{
         user={nome:nome.trim(),email:email.trim().toLowerCase(),nivel_inicial:nivel,progresso:0,ultimo_checkin:null,status:'ativo',created_at:new Date().toISOString(),avatar:null,plan:'planfit',nivel_start_date:new Date().toISOString()};
         db.saveUser(user);
       }
-      setLoading(false);onLogin(user);
+      setLoading(false);
+      onLogin(user);
     },700);
   };
+
   return(
     <div className="login">
       <div className="lang-row">
-        {['pt','es','en'].map(l=>(
+        {['pt','es','en'].map((l)=>(
           <button key={l} className={`lbtn ${lang===l?'on':''}`} onClick={()=>setLang(l)}>{l.toUpperCase()}</button>
         ))}
       </div>
       <div className="login-hero">
-        <img src="https://i.imgur.com/RcgEkNK.png" alt="Planfit40" className="login-logo" onError={e=>{e.target.style.display='none'}}/>
+        <img src="https://i.imgur.com/RcgEkNK.png" alt="Planfit40" className="login-logo" onError={(e)=>{e.target.style.display='none';}}/>
         <div className="login-tag">{t.tagline}</div>
       </div>
       <div className="card">
         <div className="card-title">{t.wc}</div>
         <div className="card-sub">{t.card_sub}</div>
         <label className="fl">{t.your_name}</label>
-        <input className="fi" placeholder={t.name_ph} value={nome} onChange={e=>setNome(e.target.value)} disabled={isReturning}/>
+        <input className="fi" placeholder={t.name_ph} value={nome} onChange={(e)=>setNome(e.target.value)} disabled={isReturning}/>
         <label className="fl">{t.email}</label>
         <input className="fi" type="email" placeholder="you@email.com" value={email} onChange={handleEmailChange}/>
         {isReturning&&(
@@ -1738,10 +1648,10 @@ function LoginPage({onLogin,lang,setLang}){
         {!isReturning&&(
           <div className="lvl-sec">
             <div className="lvl-sec-lbl">{t.sel_lv}</div>
-            {groups.map(g=>(
+            {groups.map((g)=>(
               <div key={g.k} className="lvl-group">
                 <div className="lvl-group-name">{g.lb}</div>
-                {g.items.map(l=>(
+                {g.items.map((l)=>(
                   <div key={l.id} className={`lo ${nivel===l.id?'on':''}`} onClick={()=>setNivel(l.id)}>
                     <div className="lo-rb"/>
                     <div className="lo-ico">{l.icon}</div>
@@ -1761,25 +1671,23 @@ function LoginPage({onLogin,lang,setLang}){
   );
 }
 
-/* DASHBOARD */
 function DashboardPage({user,lang,t,setLang,onRegisterClick,onLogout,onSwap,hasSwapped,onOpenInstrucoes}){
-  const ii=LEVELS.findIndex(l=>l.id===user.nivel_inicial);
+  const ii=LEVELS.findIndex((l)=>l.id===user.nivel_inicial);
   const ni=getNivelAtualIdx(ii,user.progresso);
   const nivel=LEVELS[ni];
   const local=getLocalProg(user.progresso,ni,ii);
   const pct=Math.round((local/40)*100);
-  const faltam=diasParaProx(user.progresso,ni,ii);
   const jaFezHoje=user.ultimo_checkin===TODAY;
   const checkins=db.getCheckins();
   const now=new Date();
   const dateStr=now.toLocaleDateString(lang==='pt'?'pt-BR':lang==='es'?'es-ES':'en-US',{weekday:'long',day:'numeric',month:'long'});
-  const calDays=Array.from({length:30},(_,i)=>{const d=new Date();d.setDate(d.getDate()-(29-i));return{date:d.toDateString(),num:d.getDate(),isHoje:d.toDateString()===TODAY};});
+  const calDays=Array.from({length:30},(_,i)=>{
+    const d=new Date();
+    d.setDate(d.getDate()-(29-i));
+    return{date:d.toDateString(),num:d.getDate(),isHoje:d.toDateString()===TODAY};
+  });
   const isVip=db.isVip();
-
-  // Days since account created — for swap button visibility
-  const diasDesdeInicio=user.created_at
-    ?Math.floor((Date.now()-new Date(user.created_at).getTime())/(1000*60*60*24))
-    :99;
+  const diasDesdeInicio=user.created_at?Math.floor((Date.now()-new Date(user.created_at).getTime())/(1000*60*60*24)):99;
   const showSwap=diasDesdeInicio<=7&&!hasSwapped;
 
   return(
@@ -1798,7 +1706,6 @@ function DashboardPage({user,lang,t,setLang,onRegisterClick,onLogout,onSwap,hasS
         </div>
       </div>
       <div className="pc">
-        {/* GUIDE CARD */}
         <button className="guide-card" onClick={onOpenInstrucoes}>
           <div className="guide-card-ico">📘</div>
           <div className="guide-card-body">
@@ -1808,7 +1715,6 @@ function DashboardPage({user,lang,t,setLang,onRegisterClick,onLogout,onSwap,hasS
           <div className="guide-card-arrow">›</div>
         </button>
 
-        {/* CHECK-IN CARD */}
         <button className={`ci-card ${jaFezHoje?'done':''}`} onClick={!jaFezHoje?onRegisterClick:undefined} disabled={jaFezHoje}>
           <div className="ci-top">
             <div className="ci-ico">{jaFezHoje?'✅':'📅'}</div>
@@ -1824,7 +1730,6 @@ function DashboardPage({user,lang,t,setLang,onRegisterClick,onLogout,onSwap,hasS
           </div>
         </button>
 
-        {/* TREINO ATUAL */}
         <button className="treino-card" onClick={()=>window.open(nivel.url,'_blank')}>
           <div className="treino-eyebrow">{t.cur_workout}</div>
           <div className="treino-level-row">
@@ -1842,14 +1747,12 @@ function DashboardPage({user,lang,t,setLang,onRegisterClick,onLogout,onSwap,hasS
           </div>
         </button>
 
-        {/* TROCAR TREINO */}
         {showSwap&&(
           <button className="swap-btn" onClick={onSwap}>
             {t.swap_btn} <span style={{fontSize:10,color:'var(--gray2)',fontWeight:400,marginLeft:4}}>{t.swap_days_left(7-diasDesdeInicio)}</span>
           </button>
         )}
 
-        {/* CALENDÁRIO */}
         <div className="cal-wrap">
           <div className="cal-title">{t.cal_title}</div>
           <div className="cal-grid">
@@ -1870,7 +1773,7 @@ function DashboardPage({user,lang,t,setLang,onRegisterClick,onLogout,onSwap,hasS
           <div className="sec-s">{t.alw_s}</div>
         </div>
         <div className="lvl-list" style={{marginBottom:20}}>
-          {SPECIAL.map(sl=>(
+          {SPECIAL.map((sl)=>(
             <div key={sl.id} className="lc spec" onClick={()=>window.open(sl.url,'_blank')}>
               <div className="lc-ico-wrap">{sl.icon}</div>
               <div className="lc-body"><div className="lc-name">{sl.n}</div><div style={{fontSize:11,color:'var(--pink)',fontWeight:500,marginTop:4}}>{t.open_workout}</div></div>
@@ -1883,20 +1786,17 @@ function DashboardPage({user,lang,t,setLang,onRegisterClick,onLogout,onSwap,hasS
   );
 }
 
-/* TREINOS SCREEN */
 function TreinosPage({user,lang,t,apiRanking=[]}){
-  const ii=LEVELS.findIndex(l=>l.id===user.nivel_inicial);
+  const ii=LEVELS.findIndex((l)=>l.id===user.nivel_inicial);
   const [unlockedPaid,setUnlockedPaid]=useState(()=>db.getUnlockedPaid());
   const [unlockModal,setUnlockModal]=useState(null);
   const groupOrder=['iniciante','intermediario','avancado'];
   const groupLabels={iniciante:t.grp_i,intermediario:t.grp_m,avancado:t.grp_a};
   const handleUnlock=(idx)=>{db.addUnlockedPaid(idx);setUnlockedPaid(db.getUnlockedPaid());};
-  const grouped=groupOrder.map(g=>({key:g,label:groupLabels[g],levels:LEVELS.map((l,i)=>({l,i})).filter(({l})=>l.group===g)}));
+  const grouped=groupOrder.map((g)=>({key:g,label:groupLabels[g],levels:LEVELS.map((l,i)=>({l,i})).filter(({l})=>l.group===g)}));
   return(
     <div className="page">
-      <div className="hdr">
-        <div className="hdr-top"><div><div className="hdr-eye">PlanFit</div><div className="hdr-name">{t.pg_treinos}</div></div></div>
-      </div>
+      <div className="hdr"><div className="hdr-top"><div><div className="hdr-eye">PlanFit</div><div className="hdr-name">{t.pg_treinos}</div></div></div></div>
       <div className="pc">
         {grouped.map(({key,label,levels})=>(
           <div key={key}>
@@ -1936,22 +1836,22 @@ function TreinosPage({user,lang,t,apiRanking=[]}){
   );
 }
 
-/* PROGRAMAS EXTRAS */
-function ProgramasPage({lang,t}){
+function ProgramasPage({t}){
   const [unlocked,setUnlocked]=useState(()=>db.getUnlockedExtras());
   const [toast,setToast]=useState('');
-  const handleUnlock=(id)=>{db.addUnlockedExtra(id);setUnlocked(db.getUnlockedExtras());setToast(t.prog_toast);setTimeout(()=>setToast(''),2500);};
+  const handleUnlock=(id)=>{
+    db.addUnlockedExtra(id);
+    setUnlocked(db.getUnlockedExtras());
+    setToast(t.prog_toast);
+    setTimeout(()=>setToast(''),2500);
+  };
   return(
     <div className="page">
       {toast&&<div className="toast">{toast}</div>}
-      <div className="hdr">
-        <div className="hdr-top"><div><div className="hdr-eye">PlanFit</div><div className="hdr-name">{t.prog_title}</div></div></div>
-      </div>
+      <div className="hdr"><div className="hdr-top"><div><div className="hdr-eye">PlanFit</div><div className="hdr-name">{t.prog_title}</div></div></div></div>
       <div className="pc">
-        <div style={{fontSize:12,color:'var(--gray)',fontWeight:300,marginBottom:16,lineHeight:1.6}}>
-          {t.prog_sub}
-        </div>
-        {EXTRA_PROGRAMS.map(p=>{
+        <div style={{fontSize:12,color:'var(--gray)',fontWeight:300,marginBottom:16,lineHeight:1.6}}>{t.prog_sub}</div>
+        {EXTRA_PROGRAMS.map((p)=>{
           const isUnlocked=unlocked.includes(p.id);
           return(
             <div key={p.id} className={`prog-card ${isUnlocked?'unlocked':''}`}>
@@ -1971,48 +1871,30 @@ function ProgramasPage({lang,t}){
   );
 }
 
-/* VIP CELEBRATION MODAL */
 function VipCelebrationModal({onClose,t}){
   const particles=useMemo(()=>Array.from({length:28},(_,i)=>({
-    id:i,
-    left:Math.random()*100,
-    size:Math.random()*8+5,
-    delay:Math.random()*0.5,
-    duration:1.8+Math.random()*1.2,
-    color:['#FFD700','#FFA500','#FFE87C','#C8860A','#FFED4A'][i%5],
-    shape:Math.random()>0.5?'50%':'2px',
+    id:i,left:Math.random()*100,size:Math.random()*8+5,delay:Math.random()*0.5,duration:1.8+Math.random()*1.2,color:['#FFD700','#FFA500','#FFE87C','#C8860A','#FFED4A'][i%5],shape:Math.random()>0.5?'50%':'2px',
   })),[]);
-
   useEffect(()=>{
-    const t=setTimeout(onClose,2400);
-    return()=>clearTimeout(t);
-  },[]);
-
+    const timer=setTimeout(onClose,2400);
+    return()=>clearTimeout(timer);
+  },[onClose]);
   return(
     <div className="vip-cel" onClick={onClose}>
-      {particles.map(p=>(
-        <div key={p.id} className="vip-cel-confetti" style={{
-          left:`${p.left}%`,top:'-20px',
-          width:p.size,height:p.size,
-          background:p.color,
-          borderRadius:p.shape,
-          animationDuration:`${p.duration}s`,
-          animationDelay:`${p.delay}s`,
-        }}/>
+      {particles.map((p)=>(
+        <div key={p.id} className="vip-cel-confetti" style={{left:`${p.left}%`,top:'-20px',width:p.size,height:p.size,background:p.color,borderRadius:p.shape,animationDuration:`${p.duration}s`,animationDelay:`${p.delay}s`}}/>
       ))}
-      <div className="vip-cel-card" onClick={e=>e.stopPropagation()}>
+      <div className="vip-cel-card" onClick={(e)=>e.stopPropagation()}>
         <div className="vip-cel-ico">⭐</div>
-        <div className="vip-cel-title">{t?t.vip_cel_title:'Parabéns!'}</div>
-        <div className="vip-cel-sub">{t?t.vip_cel_sub:'Você agora é VIP — Seu acesso exclusivo está ativo.'}</div>
+        <div className="vip-cel-title">{t.vip_cel_title}</div>
+        <div className="vip-cel-sub">{t.vip_cel_sub}</div>
         <div className="vip-cel-badge">👑 VIP PLANFIT</div>
       </div>
     </div>
   );
 }
 
-/* VIP */
 function VipPage({isVip,onActivate,t}){
-  const benefits=t.vip_benefits;
   return(
     <div className="page">
       <div className="hdr"><div className="hdr-top"><div><div className="hdr-eye">PlanFit</div><div className="hdr-name">{t.vip_page_title}</div></div></div></div>
@@ -2045,7 +1927,7 @@ function VipPage({isVip,onActivate,t}){
         )}
         <div style={{fontSize:10,fontWeight:700,color:'var(--gray2)',letterSpacing:'1.5px',textTransform:'uppercase',marginBottom:12}}>{t.vip_included}</div>
         <div className="vip-benefits">
-          {benefits.map((b,i)=>(
+          {t.vip_benefits.map((b,i)=>(
             <div key={i} className="vip-benefit-item">
               <div className="vip-benefit-ico">{b.ic}</div>
               <div className="vip-benefit-txt"><strong>{b.title}</strong><br/>{b.desc}</div>
@@ -2057,31 +1939,29 @@ function VipPage({isVip,onActivate,t}){
   );
 }
 
-/* RANKING — real user included */
-function RankingPage({user,lang,t,apiRanking=[],rankLoading=false,rankError=false}){
+function RankingPage({user,t,apiRanking=[],rankLoading=false,rankError=false}){
   const [tab,setTab]=useState(()=>(user.plan||'planfit')==='vip'?'vip':'planfit');
   const userPlan=user.plan||'planfit';
-  const ii=LEVELS.findIndex(l=>l.id===user.nivel_inicial);
+  const ii=LEVELS.findIndex((l)=>l.id===user.nivel_inicial);
   const ni=getNivelAtualIdx(ii,user.progresso);
   const nivelNm=LEVELS[ni].n;
-
-  // Inject real user into the correct pool
   const userEntry={av:'🌸',nm:user.nome,lv:nivelNm,score:user.progresso,vip:userPlan==='vip',plan:userPlan,isMe:true,avatar_url:user.avatar||null};
+
   const buildRanking=(plan)=>{
-    const pool=[...apiRanking.filter(u=>u.plan===plan),(plan===userPlan?userEntry:null)].filter(Boolean);
-    return pool.sort((a,b)=>b.score-a.score||a.nm.localeCompare(b.nm)).map((u,i)=>({...u,pos:i+1}));
+    const pool=[...apiRanking.filter((u)=>u.plan===plan),(plan===userPlan?userEntry:null)].filter(Boolean);
+    return pool.sort((a,b)=>(b.score||0)-(a.score||0)||a.nm.localeCompare(b.nm)).map((u,i)=>({...u,pos:i+1}));
   };
 
   const data=tab==='planfit'?buildRanking('planfit'):buildRanking('vip');
   const top5=data.slice(0,5);
-  const posStyle=(pos)=>{if(pos===1)return 'gold';if(pos===2)return 'silver';if(pos===3)return 'bronze';return '';};
+  const posStyle=(pos)=>{if(pos===1)return'gold';if(pos===2)return'silver';if(pos===3)return'bronze';return'';};
 
   return(
     <div className="page">
       <div className="hdr"><div className="hdr-top"><div><div className="hdr-eye">PlanFit</div><div className="hdr-name">{t.ranking}</div></div></div></div>
       <div className="pc">
-        {rankLoading&&<div className="empty"><div className="empty-ic">⏳</div><div className="empty-tx">Carregando ranking...</div></div>}
-        {rankError&&!rankLoading&&<div className="empty"><div className="empty-ic">⚠️</div><div className="empty-tx">Erro ao carregar dados</div></div>}
+        {rankLoading&&<div className="empty"><div className="empty-ic">⏳</div><div className="empty-tx">{t.loading_ranking}</div></div>}
+        {rankError&&!rankLoading&&<div className="empty"><div className="empty-ic">⚠️</div><div className="empty-tx">{t.error_loading}</div></div>}
         <div className="rank-tabs">
           <button className={`rank-tab ${tab==='planfit'?'on':''}`} onClick={()=>setTab('planfit')}>{t.rank_tab_pf}</button>
           <button className={`rank-tab ${tab==='vip'?'on':''}`} onClick={()=>setTab('vip')}>{t.rank_tab_vip}</button>
@@ -2110,15 +1990,10 @@ function RankingPage({user,lang,t,apiRanking=[],rankLoading=false,rankError=fals
         )}
         <div className="week-section">
           <div className="week-section-title">{tab==='planfit'?t.rank_top5m:t.rank_top5w}</div>
-          {top5.map(r=>(
+          {top5.map((r)=>(
             <div key={r.pos} className={`rank-item ${r.pos<=3?'top3':''} ${r.pos===1?'rank1':''} ${r.isMe?'is-me':''}`}>
               <div className={`rank-pos ${posStyle(r.pos)}`}>{r.pos===1?'🥇':r.pos===2?'🥈':r.pos===3?'🥉':r.pos}</div>
-              <div className="rank-av">
-                {r.avatar_url
-                  ?<img src={r.avatar_url} alt="" style={{width:'100%',height:'100%',objectFit:'cover'}}/>
-                  :<span>{r.av}</span>
-                }
-              </div>
+              <div className="rank-av">{r.avatar_url?<img src={r.avatar_url} alt="" style={{width:'100%',height:'100%',objectFit:'cover'}}/>:<span>{r.av||'🌸'}</span>}</div>
               <div className="rank-info">
                 <div className="rank-nm">
                   {r.nm}{r.isMe&&<span style={{marginLeft:5,fontSize:9,background:'rgba(200,77,255,0.2)',color:'var(--accent)',padding:'1px 6px',borderRadius:100,fontWeight:700}}>{t.rank_you_badge}</span>}
@@ -2134,15 +2009,10 @@ function RankingPage({user,lang,t,apiRanking=[],rankLoading=false,rankError=fals
         {data.length>5&&(
           <>
             <div style={{fontSize:10,fontWeight:700,color:'var(--gray2)',letterSpacing:'1px',textTransform:'uppercase',marginBottom:10}}>{t.rank_full}</div>
-            {data.slice(5).map(r=>(
+            {data.slice(5).map((r)=>(
               <div key={r.pos} className={`rank-item ${r.isMe?'is-me':''}`}>
                 <div className="rank-pos">{r.pos}</div>
-                <div className="rank-av">
-                  {r.avatar_url
-                    ?<img src={r.avatar_url} alt="" style={{width:'100%',height:'100%',objectFit:'cover'}}/>
-                    :<span>{r.av}</span>
-                  }
-                </div>
+                <div className="rank-av">{r.avatar_url?<img src={r.avatar_url} alt="" style={{width:'100%',height:'100%',objectFit:'cover'}}/>:<span>{r.av||'🌸'}</span>}</div>
                 <div className="rank-info">
                   <div className="rank-nm">
                     {r.nm}{r.isMe&&<span style={{marginLeft:5,fontSize:9,background:'rgba(200,77,255,0.2)',color:'var(--accent)',padding:'1px 6px',borderRadius:100,fontWeight:700}}>{t.rank_you_badge}</span>}
@@ -2160,184 +2030,170 @@ function RankingPage({user,lang,t,apiRanking=[],rankLoading=false,rankError=fals
           <div className="tiebreaker-item"><span>1.</span><span>{t.rank_tie1}</span></div>
           <div className="tiebreaker-item"><span>2.</span><span>{t.rank_tie2}</span></div>
           <div className="tiebreaker-item"><span>3.</span><span>{t.rank_tie3}</span></div>
-          <div className="tiebreaker-item"><span>4.</span><span>Sorteio entre as participantes empatadas</span></div>
+          <div className="tiebreaker-item"><span>4.</span><span>{t.rank_tie4}</span></div>
         </div>
       </div>
     </div>
   );
 }
 
-/* COMUNIDADE — Threads style with clickable profiles */
 function ComunidadePage({user,posts,onPostsChange,postsLoading,postsError,onRegisterClick,onViewProfile,lang,t}){
   const isVip=db.isVip();
   const jaFezHoje=user.ultimo_checkin===TODAY;
   const [translations,setTranslations]=useState({});
 
   const handleLike=(id)=>{
-    onPostsChange(posts.map(p=>p.id===id?{...p,likes:p.liked?p.likes-1:p.likes+1,liked:!p.liked}:p));
-    api.post(API_URL + '/api/like',{postId:id}) .catch(()=>{});
+    onPostsChange((prev)=>prev.map((p)=>p.id===id?{...p,likes:p.liked?p.likes-1:p.likes+1,liked:!p.liked}:p));
+    api.post('/like',{postId:id,userId:user.email}).catch(()=>{});
   };
+
   const toggleComments=(id)=>{
-    onPostsChange(posts.map(p=>p.id===id?{...p,showComments:!p.showComments}:p));
+    onPostsChange((prev)=>prev.map((p)=>p.id===id?{...p,showComments:!p.showComments}:p));
   };
+
   const updateCommentInput=(id,val)=>{
-    onPostsChange(posts.map(p=>p.id===id?{...p,commentInput:val}:p));
+    onPostsChange((prev)=>prev.map((p)=>p.id===id?{...p,commentInput:val}:p));
   };
+
   const submitComment=(id)=>{
-    const post=posts.find(p=>p.id===id);
+    const post=posts.find((p)=>p.id===id);
     if(!post||!post.commentInput.trim()) return;
     const newComment={id:Date.now(),av:isVip?'👑':'🌸',avatar_url:user.avatar||null,nm:user.nome,text:post.commentInput.trim(),time:t.comm_now,replies:[],showReplyInput:false,replyInput:''};
-    onPostsChange(posts.map(p=>p.id===id?{...p,comments:[...p.comments,newComment],commentInput:'',showComments:true}:p));
-   api.post(API_URL + '/api/comments',{postId:id,...}) :user.email,nm:user.nome,av:isVip?'👑':'🌸',avatar_url:user.avatar||null,text:post.commentInput.trim()}).catch(()=>{});
+    onPostsChange((prev)=>prev.map((p)=>p.id===id?{...p,comments:[...(p.comments||[]),newComment],commentInput:'',showComments:true}:p));
+    api.post('/comments',{postId:id,userId:user.email,nm:user.nome,av:isVip?'👑':'🌸',avatar_url:user.avatar||null,text:post.commentInput.trim()}).catch(()=>{});
   };
+
   const toggleReplyInput=(postId,commentId)=>{
-    onPostsChange(posts.map(p=>p.id===postId?{...p,comments:p.comments.map(c=>c.id===commentId?{...c,showReplyInput:!c.showReplyInput}:c)}:p));
+    onPostsChange((prev)=>prev.map((p)=>p.id===postId?{...p,comments:p.comments.map((c)=>c.id===commentId?{...c,showReplyInput:!c.showReplyInput}:c)}:p));
   };
+
   const updateReplyInput=(postId,commentId,val)=>{
-    onPostsChange(posts.map(p=>p.id===postId?{...p,comments:p.comments.map(c=>c.id===commentId?{...c,replyInput:val}:c)}:p));
+    onPostsChange((prev)=>prev.map((p)=>p.id===postId?{...p,comments:p.comments.map((c)=>c.id===commentId?{...c,replyInput:val}:c)}:p));
   };
+
   const submitReply=(postId,commentId)=>{
-    const post=posts.find(p=>p.id===postId);
+    const post=posts.find((p)=>p.id===postId);
     if(!post) return;
-    const comment=post.comments.find(c=>c.id===commentId);
+    const comment=post.comments.find((c)=>c.id===commentId);
     if(!comment||!comment.replyInput||!comment.replyInput.trim()) return;
     const newReply={id:Date.now(),av:isVip?'👑':'🌸',avatar_url:user.avatar||null,nm:user.nome,text:comment.replyInput.trim(),time:t.comm_now};
-    onPostsChange(posts.map(p=>p.id===postId?{...p,comments:p.comments.map(c=>c.id===commentId?{...c,replies:[...c.replies,newReply],replyInput:'',showReplyInput:false}:c)}:p));
+    onPostsChange((prev)=>prev.map((p)=>p.id===postId?{...p,comments:p.comments.map((c)=>c.id===commentId?{...c,replies:[...(c.replies||[]),newReply],replyInput:'',showReplyInput:false}:c)}:p));
+    api.post('/comments/reply',{postId,commentId,userId:user.email,nm:user.nome,av:isVip?'👑':'🌸',avatar_url:user.avatar||null,text:comment.replyInput.trim()}).catch(()=>{});
   };
 
   const translatePost=async(post)=>{
     const pid=post.id;
     const srcLang=post.lang||'pt';
-    if(srcLang===lang){return;}
+    if(srcLang===lang) return;
     if(translations[pid]?.text){
-      setTranslations(prev=>({...prev,[pid]:{...prev[pid],showing:!prev[pid].showing}}));
+      setTranslations((prev)=>({...prev,[pid]:{...prev[pid],showing:!prev[pid].showing}}));
       return;
     }
-    setTranslations(prev=>({...prev,[pid]:{loading:true,showing:false,text:null}}));
+    setTranslations((prev)=>({...prev,[pid]:{loading:true,showing:false,text:null}}));
     try{
       const res=await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(post.caption)}&langpair=${srcLang}|${lang}`);
       const data=await res.json();
       const translated=data?.responseData?.translatedText||post.caption;
-      setTranslations(prev=>({...prev,[pid]:{loading:false,showing:true,text:translated}}));
+      setTranslations((prev)=>({...prev,[pid]:{loading:false,showing:true,text:translated}}));
     }catch{
-      setTranslations(prev=>({...prev,[pid]:{loading:false,showing:false,text:null}}));
+      setTranslations((prev)=>({...prev,[pid]:{loading:false,showing:false,text:null}}));
     }
   };
 
   return(
     <div className="page">
-      <div className="hdr">
-        <div className="hdr-top"><div><div className="hdr-eye">PlanFit</div><div className="hdr-name">{t.community}</div></div></div>
-      </div>
+      <div className="hdr"><div className="hdr-top"><div><div className="hdr-eye">PlanFit</div><div className="hdr-name">{t.comunidade}</div></div></div></div>
       <div className="pc">
-        <button
-          className={`reg-btn ${jaFezHoje?'done':''}`}
-          onClick={jaFezHoje?undefined:onRegisterClick}
-          disabled={jaFezHoje}
-        >
+        <button className={`reg-btn ${jaFezHoje?'done':''}`} onClick={jaFezHoje?undefined:onRegisterClick} disabled={jaFezHoje}>
           {jaFezHoje?t.reg_already:'📸 '+t.reg_workout}
         </button>
-
-        {postsLoading&&<div className="empty"><div className="empty-ic">⏳</div><div className="empty-tx">Carregando publicações...</div></div>}
-        {postsError&&!postsLoading&&<div className="empty"><div className="empty-ic">⚠️</div><div className="empty-tx">Erro ao carregar dados</div></div>}
-
-        {posts.map(post=>{
+        {postsLoading&&<div className="empty"><div className="empty-ic">⏳</div><div className="empty-tx">{t.loading_posts}</div></div>}
+        {postsError&&!postsLoading&&<div className="empty"><div className="empty-ic">⚠️</div><div className="empty-tx">{t.error_loading}</div></div>}
+        {posts.map((post)=>{
           const trState=translations[post.id]||{};
           const postSrcLang=post.lang||'pt';
           const needsTranslation=postSrcLang!==lang;
           const displayCaption=trState.showing&&trState.text?trState.text:post.caption;
           return(
-          <div key={post.id} className="thread-post fade-in">
-            <div className="thread-post-hdr">
-              <div onClick={()=>onViewProfile(post)} style={{cursor:'pointer'}}>
-                <AvDisp avatarUrl={post.avatar_url} emoji={post.av} size={40} vip={post.vip}/>
-              </div>
-              <div className="thread-meta" style={{marginLeft:10}}>
-                <div className="thread-nm-row">
-                  <span className="thread-nm" onClick={()=>onViewProfile(post)}>{post.nm}</span>
-                  {post.vip&&<span className="thread-vip-badge">⭐ VIP</span>}
+            <div key={post.id} className="thread-post fade-in">
+              <div className="thread-post-hdr">
+                <div onClick={()=>onViewProfile(post)} style={{cursor:'pointer'}}>
+                  <AvDisp avatarUrl={post.avatar_url} emoji={post.av} size={40} vip={post.vip}/>
                 </div>
-                <div className="thread-workout-label">🏋️ {post.workout} {t.comm_done}</div>
-                <div className="thread-time">{post.time}</div>
-              </div>
-            </div>
-
-            {post.photo?(
-              <div className="thread-photo"><img src={post.photo} alt="workout"/></div>
-            ):(
-              <div className="thread-photo" style={{minHeight:100}}>
-                <div className="thread-photo-placeholder"><span style={{fontSize:32}}>🏋️</span><span style={{fontSize:12}}>{t.comm_workout_done}</span></div>
-              </div>
-            )}
-
-            <div className="thread-caption">{displayCaption}</div>
-
-            {needsTranslation&&(
-              <button
-                onClick={()=>translatePost(post)}
-                style={{background:'none',border:'none',color:'var(--accent)',fontSize:11,cursor:'pointer',padding:'2px 0 6px',fontFamily:"'DM Sans',sans-serif",fontWeight:500}}
-              >
-                {trState.loading?t.comm_translating:trState.showing?t.comm_see_original:t.comm_translate}
-              </button>
-            )}
-
-            <div className="thread-actions">
-              <button className={`thread-action-btn ${post.liked?'liked':''}`} onClick={()=>handleLike(post.id)}>
-                <span className="heart-ic">{post.liked?'❤️':'🤍'}</span>{post.likes}
-              </button>
-              <button className="thread-action-btn" onClick={()=>toggleComments(post.id)}>
-                💬 {post.comments.length}
-              </button>
-            </div>
-
-            {post.showComments&&(
-              <div className="thread-replies">
-                {post.comments.map(c=>(
-                  <div key={c.id} className="thread-reply">
-                    <div className="thread-reply-av">
-                      {c.avatar_url?<img src={c.avatar_url} alt="" style={{width:'100%',height:'100%',objectFit:'cover'}}/>:<span>{c.av}</span>}
-                    </div>
-                    <div className="thread-reply-body">
-                      <div className="thread-reply-nm">{c.nm}</div>
-                      <div className="thread-reply-txt">{c.text}</div>
-                      <div style={{display:'flex',alignItems:'center',gap:10}}>
-                        <div className="thread-reply-time">{c.time}</div>
-                        <button className="thread-reply-btn" onClick={()=>toggleReplyInput(post.id,c.id)}>
-                          {c.showReplyInput?t.cancel:t.comm_reply}
-                        </button>
-                      </div>
-                      {(c.replies||[]).length>0&&(
-                        <div className="thread-nested-replies">
-                          {(c.replies||[]).map(r=>(
-                            <div key={r.id} className="thread-nested-reply">
-                              <div className="thread-nested-reply-av">
-                                {r.avatar_url?<img src={r.avatar_url} alt="" style={{width:'100%',height:'100%',objectFit:'cover'}}/>:<span>{r.av}</span>}
-                              </div>
-                              <div style={{flex:1}}>
-                                <div className="thread-reply-nm" style={{fontSize:11}}>{r.nm}</div>
-                                <div className="thread-reply-txt" style={{fontSize:11}}>{r.text}</div>
-                                <div className="thread-reply-time">{r.time}</div>
-                              </div>
-                            </div>
-                          ))}
-                        </div>
-                      )}
-                      {c.showReplyInput&&(
-                        <div className="thread-reply-input">
-                          <textarea placeholder={t.comm_reply_to(c.nm)} value={c.replyInput||''} onChange={e=>updateReplyInput(post.id,c.id,e.target.value)} rows={1}/>
-                          <button onClick={()=>submitReply(post.id,c.id)}>{t.comm_send}</button>
-                        </div>
-                      )}
-                    </div>
+                <div className="thread-meta" style={{marginLeft:10}}>
+                  <div className="thread-nm-row">
+                    <span className="thread-nm" onClick={()=>onViewProfile(post)}>{post.nm}</span>
+                    {post.vip&&<span className="thread-vip-badge">⭐ VIP</span>}
                   </div>
-                ))}
-                <div className="thread-comment-input">
-                  <textarea placeholder={t.comm_write_comment} value={post.commentInput||''} onChange={e=>updateCommentInput(post.id,e.target.value)} rows={1}/>
-                  <button onClick={()=>submitComment(post.id)}>{t.comm_send}</button>
+                  <div className="thread-workout-label">🏋️ {post.workout} {t.comm_done}</div>
+                  <div className="thread-time">{post.time}</div>
                 </div>
               </div>
-            )}
-          </div>
+              {post.photo?(
+                <div className="thread-photo"><img src={post.photo} alt="workout"/></div>
+              ):(
+                <div className="thread-photo" style={{minHeight:100}}>
+                  <div className="thread-photo-placeholder"><span style={{fontSize:32}}>🏋️</span><span style={{fontSize:12}}>{t.comm_workout_done}</span></div>
+                </div>
+              )}
+              <div className="thread-caption">{displayCaption}</div>
+              {needsTranslation&&(
+                <button onClick={()=>translatePost(post)} style={{background:'none',border:'none',color:'var(--accent)',fontSize:11,cursor:'pointer',padding:'2px 0 6px',fontFamily:"'DM Sans',sans-serif",fontWeight:500}}>
+                  {trState.loading?t.comm_translating:trState.showing?t.comm_see_original:t.comm_translate}
+                </button>
+              )}
+              <div className="thread-actions">
+                <button className={`thread-action-btn ${post.liked?'liked':''}`} onClick={()=>handleLike(post.id)}>
+                  <span className="heart-ic">{post.liked?'❤️':'🤍'}</span>{post.likes}
+                </button>
+                <button className="thread-action-btn" onClick={()=>toggleComments(post.id)}>💬 {post.comments.length}</button>
+              </div>
+              {post.showComments&&(
+                <div className="thread-replies">
+                  {post.comments.map((c)=>(
+                    <div key={c.id} className="thread-reply">
+                      <div className="thread-reply-av">
+                        {c.avatar_url?<img src={c.avatar_url} alt="" style={{width:'100%',height:'100%',objectFit:'cover'}}/>:<span>{c.av}</span>}
+                      </div>
+                      <div className="thread-reply-body">
+                        <div className="thread-reply-nm">{c.nm}</div>
+                        <div className="thread-reply-txt">{c.text}</div>
+                        <div style={{display:'flex',alignItems:'center',gap:10}}>
+                          <div className="thread-reply-time">{c.time}</div>
+                          <button className="thread-reply-btn" onClick={()=>toggleReplyInput(post.id,c.id)}>{c.showReplyInput?t.cancel:t.comm_reply}</button>
+                        </div>
+                        {(c.replies||[]).length>0&&(
+                          <div className="thread-nested-replies">
+                            {(c.replies||[]).map((r)=>(
+                              <div key={r.id} className="thread-nested-reply">
+                                <div className="thread-nested-reply-av">
+                                  {r.avatar_url?<img src={r.avatar_url} alt="" style={{width:'100%',height:'100%',objectFit:'cover'}}/>:<span>{r.av}</span>}
+                                </div>
+                                <div style={{flex:1}}>
+                                  <div className="thread-reply-nm" style={{fontSize:11}}>{r.nm}</div>
+                                  <div className="thread-reply-txt" style={{fontSize:11}}>{r.text}</div>
+                                  <div className="thread-reply-time">{r.time}</div>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                        {c.showReplyInput&&(
+                          <div className="thread-reply-input">
+                            <textarea placeholder={t.comm_reply_to(c.nm)} value={c.replyInput||''} onChange={(e)=>updateReplyInput(post.id,c.id,e.target.value)} rows={1}/>
+                            <button onClick={()=>submitReply(post.id,c.id)}>{t.comm_send}</button>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                  <div className="thread-comment-input">
+                    <textarea placeholder={t.comm_write_comment} value={post.commentInput||''} onChange={(e)=>updateCommentInput(post.id,e.target.value)} rows={1}/>
+                    <button onClick={()=>submitComment(post.id)}>{t.comm_send}</button>
+                  </div>
+                </div>
+              )}
+            </div>
           );
         })}
       </div>
@@ -2345,45 +2201,29 @@ function ComunidadePage({user,posts,onPostsChange,postsLoading,postsError,onRegi
   );
 }
 
-/* PERFIL */
 function PerfilPage({user,lang,t,onLogout,onGoExtras,onAvatarChange}){
-  const ii=LEVELS.findIndex(l=>l.id===user.nivel_inicial);
+  const ii=LEVELS.findIndex((l)=>l.id===user.nivel_inicial);
   const ni=getNivelAtualIdx(ii,user.progresso);
   const nivel=LEVELS[ni];
-  const inicialNivel=LEVELS.find(l=>l.id===user.nivel_inicial);
+  const inicialNivel=LEVELS.find((l)=>l.id===user.nivel_inicial);
   const nOpen=LEVELS.filter((_,i)=>getStatus(i,ii,user.progresso,db.getUnlockedPaid())!=='lock').length;
   const local=getLocalProg(user.progresso,ni,ii);
   const isVip=db.isVip();
   const [unlockedExtras]=useState(()=>db.getUnlockedExtras());
-  const myProducts=EXTRA_PROGRAMS.filter(p=>unlockedExtras.includes(p.id));
+  const myProducts=EXTRA_PROGRAMS.filter((p)=>unlockedExtras.includes(p.id));
   const [showAvPicker,setShowAvPicker]=useState(false);
-
-  const labelPt={title:'Meus Produtos',empty:'Você ainda não desbloqueou nenhum produto.',btn:'Ver programas disponíveis'};
-  const labelEs={title:'Mis Productos',empty:'Aún no has desbloqueado ningún producto.',btn:'Ver programas disponibles'};
-  const labelEn={title:'My Products',empty:"You haven't unlocked any product yet.",btn:'Browse available programs'};
-  const lbl=lang==='pt'?labelPt:lang==='es'?labelEs:labelEn;
+  const lbl=lang==='pt'?{title:'Meus Produtos',empty:'Você ainda não desbloqueou nenhum produto.',btn:'Ver programas disponíveis'}:lang==='es'?{title:'Mis Productos',empty:'Aún no has desbloqueado ningún producto.',btn:'Ver programas disponibles'}:{title:'My Products',empty:"You haven't unlocked any product yet.",btn:'Browse available programs'};
 
   return(
     <div className="page">
       {showAvPicker&&(
-        <AvatarPicker
-          t={t}
-          hasAvatar={!!user.avatar}
-          onSelect={(dataUrl)=>{onAvatarChange(dataUrl);setShowAvPicker(false);}}
-          onRemove={()=>{onAvatarChange(null);setShowAvPicker(false);}}
-          onClose={()=>setShowAvPicker(false)}
-        />
+        <AvatarPicker t={t} hasAvatar={!!user.avatar} onSelect={(dataUrl)=>{onAvatarChange(dataUrl);setShowAvPicker(false);}} onRemove={()=>{onAvatarChange(null);setShowAvPicker(false);}} onClose={()=>setShowAvPicker(false)}/>
       )}
-      <div className="hdr">
-        <div className="hdr-top"><div><div className="hdr-eye">{t.prf_eye}</div><div className="hdr-name">{t.prf_name}</div></div></div>
-      </div>
+      <div className="hdr"><div className="hdr-top"><div><div className="hdr-eye">{t.prf_eye}</div><div className="hdr-name">{t.prf_name}</div></div></div></div>
       <div className="pc">
         <div className="prf-top">
           <div className={`prf-av-wrap ${isVip?'vip':''}`} onClick={()=>setShowAvPicker(true)}>
-            {user.avatar
-              ?<img src={user.avatar} alt="" style={{width:'100%',height:'100%',objectFit:'cover'}}/>
-              :<span style={{fontSize:34}}>{isVip?'👑':'🌿'}</span>
-            }
+            {user.avatar?<img src={user.avatar} alt="" style={{width:'100%',height:'100%',objectFit:'cover'}}/>:<span style={{fontSize:34}}>{isVip?'👑':'🌿'}</span>}
             <div className="av-overlay">📷</div>
           </div>
           <div className="prf-nm">{user.nome}</div>
@@ -2404,7 +2244,7 @@ function PerfilPage({user,lang,t,onLogout,onGoExtras,onAvatarChange}){
         <div className="meus-prod-sec">
           <div className="meus-prod-title">✦ {lbl.title}</div>
           {myProducts.length>0?(
-            myProducts.map(p=>(
+            myProducts.map((p)=>(
               <a key={p.id} className="prod-item" href={p.url} target="_blank" rel="noopener noreferrer">
                 <div className="prod-item-ico">{p.icon}</div>
                 <div className="prod-item-info"><div className="prod-item-name">{p.name}</div><div className="prod-item-desc">{p.desc}</div></div>
@@ -2425,7 +2265,6 @@ function PerfilPage({user,lang,t,onLogout,onGoExtras,onAvatarChange}){
   );
 }
 
-/* APP ROOT */
 function App(){
   const [user,setUser]=useState(()=>{
     const u=db.getUser();
@@ -2451,21 +2290,63 @@ function App(){
   const [isVip,setIsVip]=useState(()=>db.isVip());
   const [showVipCel,setShowVipCel]=useState(false);
   const [toast,setToast]=useState('');
+  const [posts,setPosts]=useState([]);
+  const [postsLoading,setPostsLoading]=useState(true);
+  const [postsError,setPostsError]=useState(false);
+  const [apiRanking,setApiRanking]=useState([]);
+  const [rankLoading,setRankLoading]=useState(true);
+  const [rankError,setRankError]=useState(false);
 
-  const showToast=(msg)=>{setToast(msg);setTimeout(()=>setToast(''),2500);};
+  const showToast=(msg)=>{
+    setToast(msg);
+    setTimeout(()=>setToast(''),2500);
+  };
+
+  const hydratePosts=(raw)=>(raw||[]).map((p)=>({
+    ...p,
+    id:p.id||Date.now()+Math.random(),
+    likes:p.likes||0,
+    liked:false,
+    commentInput:'',
+    showComments:false,
+    comments:(p.comments||[]).map((c)=>({...c,replyInput:'',showReplyInput:false,replies:c.replies||[]})),
+  }));
+
+  useEffect(()=>{
+    setPostsLoading(true);
+    api.get('/posts')
+      .then((d)=>{setPosts(hydratePosts(d.posts||d||[]));setPostsError(false);})
+      .catch(()=>setPostsError(true))
+      .finally(()=>setPostsLoading(false));
+  },[]);
+
+  useEffect(()=>{
+    setRankLoading(true);
+    api.get('/ranking')
+      .then((d)=>{setApiRanking(d.ranking||d||[]);setRankError(false);})
+      .catch(()=>setRankError(true))
+      .finally(()=>setRankLoading(false));
+  },[]);
+
+  const savePosts=useCallback((updater)=>{
+    setPosts((prev)=>typeof updater==='function'?updater(prev):updater);
+  },[]);
+
+  const handleLang=useCallback((l)=>{
+    setLang(l);
+    db.setLang(l);
+  },[]);
 
   const handleActivateVip=useCallback(()=>{
-    if(isVip) return;
+    if(isVip||!user) return;
     db.setVip();
     setIsVip(true);
     setShowVipCel(true);
     playSound('vip');
-    // Move user from PlanFit ranking to VIP ranking
     const upd={...user,plan:'vip'};
     db.saveUser(upd);
     setUser(upd);
-    // Sync to API
-    api.post('/api/vip',{userId:user.email}).catch(()=>{});
+    api.post('/vip',{userId:user.email}).catch(()=>{});
   },[isVip,user]);
 
   const openRegisterModal=useCallback(()=>{
@@ -2477,51 +2358,10 @@ function App(){
     setShowWRModal(true);
   },[user,lang]);
 
-  // Posts — loaded from API
-  const [posts,setPosts]=useState([]);
-  const [postsLoading,setPostsLoading]=useState(true);
-  const [postsError,setPostsError]=useState(false);
-
-  // Ranking — loaded from API
-  const [apiRanking,setApiRanking]=useState([]);
-  const [rankLoading,setRankLoading]=useState(true);
-  const [rankError,setRankError]=useState(false);
-
-  const hydratePosts=(raw)=>raw.map(p=>({
-    ...p,
-    liked:false,
-    commentInput:'',
-    showComments:false,
-    comments:(p.comments||[]).map(c=>({...c,replyInput:'',showReplyInput:false,replies:c.replies||[]})),
-  }));
-
-  useEffect(()=>{
-    setPostsLoading(true);
-    api.get('/api/posts')
-      .then(d=>{setPosts(hydratePosts(d.posts||[]));setPostsError(false);})
-      .catch(()=>setPostsError(true))
-      .finally(()=>setPostsLoading(false));
-  },[]);
-
-  useEffect(()=>{
-    setRankLoading(true);
-    api.get('/api/ranking')
-      .then(d=>{setApiRanking(d.ranking||[]);setRankError(false);})
-      .catch(()=>setRankError(true))
-      .finally(()=>setRankLoading(false));
-  },[]);
-
-  const savePosts=(updater)=>{
-    setPosts(prev=>typeof updater==='function'?updater(prev):updater);
-  };
-
-  const handleLang=useCallback((l)=>{setLang(l);db.setLang(l);},[]);
-
-  // UNIFIED registerWorkout — called from Dashboard and Community
   const registerWorkout=useCallback(({photo='',caption=''}={})=>{
     if(!user||user.ultimo_checkin===TODAY) return;
-    const isVip=db.isVip();
-    const ii=LEVELS.findIndex(l=>l.id===user.nivel_inicial);
+    const vipNow=db.isVip();
+    const ii=LEVELS.findIndex((l)=>l.id===user.nivel_inicial);
     const prevNi=getNivelAtualIdx(ii,user.progresso);
     const upd={...user,progresso:user.progresso+1,ultimo_checkin:TODAY};
     const newNi=getNivelAtualIdx(ii,upd.progresso);
@@ -2531,46 +2371,29 @@ function App(){
     setUser(upd);
     playSound('ci');
 
-    // Create community post locally and sync to API
     const nivel=LEVELS[prevNi];
     const defaultCaption=(T[lang]||T.pt).comm_workout_done+' 💪';
-    const newPost={
-      id:Date.now(),
-      av:isVip?'👑':'🌸',
-      avatar_url:user.avatar||null,
-      nm:user.nome,
-      vip:isVip,
-      time:'agora',
-      workout:nivel.n,
-      photo:photo||null,
-      caption:caption||defaultCaption,
-      likes:0,liked:false,
-      comments:[],showComments:false,commentInput:'',
-      lang:lang||'pt'
-    };
-    savePosts(prev=>[newPost,...prev]);
+    const newPost={id:Date.now(),av:vipNow?'👑':'🌸',avatar_url:user.avatar||null,nm:user.nome,vip:vipNow,time:T[lang].comm_now,workout:nivel.n,photo:photo||null,caption:caption||defaultCaption,likes:0,liked:false,comments:[],showComments:false,commentInput:'',lang:lang||'pt'};
+    savePosts((prev)=>[newPost,...prev]);
 
-    // Sync to API (non-blocking)
-    api.post('/api/register-workout',{userId:user.email}).catch(()=>{});
-    api.post('/api/posts',{
-      userId:user.email,nm:user.nome,av:isVip?'👑':'🌸',
-      avatar_url:user.avatar||null,vip:isVip,workout:nivel.n,
-      caption:caption||defaultCaption,photo:photo||null,lang:lang||'pt',time:'agora',
-    }).catch(()=>{});
+    api.post('/register-workout',{userId:user.email}).catch(()=>{});
+    api.post('/posts',{userId:user.email,nm:user.nome,av:vipNow?'👑':'🌸',avatar_url:user.avatar||null,vip:vipNow,workout:nivel.n,caption:caption||defaultCaption,photo:photo||null,lang:lang||'pt',time:T[lang].comm_now}).catch(()=>{});
 
     setShowWRModal(false);
     showToast((T[lang]||T.pt).toast_reg);
     setCiModal(true);
     if(newNi>prevNi){
-      setTimeout(()=>{setCiModal(false);playSound('lu');setLuModal(LEVELS[newNi]);},2200);
+      setTimeout(()=>{
+        setCiModal(false);
+        playSound('lu');
+        setLuModal(LEVELS[newNi]);
+      },2200);
     }
-    // Share card after modal
     setTimeout(()=>{
-      setShareCard({workout:nivel.n,isVip,nome:user.nome,date:new Date().toLocaleDateString('pt-BR')});
+      setShareCard({workout:nivel.n,isVip:vipNow,nome:user.nome,date:new Date().toLocaleDateString('pt-BR')});
     },3000);
-  },[user,lang]);
+  },[user,lang,savePosts]);
 
-  // Swap workout
   const handleSwap=(targetIdx)=>{
     if(!user) return;
     const newNivelId=LEVELS[targetIdx].id;
@@ -2581,99 +2404,64 @@ function App(){
     setHasSwapped(true);
     setSwapModal(false);
     showToast(T[lang].swap_done);
-    // Sync to API
-    api.post('/api/swap-workout',{userId:user.email,newWorkout:LEVELS[targetIdx].n}).catch(()=>{});
+    api.post('/swap-workout',{userId:user.email,newWorkout:LEVELS[targetIdx].n}).catch(()=>{});
   };
 
-  // Avatar change
   const handleAvatarChange=(dataUrl)=>{
     if(!user) return;
     const upd={...user,avatar:dataUrl};
     db.saveUser(upd);
     setUser(upd);
-    // Update posts by this user to show new avatar
-    savePosts(prev=>prev.map(p=>p.nm===user.nome?{...p,avatar_url:dataUrl}:p));
+    savePosts((prev)=>prev.map((p)=>p.nm===user.nome?{...p,avatar_url:dataUrl}:p));
   };
 
   const t=T[lang]||T.pt;
 
-  if(!user) return(
-    <div className="app">
-      <LoginPage onLogin={u=>setUser(u)} lang={lang} setLang={handleLang}/>
-    </div>
-  );
+  if(!user){
+    return(
+      <div className="app">
+        <LoginPage onLogin={(u)=>setUser(u)} lang={lang} setLang={handleLang}/>
+      </div>
+    );
+  }
 
-  const handleLogout=()=>{db.clearUser();setUser(null);};
+  const handleLogout=()=>{
+    db.clearUser();
+    setUser(null);
+  };
 
   const renderPage=()=>{
     switch(page){
-      case 'dashboard': return(
-        <DashboardPage
-          user={user} lang={lang} t={t} setLang={handleLang}
-          onRegisterClick={openRegisterModal}
-          onLogout={handleLogout}
-          onSwap={()=>setSwapModal(true)}
-          hasSwapped={hasSwapped}
-          onOpenInstrucoes={()=>setShowInstrucoes(true)}
-        />
-      );
-      case 'treinos':    return <TreinosPage user={user} lang={lang} t={t} apiRanking={apiRanking}/>;
-      case 'programas':  return <ProgramasPage lang={lang} t={t}/>;
-      case 'comunidade': return(
-        <ComunidadePage
-          user={user} lang={lang} t={t}
-          posts={posts}
-          postsLoading={postsLoading}
-          postsError={postsError}
-          onPostsChange={savePosts}
-          onRegisterClick={openRegisterModal}
-          onViewProfile={(post)=>setViewProfile(post)}
-        />
-      );
-      case 'ranking':    return <RankingPage user={user} lang={lang} t={t} apiRanking={apiRanking} rankLoading={rankLoading} rankError={rankError}/>;
-      case 'vip':        return <VipPage lang={lang} t={t} isVip={isVip} onActivate={handleActivateVip}/>;
-      case 'perfil':     return(
-        <PerfilPage
-          user={user} lang={lang} t={t}
-          onLogout={handleLogout}
-          onGoExtras={()=>setPage('programas')}
-          onAvatarChange={handleAvatarChange}
-        />
-      );
-      default: return null;
+      case 'dashboard':
+        return <DashboardPage user={user} lang={lang} t={t} setLang={handleLang} onRegisterClick={openRegisterModal} onLogout={handleLogout} onSwap={()=>setSwapModal(true)} hasSwapped={hasSwapped} onOpenInstrucoes={()=>setShowInstrucoes(true)}/>;
+      case 'treinos':
+        return <TreinosPage user={user} lang={lang} t={t} apiRanking={apiRanking}/>;
+      case 'programas':
+        return <ProgramasPage t={t}/>;
+      case 'comunidade':
+        return <ComunidadePage user={user} lang={lang} t={t} posts={posts} postsLoading={postsLoading} postsError={postsError} onPostsChange={savePosts} onRegisterClick={openRegisterModal} onViewProfile={(post)=>setViewProfile(post)}/>;
+      case 'ranking':
+        return <RankingPage user={user} t={t} apiRanking={apiRanking} rankLoading={rankLoading} rankError={rankError}/>;
+      case 'vip':
+        return <VipPage t={t} isVip={isVip} onActivate={handleActivateVip}/>;
+      case 'perfil':
+        return <PerfilPage user={user} lang={lang} t={t} onLogout={handleLogout} onGoExtras={()=>setPage('programas')} onAvatarChange={handleAvatarChange}/>;
+      default:
+        return null;
     }
   };
 
   return(
     <div className={`app${isVip?' vip-theme':''}`}>
       {toast&&<div className="toast">{toast}</div>}
-      {ciModal&&<CheckinModal user={user} lang={lang} t={t} onClose={()=>setCiModal(false)}/>}
-      {luModal&&<LevelUpModal nivel={luModal} lang={lang} t={t} onClose={()=>setLuModal(null)}/>}
+      {ciModal&&<CheckinModal user={user} t={t} onClose={()=>setCiModal(false)}/>}
+      {luModal&&<LevelUpModal nivel={luModal} t={t} onClose={()=>setLuModal(null)}/>}
       {shareCard&&<ShareCard card={shareCard} onClose={()=>setShareCard(null)}/>}
-      {showWRModal&&(
-        <WorkoutRegisterModal
-          user={user} lang={lang} t={t}
-          onClose={()=>setShowWRModal(false)}
-          onPublish={(opts)=>registerWorkout(opts)}
-        />
-      )}
-      {showInstrucoes&&(
-        <InstrucoesPage lang={lang} t={t} onClose={()=>setShowInstrucoes(false)}/>
-      )}
-      {showVipCel&&(
-        <VipCelebrationModal t={t} onClose={()=>setShowVipCel(false)}/>
-      )}
+      {showWRModal&&<WorkoutRegisterModal t={t} onClose={()=>setShowWRModal(false)} onPublish={(opts)=>registerWorkout(opts)}/>}
+      {showInstrucoes&&<InstrucoesPage lang={lang} t={t} onClose={()=>setShowInstrucoes(false)}/>}
+      {showVipCel&&<VipCelebrationModal t={t} onClose={()=>setShowVipCel(false)}/>}
       {swapModal&&<SwapWorkoutModal user={user} t={t} onClose={()=>setSwapModal(false)} onSwap={handleSwap}/>}
-      {viewProfile&&(
-        <UserProfileModal
-          profile={viewProfile}
-          allPosts={posts}
-          onClose={()=>setViewProfile(null)}
-          onLike={(id)=>savePosts(prev=>prev.map(p=>p.id===id?{...p,likes:p.liked?p.likes-1:p.likes+1,liked:!p.liked}:p))}
-          onViewProfile={(post)=>setViewProfile(post)}
-          user={user} lang={lang} t={t}
-        />
-      )}
+      {viewProfile&&<UserProfileModal profile={viewProfile} allPosts={posts} onClose={()=>setViewProfile(null)} onLike={(id)=>savePosts((prev)=>prev.map((p)=>p.id===id?{...p,likes:p.liked?p.likes-1:p.likes+1,liked:!p.liked}:p))} t={t}/>}
       <div className="fade-in">{renderPage()}</div>
       <BottomNav active={page} setActive={setPage} t={t}/>
     </div>
@@ -2681,62 +2469,6 @@ function App(){
 }
 
 ReactDOM.render(<App/>,document.getElementById('root'));
-  /* ================= API CONNECT ================= */
-
-const API_URL = "https://planfitapp-production.up.railway.app";
-
-const api = {
-  get: async (path) => {
-    const res = await fetch(`${API_URL}/api${path}`);
-    if (!res.ok) throw new Error("API error");
-    return res.json();
-  },
-
-  post: async (path, body) => {
-    const res = await fetch(`${API_URL}/api${path}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(body)
-    });
-
-    if (!res.ok) throw new Error("API error");
-    return res.json();
-  }
-};
-
-/* ================= WORKOUT ================= */
-
-window.registerWorkout = async function(opts){
-  try{
-    const post = await api.post("/workout",{
-      userId: window.user?.id || "guest",
-      caption: opts?.caption || "",
-      photo: opts?.photo || null,
-      createdAt: Date.now()
-    });
-
-    if(window.setPosts){
-      window.setPosts(prev => [post,...prev]);
-    }
-
-  }catch(e){
-    console.log("workout error",e);
-  }
-};
-
-/* ================= POSTS ================= */
-
-window.loadPosts = async function(){
-  try{
-    const data = await api.get("/posts");
-    if(window.setPosts){
-      window.setPosts(data);
-    }
-  }catch(e){
-    console.log("posts error",e);
-}
 </script>
 </body>
 </html>
