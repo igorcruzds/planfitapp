@@ -1548,16 +1548,20 @@ function InstrucoesPage({lang,t,onClose}){
   );
 }
 
-function BottomNav({active,setActive,t}){
+function BottomNav({active,setActive,t,user}){
+  const isAdmin = user?.email === 'admin@planfit.com';
+
   const items=[
-    {id:'dashboard',ic:'🏠',lb:t.home},
-    {id:'treinos',ic:'🏋️',lb:t.treinos},
-    {id:'programas',ic:'⭐',lb:t.programas},
-    {id:'comunidade',ic:'💬',lb:t.comunidade},
-    {id:'ranking',ic:'📊',lb:t.ranking},
-    {id:'vip',ic:'👑',lb:t.vip},
-    {id:'perfil',ic:'👤',lb:t.profile},
+    {id:'dashboard',  ic:'🏠', lb:t.home},
+    {id:'treinos',    ic:'🏋️', lb:t.treinos},
+    {id:'programas',  ic:'⭐', lb:t.programas},
+    {id:'comunidade', ic:'💬', lb:t.comunidade},
+    {id:'ranking',    ic:'📊', lb:t.ranking},
+    {id:'vip',        ic:'👑', lb:t.vip},
+    ...(isAdmin ? [{id:'admin', ic:'🛠️', lb:'Admin'}] : []),
+    {id:'perfil',     ic:'👤', lb:t.profile},
   ];
+
   return(
     <div className="bnav">
       {items.map((x)=>(
@@ -2463,7 +2467,8 @@ function App(){
       {swapModal&&<SwapWorkoutModal user={user} t={t} onClose={()=>setSwapModal(false)} onSwap={handleSwap}/>}
       {viewProfile&&<UserProfileModal profile={viewProfile} allPosts={posts} onClose={()=>setViewProfile(null)} onLike={(id)=>savePosts((prev)=>prev.map((p)=>p.id===id?{...p,likes:p.liked?p.likes-1:p.likes+1,liked:!p.liked}:p))} t={t}/>}
       <div className="fade-in">{renderPage()}</div>
-      <BottomNav active={page} setActive={setPage} t={t}/>
+      <BottomNav active={page} setActive={setPage} t={t} user={user}/>
+
     </div>
   );
 }
