@@ -1102,8 +1102,13 @@ const db={
   setLang:(l)=>localStorage.setItem('pf_lg',l),
   getCheckins:()=>{try{return JSON.parse(localStorage.getItem('pf_cks')||'[]')}catch{return[]}},
   addCheckin:(date)=>{const l=db.getCheckins();if(!l.includes(date)){l.push(date);localStorage.setItem('pf_cks',JSON.stringify(l.slice(-90)));}},
-  isVip:()=>localStorage.getItem('pf_vip')==='1',
-  setVip:()=>localStorage.setItem('pf_vip','1'),
+  isVip:(user)=>user?.plan === 'vip',
+  setVip:(user)=>{
+    if(!user) return null;
+    const upd={...user,plan:'vip'};
+    localStorage.setItem('pf_u',JSON.stringify(upd));
+    return upd;
+  },
   getUnlockedPaid:()=>{try{return JSON.parse(localStorage.getItem('pf_ulk')||'[]')}catch{return[]}},
   addUnlockedPaid:(idx)=>{const l=db.getUnlockedPaid();if(!l.includes(idx)){l.push(idx);localStorage.setItem('pf_ulk',JSON.stringify(l));}},
   getUnlockedExtras:()=>{try{return JSON.parse(localStorage.getItem('pf_ext')||'[]')}catch{return[]}},
@@ -1690,7 +1695,7 @@ function DashboardPage({user,lang,t,setLang,onRegisterClick,onLogout,onSwap,hasS
     d.setDate(d.getDate()-(29-i));
     return{date:d.toDateString(),num:d.getDate(),isHoje:d.toDateString()===TODAY};
   });
-  const isVip=db.isVip();
+  const isVip=user?.plan === 'vip';
   const diasDesdeInicio=user.created_at?Math.floor((Date.now()-new Date(user.created_at).getTime())/(1000*60*60*24)):99;
   const showSwap=diasDesdeInicio<=7&&!hasSwapped;
 
@@ -2042,7 +2047,7 @@ function RankingPage({user,t,apiRanking=[],rankLoading=false,rankError=false}){
 }
 
 function ComunidadePage({user,posts,onPostsChange,postsLoading,postsError,onRegisterClick,onViewProfile,lang,t}){
-  const isVip=db.isVip();
+  const isVip=user?.plan === 'vip';
   const jaFezHoje=user.ultimo_checkin===TODAY;
   const [translations,setTranslations]=useState({});
 
@@ -2212,7 +2217,7 @@ function PerfilPage({user,lang,t,onLogout,onGoExtras,onAvatarChange}){
   const inicialNivel=LEVELS.find((l)=>l.id===user.nivel_inicial);
   const nOpen=LEVELS.filter((_,i)=>getStatus(i,ii,user.progresso,db.getUnlockedPaid())!=='lock').length;
   const local=getLocalProg(user.progresso,ni,ii);
-  const isVip=db.isVip();
+  const isVip=user?.plan === 'vip';
   const [unlockedExtras]=useState(()=>db.getUnlockedExtras());
   const myProducts=EXTRA_PROGRAMS.filter((p)=>unlockedExtras.includes(p.id));
   const [showAvPicker,setShowAvPicker]=useState(false);
@@ -2275,7 +2280,7 @@ function App(){
     if(u){
       let migrated={...u};
       let changed=false;
-      if(!u.plan){migrated.plan=db.isVip()?'vip':'planfit';changed=true;}
+      if(!u.plan){migrated.plan='planfit';changed=true;}
       if(!u.nivel_start_date){migrated.nivel_start_date=u.created_at||new Date().toISOString();changed=true;}
       if(changed){db.saveUser(migrated);return migrated;}
     }
@@ -2291,7 +2296,7 @@ function App(){
   const [hasSwapped,setHasSwapped]=useState(()=>db.getSwapped());
   const [showWRModal,setShowWRModal]=useState(false);
   const [showInstrucoes,setShowInstrucoes]=useState(false);
-  const [isVip,setIsVip]=useState(()=>db.isVip());
+  const [isVip,setIsVip]=useState(()=>user?.plan === 'vip');
   const [showVipCel,setShowVipCel]=useState(false);
   const [toast,setToast]=useState('');
   const [posts,setPosts]=useState([]);
@@ -2315,6 +2320,10 @@ function App(){
     showComments:false,
     comments:(p.comments||[]).map((c)=>({...c,replyInput:'',showReplyInput:false,replies:c.replies||[]})),
   }));
+
+  useEffect(()=>{
+    setIsVip(user?.plan === 'vip');
+  },[user]);
 
   useEffect(()=>{
     setPostsLoading(true);
@@ -2343,13 +2352,11 @@ function App(){
 
   const handleActivateVip=useCallback(()=>{
     if(isVip||!user) return;
-    db.setVip();
+    const upd=db.setVip(user);
+    setUser(upd);
     setIsVip(true);
     setShowVipCel(true);
     playSound('vip');
-    const upd={...user,plan:'vip'};
-    db.saveUser(upd);
-    setUser(upd);
     api.post('/vip',{userId:user.email}).catch(()=>{});
   },[isVip,user]);
 
@@ -2364,10 +2371,10 @@ function App(){
 
   const registerWorkout=useCallback(({photo='',caption=''}={})=>{
     if(!user||user.ultimo_checkin===TODAY) return;
-    const vipNow=db.isVip();
     const ii=LEVELS.findIndex((l)=>l.id===user.nivel_inicial);
     const prevNi=getNivelAtualIdx(ii,user.progresso);
     const upd={...user,progresso:user.progresso+1,ultimo_checkin:TODAY};
+    const vipNow=upd.plan === 'vip';
     const newNi=getNivelAtualIdx(ii,upd.progresso);
     if(newNi>prevNi) upd.nivel_start_date=new Date().toISOString();
     db.saveUser(upd);
@@ -2430,8 +2437,10 @@ function App(){
   }
 
   const handleLogout=()=>{
+    localStorage.removeItem('pf_vip');
     db.clearUser();
     setUser(null);
+    setIsVip(false);
   };
 
   const renderPage=()=>{
@@ -2468,7 +2477,6 @@ function App(){
       {viewProfile&&<UserProfileModal profile={viewProfile} allPosts={posts} onClose={()=>setViewProfile(null)} onLike={(id)=>savePosts((prev)=>prev.map((p)=>p.id===id?{...p,likes:p.liked?p.likes-1:p.likes+1,liked:!p.liked}:p))} t={t}/>}
       <div className="fade-in">{renderPage()}</div>
       <BottomNav active={page} setActive={setPage} t={t} user={user}/>
-
     </div>
   );
 }
